@@ -8,7 +8,7 @@ using System.Threading.Tasks;
 
 namespace e_Agenda.WinApp.ModuloCompromisso
 {
-    internal class ControladorCompromisso : ControladorBase<RepositorioCompromisso, Compromisso>
+    public class ControladorCompromisso : ControladorBase<RepositorioCompromisso, Compromisso>
     {
         public override string ToolTipInserir => "Inserir Compromisso";
 
@@ -16,9 +16,12 @@ namespace e_Agenda.WinApp.ModuloCompromisso
 
         public override string ToolTipExcluir => "Excluir Compromisso";
 
+
         public readonly RepositorioContato? RepositorioContato;
 
+
         public readonly RepositorioCompromisso repositorioCompromisso;
+
 
         public ListaCompromissosControl? listaCompromissosControl;
 
@@ -31,17 +34,59 @@ namespace e_Agenda.WinApp.ModuloCompromisso
 
         public override void Editar()
         {
-            throw new NotImplementedException();
+            Compromisso compromissoSelecionado = listaCompromissosControl!.ObterCompromissoSelecionado();
+
+            if (compromissoSelecionado == null)
+                return;
+
+            string question = $"Confirma editar o contato {compromissoSelecionado.Id} - {compromissoSelecionado.Assunto} ?";
+            string titulo = "Editar Compromisso";
+
+            DialogResult opcao = MessageBox.Show(question, titulo, MessageBoxButtons.YesNo, MessageBoxIcon.Question);
+
+            if (opcao == DialogResult.Yes)
+            {
+                var compromissoForm = new TelaCompromissoForm(ObterContatos());
+
+                compromissoForm.Text = "Editar Compromisso";
+
+                compromissoForm.Compromisso = compromissoSelecionado;
+
+                DialogResult opcaoSalvar = compromissoForm.ShowDialog();
+
+                if (opcaoSalvar == DialogResult.OK)
+                {
+                    compromissoSelecionado = compromissoForm.Compromisso;
+
+                    RepositorioBase!.Editar(compromissoSelecionado);
+
+                    AtualizarCompromissos();
+                }
+            }
         }
 
         public override void Excluir()
         {
-            throw new NotImplementedException();
+            Compromisso compromissoSelecionado = listaCompromissosControl!.ObterCompromissoSelecionado();
+
+            if (compromissoSelecionado == null)
+                return;
+
+            string question = $"Confirma excluir o compromisso {compromissoSelecionado.Id} - {compromissoSelecionado.Assunto} ?";
+            string titulo = "Excluir Compromisso";
+
+            DialogResult opcao = MessageBox.Show(question, titulo, MessageBoxButtons.YesNo, MessageBoxIcon.Question);
+
+            if (opcao == DialogResult.Yes)
+            {
+                RepositorioBase!.Excluir(compromissoSelecionado);
+                AtualizarCompromissos();
+            }
         }
 
         public override void Inserir()
         {
-           TelaCompromissoForm telaCompromissoForm = new TelaCompromissoForm(ObterContatos());
+           var telaCompromissoForm = new TelaCompromissoForm(ObterContatos());
 
            DialogResult opcao = telaCompromissoForm.ShowDialog();
 
@@ -65,16 +110,33 @@ namespace e_Agenda.WinApp.ModuloCompromisso
 
         public override UserControl ObterListagem()
         {
-            listaCompromissosControl ??= new ListaCompromissosControl();
+            listaCompromissosControl ??= new ListaCompromissosControl(repositorioCompromisso.Listar());
 
             AtualizarCompromissos();
 
             return listaCompromissosControl;
         }
 
+        public void AbrirFormFiltro()
+        {
+            var telaFiltro = new TelaFiltroCompromisso();
+
+            DialogResult result = telaFiltro.ShowDialog();
+
+            if(result == DialogResult.OK)
+            {
+                StatusCompromisso status = telaFiltro.Getstatus();
+
+                var listaFiltrada = repositorioCompromisso.FiltrarLista(status);
+
+                listaCompromissosControl!.AtualizarListagem(listaFiltrada);
+            }
+        }
+
         private void AtualizarCompromissos()
         {
             List<Compromisso> compromissos = RepositorioBase!.Listar();
+
             listaCompromissosControl!.AtualizarListagem(compromissos);
         }
 
@@ -87,5 +149,12 @@ namespace e_Agenda.WinApp.ModuloCompromisso
         {
             return RepositorioContato!.Listar();
         }
+
+        public enum StatusCompromisso
+        {
+            Passado,Futuro,Hoje,
+            Todos
+        }
+
     }
 }

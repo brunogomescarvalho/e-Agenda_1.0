@@ -38,6 +38,7 @@
             btnAdicionar = new ToolStripMenuItem();
             btnEditar = new ToolStripMenuItem();
             btnExcluir = new ToolStripMenuItem();
+            btnFiltrar = new ToolStripButton();
             painelRegistros = new Panel();
             menuStrip.SuspendLayout();
             statusStrip.SuspendLayout();
@@ -51,7 +52,7 @@
             menuStrip.Items.AddRange(new ToolStripItem[] { cadastroItem });
             menuStrip.Location = new Point(0, 0);
             menuStrip.Name = "menuStrip";
-            menuStrip.Size = new Size(879, 36);
+            menuStrip.Size = new Size(1081, 36);
             menuStrip.TabIndex = 0;
             menuStrip.Text = "menuStrip";
             // 
@@ -85,9 +86,9 @@
             // 
             statusStrip.ImageScalingSize = new Size(20, 20);
             statusStrip.Items.AddRange(new ToolStripItem[] { statusLabel });
-            statusStrip.Location = new Point(0, 529);
+            statusStrip.Location = new Point(0, 628);
             statusStrip.Name = "statusStrip";
-            statusStrip.Size = new Size(879, 26);
+            statusStrip.Size = new Size(1081, 26);
             statusStrip.TabIndex = 1;
             statusStrip.Text = "Bem Vindo!";
             // 
@@ -101,10 +102,10 @@
             // 
             toolStrip1.Font = new Font("Segoe UI", 12F, FontStyle.Regular, GraphicsUnit.Point);
             toolStrip1.ImageScalingSize = new Size(24, 24);
-            toolStrip1.Items.AddRange(new ToolStripItem[] { btnAdicionar, btnEditar, btnExcluir });
+            toolStrip1.Items.AddRange(new ToolStripItem[] { btnAdicionar, btnEditar, btnExcluir, btnFiltrar });
             toolStrip1.Location = new Point(0, 36);
             toolStrip1.Name = "toolStrip1";
-            toolStrip1.Size = new Size(879, 28);
+            toolStrip1.Size = new Size(1081, 31);
             toolStrip1.TabIndex = 2;
             toolStrip1.Text = "toolStrip1";
             // 
@@ -116,7 +117,7 @@
             btnAdicionar.Image = Properties.Resources.add_circle_FILL0_wght400_GRAD0_opsz24;
             btnAdicionar.ImageScaling = ToolStripItemImageScaling.None;
             btnAdicionar.Name = "btnAdicionar";
-            btnAdicionar.Size = new Size(38, 28);
+            btnAdicionar.Size = new Size(38, 31);
             btnAdicionar.Text = "Adicionar";
             btnAdicionar.Click += btnAdicionar_Click;
             // 
@@ -126,7 +127,7 @@
             btnEditar.DisplayStyle = ToolStripItemDisplayStyle.Image;
             btnEditar.Image = Properties.Resources.edit_FILL0_wght400_GRAD0_opsz24;
             btnEditar.Name = "btnEditar";
-            btnEditar.Size = new Size(38, 28);
+            btnEditar.Size = new Size(38, 31);
             btnEditar.Text = "Editar";
             btnEditar.Click += btnEditar_Click;
             // 
@@ -136,23 +137,34 @@
             btnExcluir.DisplayStyle = ToolStripItemDisplayStyle.Image;
             btnExcluir.Image = Properties.Resources.delete_FILL0_wght400_GRAD0_opsz24;
             btnExcluir.Name = "btnExcluir";
-            btnExcluir.Size = new Size(38, 28);
+            btnExcluir.Size = new Size(38, 31);
             btnExcluir.Text = "Excluir";
             btnExcluir.Click += btnExcluir_Click;
+            // 
+            // btnFiltrar
+            // 
+            btnFiltrar.DisplayStyle = ToolStripItemDisplayStyle.Image;
+            btnFiltrar.Image = Properties.Resources.filter_list_FILL0_wght400_GRAD0_opsz24;
+            btnFiltrar.ImageTransparentColor = Color.Magenta;
+            btnFiltrar.Name = "btnFiltrar";
+            btnFiltrar.Size = new Size(29, 28);
+            btnFiltrar.Text = "toolStripButton1";
+            btnFiltrar.Visible = false;
+            btnFiltrar.Click += btnFiltrar_Click;
             // 
             // painelRegistros
             // 
             painelRegistros.Dock = DockStyle.Fill;
-            painelRegistros.Location = new Point(0, 64);
+            painelRegistros.Location = new Point(0, 67);
             painelRegistros.Name = "painelRegistros";
-            painelRegistros.Size = new Size(879, 465);
+            painelRegistros.Size = new Size(1081, 561);
             painelRegistros.TabIndex = 3;
             // 
             // TelaPrincipal
             // 
             AutoScaleDimensions = new SizeF(8F, 20F);
             AutoScaleMode = AutoScaleMode.Font;
-            ClientSize = new Size(879, 555);
+            ClientSize = new Size(1081, 654);
             Controls.Add(painelRegistros);
             Controls.Add(toolStrip1);
             Controls.Add(statusStrip);
@@ -186,5 +198,6 @@
         private ToolStripMenuItem btnEditar;
         private ToolStripMenuItem btnExcluir;
         private Panel painelRegistros;
+        private ToolStripButton btnFiltrar;
     }
 }

@@ -22,11 +22,10 @@ namespace e_Agenda.WinApp
 
             ConfigurarToolTips(controlador);
             ConfigurarListagem(controlador);
+            btnFiltrar.Visible = false;
 
             statusLabel.Text = "Menu Contato";
         }
-
-
 
         private void ConfigurarToolTips(IControler controladorBase)
         {
@@ -70,6 +69,15 @@ namespace e_Agenda.WinApp
 
             statusLabel.Text = "Menu Compromisso";
 
+            btnFiltrar.ToolTipText = "Filtrar Compromissos";
+
+            btnFiltrar.Visible = true;
+        }
+
+        private void btnFiltrar_Click(object sender, EventArgs e)
+        {
+            if (controlador is ControladorCompromisso ctrl)
+                ctrl.AbrirFormFiltro();
         }
     }
 }

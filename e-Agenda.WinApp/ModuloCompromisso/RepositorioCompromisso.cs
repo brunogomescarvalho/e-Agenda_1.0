@@ -1,10 +1,12 @@
 ﻿using e_Agenda.WinApp.ModuloCompartilhado;
 using System;
+using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
 using System.Security.Cryptography.X509Certificates;
 using System.Text;
 using System.Threading.Tasks;
+using static e_Agenda.WinApp.ModuloCompromisso.ControladorCompromisso;
 
 namespace e_Agenda.WinApp.ModuloCompromisso
 {
@@ -15,9 +17,6 @@ namespace e_Agenda.WinApp.ModuloCompromisso
             IniciarCompromissos();
 
         }
-
-       
-
         public bool VerificarHorario(Compromisso c)
         {
             var compromissosDoDia = registros.FindAll(i => i.Data == c.Data);
@@ -27,6 +26,37 @@ namespace e_Agenda.WinApp.ModuloCompromisso
 
             return !ocupado.Any();
 
+        }
+
+        public List<Compromisso>FiltrarLista(StatusCompromisso status)
+        {
+            switch (status)
+            {
+                case StatusCompromisso.Passado: return BuscarPassados();
+                    
+                case StatusCompromisso.Futuro: return BuscarProximos();
+                    
+                case StatusCompromisso.Hoje: return BuscarDeHoje();
+                    
+               default: return Listar();
+                 
+            }
+        }
+
+
+        private List<Compromisso>BuscarPassados()
+        {
+            return registros.FindAll(i => i.Data.Date < DateTime.Now.Date);
+        }
+
+        private List<Compromisso>BuscarProximos()
+        {
+            return registros.FindAll(i => i.Data.Date > DateTime.Now.Date);
+        }
+
+        private List<Compromisso>BuscarDeHoje()
+        {
+            return registros.FindAll(i=>i.Data.Date == DateTime.Now.Date);
         }
 
 

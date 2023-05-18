@@ -20,11 +20,22 @@ namespace e_Agenda.WinApp.ModuloCompromisso
         public Compromisso Compromisso
         {
             get => compromisso!;
+
+            set
+            {
+                textId.Text = value.Id.ToString();
+                textBoxAssunto.Text = value.Assunto.ToString();
+                textBoxLocal.Text= value.Local.ToString();
+                textData.Text = value.Data.ToString();
+                textHoraInicial.Text=value.HoraInicio.ToString();
+                textHoraInicial.Text=value.HoraTermino.ToString();
+            }
         }
 
         public TelaCompromissoForm(List<Contato> contatos)
         {
             this.contatos = contatos;
+
             InitializeComponent();
         }
 
