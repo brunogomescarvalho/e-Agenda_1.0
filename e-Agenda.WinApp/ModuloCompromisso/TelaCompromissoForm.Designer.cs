@@ -39,41 +39,43 @@
             textBoxLocal = new TextBox();
             labelHoraInicial = new Label();
             labelHoraFinal = new Label();
-            textHoraFinal = new MaskedTextBox();
             labelId = new Label();
             textId = new TextBox();
             textData = new DateTimePicker();
-            textHoraInicial = new MaskedTextBox();
+            textHoraInicial = new DateTimePicker();
+            textHorarioFinal = new DateTimePicker();
+            checkIncluirContato = new CheckBox();
             SuspendLayout();
             // 
             // comboBoxContatos
             // 
+            comboBoxContatos.Enabled = false;
             comboBoxContatos.FlatStyle = FlatStyle.Flat;
             comboBoxContatos.Font = new Font("Segoe UI", 9F, FontStyle.Regular, GraphicsUnit.Point);
             comboBoxContatos.FormattingEnabled = true;
             comboBoxContatos.IntegralHeight = false;
-            comboBoxContatos.Location = new Point(65, 70);
+            comboBoxContatos.Location = new Point(100, 84);
             comboBoxContatos.Name = "comboBoxContatos";
-            comboBoxContatos.Size = new Size(674, 28);
-            comboBoxContatos.TabIndex = 0;
+            comboBoxContatos.Size = new Size(578, 28);
+            comboBoxContatos.TabIndex = 2;
             // 
             // labelContato
             // 
             labelContato.AutoSize = true;
             labelContato.Font = new Font("Segoe UI", 12F, FontStyle.Regular, GraphicsUnit.Point);
-            labelContato.Location = new Point(65, 36);
+            labelContato.Location = new Point(12, 84);
             labelContato.Name = "labelContato";
-            labelContato.Size = new Size(83, 28);
+            labelContato.Size = new Size(87, 28);
             labelContato.TabIndex = 1;
-            labelContato.Text = "Contato";
+            labelContato.Text = "Contato:";
             // 
             // bntSalvar
             // 
             bntSalvar.DialogResult = DialogResult.OK;
-            bntSalvar.Location = new Point(578, 391);
+            bntSalvar.Location = new Point(505, 335);
             bntSalvar.Name = "bntSalvar";
-            bntSalvar.Size = new Size(70, 44);
-            bntSalvar.TabIndex = 7;
+            bntSalvar.Size = new Size(76, 54);
+            bntSalvar.TabIndex = 8;
             bntSalvar.Text = "Salvar";
             bntSalvar.UseVisualStyleBackColor = true;
             bntSalvar.Click += bntSalvar_Click;
@@ -81,10 +83,10 @@
             // btnCancelar
             // 
             btnCancelar.DialogResult = DialogResult.Cancel;
-            btnCancelar.Location = new Point(671, 391);
+            btnCancelar.Location = new Point(608, 335);
             btnCancelar.Name = "btnCancelar";
-            btnCancelar.Size = new Size(70, 44);
-            btnCancelar.TabIndex = 8;
+            btnCancelar.Size = new Size(75, 54);
+            btnCancelar.TabIndex = 9;
             btnCancelar.Text = "Cancel";
             btnCancelar.UseVisualStyleBackColor = true;
             // 
@@ -92,127 +94,143 @@
             // 
             labelAssunto.AutoSize = true;
             labelAssunto.Font = new Font("Segoe UI", 12F, FontStyle.Regular, GraphicsUnit.Point);
-            labelAssunto.Location = new Point(65, 117);
+            labelAssunto.Location = new Point(12, 147);
             labelAssunto.Name = "labelAssunto";
-            labelAssunto.Size = new Size(82, 28);
+            labelAssunto.Size = new Size(86, 28);
             labelAssunto.TabIndex = 4;
-            labelAssunto.Text = "Assunto";
+            labelAssunto.Text = "Assunto:";
             // 
             // textBoxAssunto
             // 
             textBoxAssunto.Font = new Font("Segoe UI", 12F, FontStyle.Regular, GraphicsUnit.Point);
-            textBoxAssunto.Location = new Point(65, 148);
+            textBoxAssunto.Location = new Point(100, 141);
             textBoxAssunto.Name = "textBoxAssunto";
-            textBoxAssunto.Size = new Size(669, 34);
-            textBoxAssunto.TabIndex = 1;
+            textBoxAssunto.Size = new Size(582, 34);
+            textBoxAssunto.TabIndex = 3;
             // 
             // labelData
             // 
             labelData.AutoSize = true;
             labelData.Font = new Font("Segoe UI", 12F, FontStyle.Regular, GraphicsUnit.Point);
-            labelData.Location = new Point(71, 208);
+            labelData.Location = new Point(30, 211);
             labelData.Name = "labelData";
-            labelData.Size = new Size(53, 28);
+            labelData.Size = new Size(57, 28);
             labelData.TabIndex = 6;
-            labelData.Text = "Data";
+            labelData.Text = "Data:";
             // 
             // labelLocal
             // 
             labelLocal.AutoSize = true;
             labelLocal.Font = new Font("Segoe UI", 12F, FontStyle.Regular, GraphicsUnit.Point);
-            labelLocal.Location = new Point(245, 208);
+            labelLocal.Location = new Point(255, 212);
             labelLocal.Name = "labelLocal";
-            labelLocal.Size = new Size(57, 28);
+            labelLocal.Size = new Size(61, 28);
             labelLocal.TabIndex = 8;
-            labelLocal.Text = "Local";
+            labelLocal.Text = "Local:";
             // 
             // textBoxLocal
             // 
             textBoxLocal.Font = new Font("Segoe UI", 12F, FontStyle.Regular, GraphicsUnit.Point);
-            textBoxLocal.Location = new Point(245, 239);
+            textBoxLocal.Location = new Point(327, 205);
             textBoxLocal.Name = "textBoxLocal";
-            textBoxLocal.Size = new Size(489, 34);
-            textBoxLocal.TabIndex = 3;
+            textBoxLocal.Size = new Size(356, 34);
+            textBoxLocal.TabIndex = 5;
             // 
             // labelHoraInicial
             // 
             labelHoraInicial.AutoSize = true;
             labelHoraInicial.Font = new Font("Segoe UI", 12F, FontStyle.Regular, GraphicsUnit.Point);
-            labelHoraInicial.Location = new Point(65, 317);
+            labelHoraInicial.Location = new Point(30, 270);
             labelHoraInicial.Name = "labelHoraInicial";
-            labelHoraInicial.Size = new Size(134, 28);
+            labelHoraInicial.Size = new Size(63, 28);
             labelHoraInicial.TabIndex = 10;
-            labelHoraInicial.Text = "Horário Inicial";
+            labelHoraInicial.Text = "Início:";
             // 
             // labelHoraFinal
             // 
             labelHoraFinal.AutoSize = true;
             labelHoraFinal.Font = new Font("Segoe UI", 12F, FontStyle.Regular, GraphicsUnit.Point);
-            labelHoraFinal.Location = new Point(438, 317);
+            labelHoraFinal.Location = new Point(327, 268);
             labelHoraFinal.Name = "labelHoraFinal";
-            labelHoraFinal.Size = new Size(125, 28);
+            labelHoraFinal.Size = new Size(86, 28);
             labelHoraFinal.TabIndex = 11;
-            labelHoraFinal.Text = "Horário Final";
-            // 
-            // textHoraFinal
-            // 
-            textHoraFinal.Font = new Font("Segoe UI", 12F, FontStyle.Regular, GraphicsUnit.Point);
-            textHoraFinal.Location = new Point(569, 311);
-            textHoraFinal.Mask = "00:00";
-            textHoraFinal.Name = "textHoraFinal";
-            textHoraFinal.Size = new Size(165, 34);
-            textHoraFinal.TabIndex = 6;
-            textHoraFinal.TextAlign = HorizontalAlignment.Center;
-            textHoraFinal.ValidatingType = typeof(DateTime);
+            labelHoraFinal.Text = "Término:";
             // 
             // labelId
             // 
             labelId.AutoSize = true;
             labelId.Font = new Font("Segoe UI", 12F, FontStyle.Regular, GraphicsUnit.Point);
-            labelId.Location = new Point(71, 391);
+            labelId.Location = new Point(50, 36);
             labelId.Name = "labelId";
-            labelId.Size = new Size(29, 28);
+            labelId.Size = new Size(33, 28);
             labelId.TabIndex = 14;
-            labelId.Text = "Id";
+            labelId.Text = "Id:";
             // 
             // textId
             // 
             textId.Font = new Font("Segoe UI", 12F, FontStyle.Regular, GraphicsUnit.Point);
-            textId.Location = new Point(125, 385);
+            textId.Location = new Point(96, 30);
             textId.Name = "textId";
             textId.ReadOnly = true;
             textId.Size = new Size(74, 34);
-            textId.TabIndex = 15;
+            textId.TabIndex = 0;
+            textId.TabStop = false;
             // 
             // textData
             // 
             textData.CustomFormat = "dd/MM/yyyy";
-            textData.Location = new Point(65, 246);
+            textData.Format = DateTimePickerFormat.Short;
+            textData.Location = new Point(100, 212);
             textData.Name = "textData";
-            textData.Size = new Size(151, 27);
-            textData.TabIndex = 2;
+            textData.Size = new Size(131, 27);
+            textData.TabIndex = 4;
+            textData.Value = new DateTime(2023, 5, 18, 0, 0, 0, 0);
             // 
             // textHoraInicial
             // 
-            textHoraInicial.Font = new Font("Segoe UI", 12F, FontStyle.Regular, GraphicsUnit.Point);
-            textHoraInicial.Location = new Point(223, 317);
-            textHoraInicial.Mask = "00:00";
+            textHoraInicial.CustomFormat = "HH:mm";
+            textHoraInicial.Format = DateTimePickerFormat.Custom;
+            textHoraInicial.Location = new Point(96, 271);
             textHoraInicial.Name = "textHoraInicial";
-            textHoraInicial.Size = new Size(165, 34);
-            textHoraInicial.TabIndex = 5;
-            textHoraInicial.TextAlign = HorizontalAlignment.Center;
-            textHoraInicial.ValidatingType = typeof(DateTime);
+            textHoraInicial.ShowUpDown = true;
+            textHoraInicial.Size = new Size(220, 27);
+            textHoraInicial.TabIndex = 6;
+            textHoraInicial.Value = new DateTime(2023, 5, 19, 12, 0, 0, 0);
+            // 
+            // textHorarioFinal
+            // 
+            textHorarioFinal.CustomFormat = "HH:mm";
+            textHorarioFinal.Format = DateTimePickerFormat.Custom;
+            textHorarioFinal.Location = new Point(428, 269);
+            textHorarioFinal.Name = "textHorarioFinal";
+            textHorarioFinal.ShowUpDown = true;
+            textHorarioFinal.Size = new Size(250, 27);
+            textHorarioFinal.TabIndex = 7;
+            textHorarioFinal.Value = new DateTime(2023, 5, 19, 13, 0, 0, 0);
+            // 
+            // checkIncluirContato
+            // 
+            checkIncluirContato.AutoSize = true;
+            checkIncluirContato.Font = new Font("Segoe UI", 12F, FontStyle.Regular, GraphicsUnit.Point);
+            checkIncluirContato.Location = new Point(206, 35);
+            checkIncluirContato.Name = "checkIncluirContato";
+            checkIncluirContato.Size = new Size(172, 32);
+            checkIncluirContato.TabIndex = 1;
+            checkIncluirContato.Text = "Incluir Contato?";
+            checkIncluirContato.UseVisualStyleBackColor = true;
+            checkIncluirContato.CheckedChanged += checkIncluirContato_CheckedChanged;
             // 
             // TelaCompromissoForm
             // 
             AutoScaleDimensions = new SizeF(8F, 20F);
             AutoScaleMode = AutoScaleMode.Font;
-            ClientSize = new Size(830, 457);
+            ClientSize = new Size(729, 419);
+            Controls.Add(checkIncluirContato);
+            Controls.Add(textHorarioFinal);
             Controls.Add(textHoraInicial);
             Controls.Add(textData);
             Controls.Add(textId);
             Controls.Add(labelId);
-            Controls.Add(textHoraFinal);
             Controls.Add(labelHoraFinal);
             Controls.Add(labelHoraInicial);
             Controls.Add(textBoxLocal);
@@ -226,7 +244,6 @@
             Controls.Add(comboBoxContatos);
             MaximizeBox = false;
             MinimizeBox = false;
-            MinimumSize = new Size(651, 479);
             Name = "TelaCompromissoForm";
             ShowIcon = false;
             StartPosition = FormStartPosition.CenterScreen;
@@ -249,10 +266,11 @@
         private TextBox textBoxLocal;
         private Label labelHoraInicial;
         private Label labelHoraFinal;
-        private MaskedTextBox textHoraFinal;
         private Label labelId;
         private TextBox textId;
         private DateTimePicker textData;
-        private MaskedTextBox textHoraInicial;
+        private DateTimePicker textHoraInicial;
+        private DateTimePicker textHorarioFinal;
+        private CheckBox checkIncluirContato;
     }
 }

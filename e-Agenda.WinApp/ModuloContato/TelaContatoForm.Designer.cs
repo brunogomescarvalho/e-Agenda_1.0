@@ -32,9 +32,7 @@
             label_Cargo = new Label();
             textEmpresa = new TextBox();
             label_Empresa = new Label();
-            textTelefone = new MaskedTextBox();
             label_Telefone = new Label();
-            textEmail = new MaskedTextBox();
             label_Email = new Label();
             textId = new TextBox();
             label_Id = new Label();
@@ -42,6 +40,12 @@
             labelNome = new Label();
             btnSalvar = new Button();
             btnCancel = new Button();
+            statusStrip1 = new StatusStrip();
+            labelStatusContatoForm = new ToolStripStatusLabel();
+            textEmail = new TextBox();
+            textTelefone = new TextBox();
+            labelPadraoFone = new Label();
+            statusStrip1.SuspendLayout();
             SuspendLayout();
             // 
             // textCargo
@@ -50,7 +54,7 @@
             textCargo.Location = new Point(46, 361);
             textCargo.Name = "textCargo";
             textCargo.Size = new Size(227, 27);
-            textCargo.TabIndex = 4;
+            textCargo.TabIndex = 5;
             // 
             // label_Cargo
             // 
@@ -70,7 +74,7 @@
             textEmpresa.Location = new Point(44, 292);
             textEmpresa.Name = "textEmpresa";
             textEmpresa.Size = new Size(518, 27);
-            textEmpresa.TabIndex = 3;
+            textEmpresa.TabIndex = 4;
             // 
             // label_Empresa
             // 
@@ -83,15 +87,6 @@
             label_Empresa.TabIndex = 22;
             label_Empresa.Text = "Empresa:";
             // 
-            // textTelefone
-            // 
-            textTelefone.Anchor = AnchorStyles.None;
-            textTelefone.Location = new Point(46, 226);
-            textTelefone.Mask = "00000-9999";
-            textTelefone.Name = "textTelefone";
-            textTelefone.Size = new Size(227, 27);
-            textTelefone.TabIndex = 2;
-            // 
             // label_Telefone
             // 
             label_Telefone.Anchor = AnchorStyles.None;
@@ -100,17 +95,9 @@
             label_Telefone.Font = new Font("Segoe UI", 12F, FontStyle.Regular, GraphicsUnit.Point);
             label_Telefone.Location = new Point(46, 198);
             label_Telefone.Name = "label_Telefone";
-            label_Telefone.Size = new Size(88, 28);
+            label_Telefone.Size = new Size(93, 28);
             label_Telefone.TabIndex = 20;
-            label_Telefone.Text = "Telefone:";
-            // 
-            // textEmail
-            // 
-            textEmail.Anchor = AnchorStyles.None;
-            textEmail.Location = new Point(46, 159);
-            textEmail.Name = "textEmail";
-            textEmail.Size = new Size(517, 27);
-            textEmail.TabIndex = 1;
+            label_Telefone.Text = "Telefone: ";
             // 
             // label_Email
             // 
@@ -169,6 +156,7 @@
             // 
             btnSalvar.Anchor = AnchorStyles.Bottom | AnchorStyles.Right;
             btnSalvar.DialogResult = DialogResult.OK;
+            btnSalvar.Enabled = false;
             btnSalvar.Location = new Point(363, 361);
             btnSalvar.Name = "btnSalvar";
             btnSalvar.Size = new Size(85, 56);
@@ -188,21 +176,65 @@
             btnCancel.Text = "Cancel";
             btnCancel.UseVisualStyleBackColor = true;
             // 
-            // ContatoForm
+            // statusStrip1
+            // 
+            statusStrip1.ImageScalingSize = new Size(20, 20);
+            statusStrip1.Items.AddRange(new ToolStripItem[] { labelStatusContatoForm });
+            statusStrip1.Location = new Point(0, 431);
+            statusStrip1.Name = "statusStrip1";
+            statusStrip1.Size = new Size(682, 22);
+            statusStrip1.TabIndex = 25;
+            statusStrip1.Text = "statusStrip1";
+            // 
+            // labelStatusContatoForm
+            // 
+            labelStatusContatoForm.Name = "labelStatusContatoForm";
+            labelStatusContatoForm.Size = new Size(0, 16);
+            // 
+            // textEmail
+            // 
+            textEmail.Anchor = AnchorStyles.None;
+            textEmail.Location = new Point(46, 162);
+            textEmail.Name = "textEmail";
+            textEmail.Size = new Size(518, 27);
+            textEmail.TabIndex = 2;
+            // 
+            // textTelefone
+            // 
+            textTelefone.Anchor = AnchorStyles.None;
+            textTelefone.Location = new Point(46, 229);
+            textTelefone.Name = "textTelefone";
+            textTelefone.Size = new Size(518, 27);
+            textTelefone.TabIndex = 3;
+            // 
+            // labelPadraoFone
+            // 
+            labelPadraoFone.AutoSize = true;
+            labelPadraoFone.Font = new Font("Segoe UI", 11F, FontStyle.Underline, GraphicsUnit.Point);
+            labelPadraoFone.ForeColor = SystemColors.AppWorkspace;
+            labelPadraoFone.Location = new Point(133, 201);
+            labelPadraoFone.Name = "labelPadraoFone";
+            labelPadraoFone.Size = new Size(122, 25);
+            labelPadraoFone.TabIndex = 26;
+            labelPadraoFone.Text = "(xx)xxxx-xxxx";
+            // 
+            // TelaContatoForm
             // 
             AutoScaleDimensions = new SizeF(8F, 20F);
             AutoScaleMode = AutoScaleMode.Font;
             CausesValidation = false;
             ClientSize = new Size(682, 453);
+            Controls.Add(labelPadraoFone);
+            Controls.Add(textTelefone);
+            Controls.Add(textEmail);
+            Controls.Add(statusStrip1);
             Controls.Add(btnCancel);
             Controls.Add(btnSalvar);
             Controls.Add(textCargo);
             Controls.Add(label_Cargo);
             Controls.Add(textEmpresa);
             Controls.Add(label_Empresa);
-            Controls.Add(textTelefone);
             Controls.Add(label_Telefone);
-            Controls.Add(textEmail);
             Controls.Add(label_Email);
             Controls.Add(textId);
             Controls.Add(label_Id);
@@ -211,10 +243,12 @@
             FormBorderStyle = FormBorderStyle.FixedSingle;
             MaximizeBox = false;
             MinimizeBox = false;
-            Name = "ContatoForm";
+            Name = "TelaContatoForm";
             ShowIcon = false;
             StartPosition = FormStartPosition.CenterScreen;
             Text = "Cadastrar Contato";
+            statusStrip1.ResumeLayout(false);
+            statusStrip1.PerformLayout();
             ResumeLayout(false);
             PerformLayout();
         }
@@ -224,9 +258,7 @@
         private Label label_Cargo;
         private TextBox textEmpresa;
         private Label label_Empresa;
-        private MaskedTextBox textTelefone;
         private Label label_Telefone;
-        private MaskedTextBox textEmail;
         private Label label_Email;
         private TextBox textId;
         private Label label_Id;
@@ -234,5 +266,10 @@
         private Label labelNome;
         private Button btnSalvar;
         private Button btnCancel;
+        private StatusStrip statusStrip1;
+        private ToolStripStatusLabel labelStatusContatoForm;
+        private TextBox textEmail;
+        private TextBox textTelefone;
+        private Label labelPadraoFone;
     }
 }

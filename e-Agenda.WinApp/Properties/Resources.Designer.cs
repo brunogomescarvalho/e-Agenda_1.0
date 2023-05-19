@@ -63,9 +63,9 @@ namespace e_Agenda.WinApp.Properties {
         /// <summary>
         ///   Consulta um recurso localizado do tipo System.Drawing.Bitmap.
         /// </summary>
-        internal static System.Drawing.Bitmap add_circle_FILL0_wght400_GRAD0_opsz24 {
+        internal static System.Drawing.Bitmap add_circle_FILL0_wght200_GRAD0_opsz40 {
             get {
-                object obj = ResourceManager.GetObject("add_circle_FILL0_wght400_GRAD0_opsz24", resourceCulture);
+                object obj = ResourceManager.GetObject("add_circle_FILL0_wght200_GRAD0_opsz40", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
             }
         }
@@ -73,9 +73,9 @@ namespace e_Agenda.WinApp.Properties {
         /// <summary>
         ///   Consulta um recurso localizado do tipo System.Drawing.Bitmap.
         /// </summary>
-        internal static System.Drawing.Bitmap close_FILL0_wght400_GRAD0_opsz24 {
+        internal static System.Drawing.Bitmap delete_FILL0_wght200_GRAD0_opsz40 {
             get {
-                object obj = ResourceManager.GetObject("close_FILL0_wght400_GRAD0_opsz24", resourceCulture);
+                object obj = ResourceManager.GetObject("delete_FILL0_wght200_GRAD0_opsz40", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
             }
         }
@@ -83,9 +83,9 @@ namespace e_Agenda.WinApp.Properties {
         /// <summary>
         ///   Consulta um recurso localizado do tipo System.Drawing.Bitmap.
         /// </summary>
-        internal static System.Drawing.Bitmap delete_FILL0_wght400_GRAD0_opsz24 {
+        internal static System.Drawing.Bitmap edit_FILL0_wght200_GRAD0_opsz40 {
             get {
-                object obj = ResourceManager.GetObject("delete_FILL0_wght400_GRAD0_opsz24", resourceCulture);
+                object obj = ResourceManager.GetObject("edit_FILL0_wght200_GRAD0_opsz40", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
             }
         }
@@ -93,9 +93,9 @@ namespace e_Agenda.WinApp.Properties {
         /// <summary>
         ///   Consulta um recurso localizado do tipo System.Drawing.Bitmap.
         /// </summary>
-        internal static System.Drawing.Bitmap edit_FILL0_wght400_GRAD0_opsz24 {
+        internal static System.Drawing.Bitmap event_FILL0_wght200_GRAD0_opsz40 {
             get {
-                object obj = ResourceManager.GetObject("edit_FILL0_wght400_GRAD0_opsz24", resourceCulture);
+                object obj = ResourceManager.GetObject("event_FILL0_wght200_GRAD0_opsz40", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
             }
         }
@@ -103,9 +103,9 @@ namespace e_Agenda.WinApp.Properties {
         /// <summary>
         ///   Consulta um recurso localizado do tipo System.Drawing.Bitmap.
         /// </summary>
-        internal static System.Drawing.Bitmap event_note_FILL0_wght400_GRAD0_opsz24 {
+        internal static System.Drawing.Bitmap filter_list_FILL0_wght200_GRAD0_opsz40 {
             get {
-                object obj = ResourceManager.GetObject("event_note_FILL0_wght400_GRAD0_opsz24", resourceCulture);
+                object obj = ResourceManager.GetObject("filter_list_FILL0_wght200_GRAD0_opsz40", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
             }
         }
@@ -113,9 +113,9 @@ namespace e_Agenda.WinApp.Properties {
         /// <summary>
         ///   Consulta um recurso localizado do tipo System.Drawing.Bitmap.
         /// </summary>
-        internal static System.Drawing.Bitmap filter_list_FILL0_wght400_GRAD0_opsz24 {
+        internal static System.Drawing.Bitmap menu_FILL0_wght200_GRAD0_opsz40 {
             get {
-                object obj = ResourceManager.GetObject("filter_list_FILL0_wght400_GRAD0_opsz24", resourceCulture);
+                object obj = ResourceManager.GetObject("menu_FILL0_wght200_GRAD0_opsz40", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
             }
         }
@@ -123,19 +123,9 @@ namespace e_Agenda.WinApp.Properties {
         /// <summary>
         ///   Consulta um recurso localizado do tipo System.Drawing.Bitmap.
         /// </summary>
-        internal static System.Drawing.Bitmap menu_FILL0_wght400_GRAD0_opsz24 {
+        internal static System.Drawing.Bitmap person_add_FILL0_wght200_GRAD0_opsz40 {
             get {
-                object obj = ResourceManager.GetObject("menu_FILL0_wght400_GRAD0_opsz24", resourceCulture);
-                return ((System.Drawing.Bitmap)(obj));
-            }
-        }
-        
-        /// <summary>
-        ///   Consulta um recurso localizado do tipo System.Drawing.Bitmap.
-        /// </summary>
-        internal static System.Drawing.Bitmap person_add_FILL0_wght400_GRAD0_opsz24 {
-            get {
-                object obj = ResourceManager.GetObject("person_add_FILL0_wght400_GRAD0_opsz24", resourceCulture);
+                object obj = ResourceManager.GetObject("person_add_FILL0_wght200_GRAD0_opsz40", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
             }
         }

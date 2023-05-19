@@ -9,6 +9,7 @@ namespace e_Agenda.WinApp
         IControler? controlador;
 
         RepositorioContato repositorioContato = new RepositorioContato(new List<Contato>());
+
         RepositorioCompromisso repositorioCompromisso = new RepositorioCompromisso(new List<Compromisso>());
 
         public TelaPrincipal()
@@ -21,8 +22,16 @@ namespace e_Agenda.WinApp
             controlador = new ControladorContato(repositorioContato);
 
             ConfigurarToolTips(controlador);
+
             ConfigurarListagem(controlador);
-            btnFiltrar.Visible = false;
+
+            btnFiltrar.Enabled = false;
+
+            btnAdicionar.Enabled = true;
+
+            btnEditar.Enabled = true;
+
+            btnExcluir.Enabled = true;
 
             statusLabel.Text = "Menu Contato";
         }
@@ -65,13 +74,20 @@ namespace e_Agenda.WinApp
             controlador = new ControladorCompromisso(repositorioCompromisso, repositorioContato);
 
             ConfigurarToolTips(controlador);
+
             ConfigurarListagem(controlador);
 
             statusLabel.Text = "Menu Compromisso";
 
             btnFiltrar.ToolTipText = "Filtrar Compromissos";
 
-            btnFiltrar.Visible = true;
+            btnFiltrar.Enabled = true;
+
+            btnAdicionar.Enabled = true;
+
+            btnEditar.Enabled = true;
+
+            btnExcluir.Enabled = true;
         }
 
         private void btnFiltrar_Click(object sender, EventArgs e)

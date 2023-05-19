@@ -43,7 +43,7 @@ namespace e_Agenda.WinApp.ModuloCompromisso
             string emailContato = $"{Contato?.Email,-15}";
             string contatoNaoCadastrado = $"{"Contato não Cadastrado",-35}";
 
-            return $"{Id,-5} {(Contato == null ? contatoNaoCadastrado : nomeContato + emailContato)} {Assunto,-40} {Local,-40} {Data,-25:d} {HoraInicio,-5:t} {HoraTermino,-5:t}";
+            return $"{Id,-5} {Assunto,-40} {Local,-40} {Data,-25:d} {HoraInicio,-5:t} {HoraTermino,-15:t} {(Contato == null ? contatoNaoCadastrado : nomeContato + emailContato)}";
         }
     }
 }

@@ -28,6 +28,7 @@
         /// </summary>
         private void InitializeComponent()
         {
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(TelaPrincipal));
             menuStrip = new MenuStrip();
             cadastroItem = new ToolStripMenuItem();
             contatosMenuItem = new ToolStripMenuItem();
@@ -47,38 +48,43 @@
             // 
             // menuStrip
             // 
+            menuStrip.BackColor = SystemColors.ActiveCaption;
             menuStrip.BackgroundImageLayout = ImageLayout.Stretch;
             menuStrip.ImageScalingSize = new Size(20, 20);
             menuStrip.Items.AddRange(new ToolStripItem[] { cadastroItem });
             menuStrip.Location = new Point(0, 0);
             menuStrip.Name = "menuStrip";
-            menuStrip.Size = new Size(1081, 36);
+            menuStrip.Size = new Size(1090, 48);
             menuStrip.TabIndex = 0;
             menuStrip.Text = "menuStrip";
             // 
             // cadastroItem
             // 
+            cadastroItem.BackColor = SystemColors.ActiveCaption;
             cadastroItem.BackgroundImageLayout = ImageLayout.None;
             cadastroItem.DropDownItems.AddRange(new ToolStripItem[] { contatosMenuItem, compromissosMenuItem });
             cadastroItem.Font = new Font("Segoe UI", 12F, FontStyle.Regular, GraphicsUnit.Point);
-            cadastroItem.Image = Properties.Resources.menu_FILL0_wght400_GRAD0_opsz24;
+            cadastroItem.Image = Properties.Resources.menu_FILL0_wght200_GRAD0_opsz40;
+            cadastroItem.ImageScaling = ToolStripItemImageScaling.None;
             cadastroItem.Name = "cadastroItem";
-            cadastroItem.Size = new Size(124, 32);
+            cadastroItem.Size = new Size(144, 44);
             cadastroItem.Text = "Cadastro";
             // 
             // contatosMenuItem
             // 
-            contatosMenuItem.Image = Properties.Resources.person_add_FILL0_wght400_GRAD0_opsz24;
+            contatosMenuItem.Image = (Image)resources.GetObject("contatosMenuItem.Image");
+            contatosMenuItem.ImageScaling = ToolStripItemImageScaling.None;
             contatosMenuItem.Name = "contatosMenuItem";
-            contatosMenuItem.Size = new Size(228, 32);
+            contatosMenuItem.Size = new Size(248, 46);
             contatosMenuItem.Text = "Contatos";
             contatosMenuItem.Click += contatosMenuItem_Click;
             // 
             // compromissosMenuItem
             // 
-            compromissosMenuItem.Image = Properties.Resources.event_note_FILL0_wght400_GRAD0_opsz24;
+            compromissosMenuItem.Image = (Image)resources.GetObject("compromissosMenuItem.Image");
+            compromissosMenuItem.ImageScaling = ToolStripItemImageScaling.None;
             compromissosMenuItem.Name = "compromissosMenuItem";
-            compromissosMenuItem.Size = new Size(228, 32);
+            compromissosMenuItem.Size = new Size(248, 46);
             compromissosMenuItem.Text = "Compromissos";
             compromissosMenuItem.Click += compromissosMenuItem_Click;
             // 
@@ -86,9 +92,9 @@
             // 
             statusStrip.ImageScalingSize = new Size(20, 20);
             statusStrip.Items.AddRange(new ToolStripItem[] { statusLabel });
-            statusStrip.Location = new Point(0, 628);
+            statusStrip.Location = new Point(0, 647);
             statusStrip.Name = "statusStrip";
-            statusStrip.Size = new Size(1081, 26);
+            statusStrip.Size = new Size(1090, 26);
             statusStrip.TabIndex = 1;
             statusStrip.Text = "Bem Vindo!";
             // 
@@ -100,12 +106,17 @@
             // 
             // toolStrip1
             // 
+            toolStrip1.AutoSize = false;
+            toolStrip1.BackColor = SystemColors.GradientInactiveCaption;
             toolStrip1.Font = new Font("Segoe UI", 12F, FontStyle.Regular, GraphicsUnit.Point);
             toolStrip1.ImageScalingSize = new Size(24, 24);
             toolStrip1.Items.AddRange(new ToolStripItem[] { btnAdicionar, btnEditar, btnExcluir, btnFiltrar });
-            toolStrip1.Location = new Point(0, 36);
+            toolStrip1.LayoutStyle = ToolStripLayoutStyle.Flow;
+            toolStrip1.Location = new Point(0, 48);
             toolStrip1.Name = "toolStrip1";
-            toolStrip1.Size = new Size(1081, 31);
+            toolStrip1.Padding = new Padding(0, 5, 1, 0);
+            toolStrip1.Size = new Size(1090, 54);
+            toolStrip1.Stretch = true;
             toolStrip1.TabIndex = 2;
             toolStrip1.Text = "toolStrip1";
             // 
@@ -114,10 +125,11 @@
             btnAdicionar.AutoToolTip = true;
             btnAdicionar.BackgroundImageLayout = ImageLayout.Stretch;
             btnAdicionar.DisplayStyle = ToolStripItemDisplayStyle.Image;
-            btnAdicionar.Image = Properties.Resources.add_circle_FILL0_wght400_GRAD0_opsz24;
+            btnAdicionar.Enabled = false;
+            btnAdicionar.Image = (Image)resources.GetObject("btnAdicionar.Image");
             btnAdicionar.ImageScaling = ToolStripItemImageScaling.None;
             btnAdicionar.Name = "btnAdicionar";
-            btnAdicionar.Size = new Size(38, 31);
+            btnAdicionar.Size = new Size(54, 44);
             btnAdicionar.Text = "Adicionar";
             btnAdicionar.Click += btnAdicionar_Click;
             // 
@@ -125,9 +137,11 @@
             // 
             btnEditar.AutoToolTip = true;
             btnEditar.DisplayStyle = ToolStripItemDisplayStyle.Image;
-            btnEditar.Image = Properties.Resources.edit_FILL0_wght400_GRAD0_opsz24;
+            btnEditar.Enabled = false;
+            btnEditar.Image = (Image)resources.GetObject("btnEditar.Image");
+            btnEditar.ImageScaling = ToolStripItemImageScaling.None;
             btnEditar.Name = "btnEditar";
-            btnEditar.Size = new Size(38, 31);
+            btnEditar.Size = new Size(54, 44);
             btnEditar.Text = "Editar";
             btnEditar.Click += btnEditar_Click;
             // 
@@ -135,42 +149,45 @@
             // 
             btnExcluir.AutoToolTip = true;
             btnExcluir.DisplayStyle = ToolStripItemDisplayStyle.Image;
-            btnExcluir.Image = Properties.Resources.delete_FILL0_wght400_GRAD0_opsz24;
+            btnExcluir.Enabled = false;
+            btnExcluir.Image = (Image)resources.GetObject("btnExcluir.Image");
+            btnExcluir.ImageScaling = ToolStripItemImageScaling.None;
             btnExcluir.Name = "btnExcluir";
-            btnExcluir.Size = new Size(38, 31);
+            btnExcluir.Size = new Size(54, 44);
             btnExcluir.Text = "Excluir";
             btnExcluir.Click += btnExcluir_Click;
             // 
             // btnFiltrar
             // 
             btnFiltrar.DisplayStyle = ToolStripItemDisplayStyle.Image;
-            btnFiltrar.Image = Properties.Resources.filter_list_FILL0_wght400_GRAD0_opsz24;
+            btnFiltrar.Enabled = false;
+            btnFiltrar.Image = (Image)resources.GetObject("btnFiltrar.Image");
+            btnFiltrar.ImageScaling = ToolStripItemImageScaling.None;
             btnFiltrar.ImageTransparentColor = Color.Magenta;
             btnFiltrar.Name = "btnFiltrar";
-            btnFiltrar.Size = new Size(29, 28);
-            btnFiltrar.Text = "toolStripButton1";
-            btnFiltrar.Visible = false;
+            btnFiltrar.Size = new Size(44, 44);
             btnFiltrar.Click += btnFiltrar_Click;
             // 
             // painelRegistros
             // 
-            painelRegistros.Dock = DockStyle.Fill;
-            painelRegistros.Location = new Point(0, 67);
+            painelRegistros.Anchor = AnchorStyles.Top | AnchorStyles.Bottom | AnchorStyles.Left | AnchorStyles.Right;
+            painelRegistros.Location = new Point(0, 100);
+            painelRegistros.Margin = new Padding(3, 10, 3, 3);
             painelRegistros.Name = "painelRegistros";
-            painelRegistros.Size = new Size(1081, 561);
+            painelRegistros.Size = new Size(1090, 573);
             painelRegistros.TabIndex = 3;
             // 
             // TelaPrincipal
             // 
             AutoScaleDimensions = new SizeF(8F, 20F);
             AutoScaleMode = AutoScaleMode.Font;
-            ClientSize = new Size(1081, 654);
-            Controls.Add(painelRegistros);
+            ClientSize = new Size(1090, 673);
             Controls.Add(toolStrip1);
             Controls.Add(statusStrip);
             Controls.Add(menuStrip);
+            Controls.Add(painelRegistros);
             MainMenuStrip = menuStrip;
-            MinimumSize = new Size(897, 602);
+            MinimumSize = new Size(1000, 400);
             Name = "TelaPrincipal";
             ShowIcon = false;
             StartPosition = FormStartPosition.CenterScreen;

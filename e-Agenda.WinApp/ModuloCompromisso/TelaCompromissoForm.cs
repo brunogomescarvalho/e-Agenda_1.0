@@ -1,13 +1,4 @@
 ﻿using e_Agenda.WinApp.ModuloContato;
-using System;
-using System.Collections.Generic;
-using System.ComponentModel;
-using System.Data;
-using System.Drawing;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using System.Windows.Forms;
 
 namespace e_Agenda.WinApp.ModuloCompromisso
 {
@@ -24,11 +15,11 @@ namespace e_Agenda.WinApp.ModuloCompromisso
             set
             {
                 textId.Text = value.Id.ToString();
-                textBoxAssunto.Text = value.Assunto.ToString();
-                textBoxLocal.Text= value.Local.ToString();
-                textData.Text = value.Data.ToString();
-                textHoraInicial.Text=value.HoraInicio.ToString();
-                textHoraInicial.Text=value.HoraTermino.ToString();
+                textBoxAssunto.Text = value.Assunto;
+                textBoxLocal.Text = value.Local;
+                textData.Text = value.Data.ToShortDateString();
+                textHoraInicial.Text = value.HoraInicio.ToShortTimeString();
+                textHorarioFinal.Text = value.HoraTermino.ToShortTimeString();
             }
         }
 
@@ -63,7 +54,7 @@ namespace e_Agenda.WinApp.ModuloCompromisso
 
             DateTime horarioFinal = default;
 
-            if (TimeSpan.TryParse(textHoraFinal.Text.ToString(), out TimeSpan horaFinal))
+            if (TimeSpan.TryParse(textHorarioFinal.Text.ToString(), out TimeSpan horaFinal))
                 horarioFinal = DateTime.MinValue.Date + horaFinal;
 
             compromisso = new Compromisso(contato, assunto, local, data, horarioInicial, horarioFinal);
@@ -73,6 +64,16 @@ namespace e_Agenda.WinApp.ModuloCompromisso
             if (idCompromisso > 0)
                 compromisso.AtribuirId(idCompromisso);
 
+        }
+
+        private void checkIncluirContato_CheckedChanged(object sender, EventArgs e)
+        {
+            CheckBox chekc = (CheckBox)sender;
+
+            if (chekc.Checked)
+                comboBoxContatos.Enabled = true;
+            else
+                comboBoxContatos.Enabled = false;
         }
     }
 }

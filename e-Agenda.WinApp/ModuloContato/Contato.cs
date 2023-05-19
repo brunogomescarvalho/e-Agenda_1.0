@@ -40,7 +40,7 @@ namespace e_Agenda.WinApp.ModuloContato
 
         public override string ToString()
         {
-            return $"{Id,-5} {Nome, -20} {Email,-20} {Telefone,-15} {Empresa,-20} {Cargo,-10}";
+            return $"{Id,-5} {Nome, -20} {Telefone,-20} {Email,-20} {Empresa,-20} {Cargo,-10}";
         }
     }
 }

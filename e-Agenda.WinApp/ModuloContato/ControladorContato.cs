@@ -1,9 +1,4 @@
 ﻿using e_Agenda.WinApp.ModuloCompartilhado;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace e_Agenda.WinApp.ModuloContato
 {
@@ -74,6 +69,7 @@ namespace e_Agenda.WinApp.ModuloContato
             if (opcao == DialogResult.Yes)
             {
                 RepositorioBase!.Excluir(contatoSelecionado);
+
                 AtualizarContatos();
             }
         }
@@ -107,6 +103,7 @@ namespace e_Agenda.WinApp.ModuloContato
         private void AtualizarContatos()
         {
             List<Contato> contatos = RepositorioBase!.Listar();
+
             listagemContatosControl!.AtualizarLista(contatos);
         }
 

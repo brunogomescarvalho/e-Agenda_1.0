@@ -33,7 +33,7 @@ namespace e_Agenda.WinApp.ModuloCompromisso
 
             if (radioBtn.Checked)
             {
-                opcao = radioBtn.Text;
+                opcao = radioBtn.Tag.ToString()!;
             }
 
         }

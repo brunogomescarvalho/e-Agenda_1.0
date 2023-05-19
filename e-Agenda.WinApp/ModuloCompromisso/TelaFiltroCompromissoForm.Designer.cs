@@ -32,9 +32,9 @@
             radioButtonTodos = new RadioButton();
             radioButtonHoje = new RadioButton();
             radioButtonProximos = new RadioButton();
+            radioButtonPassados = new RadioButton();
             buttonFiltrar = new Button();
             buttonCancelar = new Button();
-            radioButtonPassados = new RadioButton();
             tableLayoutPanel1.SuspendLayout();
             SuspendLayout();
             // 
@@ -66,7 +66,8 @@
             radioButtonTodos.Size = new Size(686, 40);
             radioButtonTodos.TabIndex = 0;
             radioButtonTodos.TabStop = true;
-            radioButtonTodos.Text = "Todos";
+            radioButtonTodos.Tag = "Todos";
+            radioButtonTodos.Text = "Visualizar todos os compromissos ";
             radioButtonTodos.UseVisualStyleBackColor = true;
             // 
             // radioButtonHoje
@@ -77,7 +78,8 @@
             radioButtonHoje.Name = "radioButtonHoje";
             radioButtonHoje.Size = new Size(686, 40);
             radioButtonHoje.TabIndex = 1;
-            radioButtonHoje.Text = "Hoje";
+            radioButtonHoje.Tag = "Hoje";
+            radioButtonHoje.Text = "Visualizar compromissos para hoje";
             radioButtonHoje.UseVisualStyleBackColor = true;
             // 
             // radioButtonProximos
@@ -88,28 +90,9 @@
             radioButtonProximos.Name = "radioButtonProximos";
             radioButtonProximos.Size = new Size(686, 40);
             radioButtonProximos.TabIndex = 2;
-            radioButtonProximos.Text = "Próximos";
+            radioButtonProximos.Tag = "Próximos";
+            radioButtonProximos.Text = "Visualizar próximos compromissos";
             radioButtonProximos.UseVisualStyleBackColor = true;
-            // 
-            // buttonFiltrar
-            // 
-            buttonFiltrar.DialogResult = DialogResult.OK;
-            buttonFiltrar.Location = new Point(521, 337);
-            buttonFiltrar.Name = "buttonFiltrar";
-            buttonFiltrar.Size = new Size(92, 57);
-            buttonFiltrar.TabIndex = 1;
-            buttonFiltrar.Text = "Filtrar";
-            buttonFiltrar.UseVisualStyleBackColor = true;
-            // 
-            // buttonCancelar
-            // 
-            buttonCancelar.DialogResult = DialogResult.Cancel;
-            buttonCancelar.Location = new Point(653, 337);
-            buttonCancelar.Name = "buttonCancelar";
-            buttonCancelar.Size = new Size(91, 57);
-            buttonCancelar.TabIndex = 2;
-            buttonCancelar.Text = "Cancelar";
-            buttonCancelar.UseVisualStyleBackColor = true;
             // 
             // radioButtonPassados
             // 
@@ -120,14 +103,35 @@
             radioButtonPassados.Size = new Size(686, 40);
             radioButtonPassados.TabIndex = 3;
             radioButtonPassados.TabStop = true;
-            radioButtonPassados.Text = "Passados";
+            radioButtonPassados.Tag = "Passados";
+            radioButtonPassados.Text = "Visualizar compromissos passados";
             radioButtonPassados.UseVisualStyleBackColor = true;
+            // 
+            // buttonFiltrar
+            // 
+            buttonFiltrar.DialogResult = DialogResult.OK;
+            buttonFiltrar.Location = new Point(304, 284);
+            buttonFiltrar.Name = "buttonFiltrar";
+            buttonFiltrar.Size = new Size(88, 44);
+            buttonFiltrar.TabIndex = 1;
+            buttonFiltrar.Text = "Filtrar";
+            buttonFiltrar.UseVisualStyleBackColor = true;
+            // 
+            // buttonCancelar
+            // 
+            buttonCancelar.DialogResult = DialogResult.Cancel;
+            buttonCancelar.Location = new Point(436, 284);
+            buttonCancelar.Name = "buttonCancelar";
+            buttonCancelar.Size = new Size(87, 44);
+            buttonCancelar.TabIndex = 2;
+            buttonCancelar.Text = "Cancelar";
+            buttonCancelar.UseVisualStyleBackColor = true;
             // 
             // TelaFiltroCompromisso
             // 
             AutoScaleDimensions = new SizeF(8F, 20F);
             AutoScaleMode = AutoScaleMode.Font;
-            ClientSize = new Size(800, 450);
+            ClientSize = new Size(569, 351);
             Controls.Add(buttonCancelar);
             Controls.Add(buttonFiltrar);
             Controls.Add(tableLayoutPanel1);
@@ -137,6 +141,7 @@
             ShowIcon = false;
             StartPosition = FormStartPosition.CenterScreen;
             Text = "Filtrar Compromissos";
+            TransparencyKey = Color.Transparent;
             tableLayoutPanel1.ResumeLayout(false);
             tableLayoutPanel1.PerformLayout();
             ResumeLayout(false);
