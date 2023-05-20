@@ -33,13 +33,18 @@
             cadastroItem = new ToolStripMenuItem();
             contatosMenuItem = new ToolStripMenuItem();
             compromissosMenuItem = new ToolStripMenuItem();
+            tarefasMenuItem = new ToolStripMenuItem();
             statusStrip = new StatusStrip();
             statusLabel = new ToolStripStatusLabel();
             toolStrip1 = new ToolStrip();
             btnAdicionar = new ToolStripMenuItem();
             btnEditar = new ToolStripMenuItem();
             btnExcluir = new ToolStripMenuItem();
+            toolStripSeparator1 = new ToolStripSeparator();
             btnFiltrar = new ToolStripButton();
+            toolStripSeparator2 = new ToolStripSeparator();
+            btnAddItemTarefa = new ToolStripButton();
+            btnAtualizarTarefa = new ToolStripButton();
             painelRegistros = new Panel();
             menuStrip.SuspendLayout();
             statusStrip.SuspendLayout();
@@ -62,7 +67,7 @@
             // 
             cadastroItem.BackColor = SystemColors.ActiveCaption;
             cadastroItem.BackgroundImageLayout = ImageLayout.None;
-            cadastroItem.DropDownItems.AddRange(new ToolStripItem[] { contatosMenuItem, compromissosMenuItem });
+            cadastroItem.DropDownItems.AddRange(new ToolStripItem[] { contatosMenuItem, compromissosMenuItem, tarefasMenuItem });
             cadastroItem.Font = new Font("Segoe UI", 12F, FontStyle.Regular, GraphicsUnit.Point);
             cadastroItem.Image = Properties.Resources.menu_FILL0_wght200_GRAD0_opsz40;
             cadastroItem.ImageScaling = ToolStripItemImageScaling.None;
@@ -88,6 +93,15 @@
             compromissosMenuItem.Text = "Compromissos";
             compromissosMenuItem.Click += compromissosMenuItem_Click;
             // 
+            // tarefasMenuItem
+            // 
+            tarefasMenuItem.Image = Properties.Resources.list_alt_FILL0_wght300_GRAD0_opsz40;
+            tarefasMenuItem.ImageScaling = ToolStripItemImageScaling.None;
+            tarefasMenuItem.Name = "tarefasMenuItem";
+            tarefasMenuItem.Size = new Size(248, 46);
+            tarefasMenuItem.Text = "Tarefas";
+            tarefasMenuItem.Click += tarefasMenuItem_Click;
+            // 
             // statusStrip
             // 
             statusStrip.ImageScalingSize = new Size(20, 20);
@@ -110,7 +124,7 @@
             toolStrip1.BackColor = SystemColors.GradientInactiveCaption;
             toolStrip1.Font = new Font("Segoe UI", 12F, FontStyle.Regular, GraphicsUnit.Point);
             toolStrip1.ImageScalingSize = new Size(24, 24);
-            toolStrip1.Items.AddRange(new ToolStripItem[] { btnAdicionar, btnEditar, btnExcluir, btnFiltrar });
+            toolStrip1.Items.AddRange(new ToolStripItem[] { btnAdicionar, btnEditar, btnExcluir, toolStripSeparator1, btnFiltrar, toolStripSeparator2, btnAddItemTarefa, btnAtualizarTarefa });
             toolStrip1.LayoutStyle = ToolStripLayoutStyle.Flow;
             toolStrip1.Location = new Point(0, 48);
             toolStrip1.Name = "toolStrip1";
@@ -130,7 +144,6 @@
             btnAdicionar.ImageScaling = ToolStripItemImageScaling.None;
             btnAdicionar.Name = "btnAdicionar";
             btnAdicionar.Size = new Size(54, 44);
-            btnAdicionar.Text = "Adicionar";
             btnAdicionar.Click += btnAdicionar_Click;
             // 
             // btnEditar
@@ -142,7 +155,6 @@
             btnEditar.ImageScaling = ToolStripItemImageScaling.None;
             btnEditar.Name = "btnEditar";
             btnEditar.Size = new Size(54, 44);
-            btnEditar.Text = "Editar";
             btnEditar.Click += btnEditar_Click;
             // 
             // btnExcluir
@@ -154,8 +166,12 @@
             btnExcluir.ImageScaling = ToolStripItemImageScaling.None;
             btnExcluir.Name = "btnExcluir";
             btnExcluir.Size = new Size(54, 44);
-            btnExcluir.Text = "Excluir";
             btnExcluir.Click += btnExcluir_Click;
+            // 
+            // toolStripSeparator1
+            // 
+            toolStripSeparator1.Name = "toolStripSeparator1";
+            toolStripSeparator1.Size = new Size(6, 23);
             // 
             // btnFiltrar
             // 
@@ -167,6 +183,35 @@
             btnFiltrar.Name = "btnFiltrar";
             btnFiltrar.Size = new Size(44, 44);
             btnFiltrar.Click += btnFiltrar_Click;
+            // 
+            // toolStripSeparator2
+            // 
+            toolStripSeparator2.Name = "toolStripSeparator2";
+            toolStripSeparator2.Size = new Size(6, 23);
+            // 
+            // btnAddItemTarefa
+            // 
+            btnAddItemTarefa.DisplayStyle = ToolStripItemDisplayStyle.Image;
+            btnAddItemTarefa.Enabled = false;
+            btnAddItemTarefa.Image = Properties.Resources.list_alt_FILL0_wght200_GRAD0_opsz40;
+            btnAddItemTarefa.ImageScaling = ToolStripItemImageScaling.None;
+            btnAddItemTarefa.ImageTransparentColor = Color.Magenta;
+            btnAddItemTarefa.Name = "btnAddItemTarefa";
+            btnAddItemTarefa.Size = new Size(44, 44);
+            btnAddItemTarefa.TextImageRelation = TextImageRelation.TextBeforeImage;
+            btnAddItemTarefa.Click += btnAddItemTarefa_Click;
+            // 
+            // btnAtualizarTarefa
+            // 
+            btnAtualizarTarefa.DisplayStyle = ToolStripItemDisplayStyle.Image;
+            btnAtualizarTarefa.Enabled = false;
+            btnAtualizarTarefa.Image = Properties.Resources.fact_check_FILL0_wght200_GRAD0_opsz40;
+            btnAtualizarTarefa.ImageScaling = ToolStripItemImageScaling.None;
+            btnAtualizarTarefa.ImageTransparentColor = Color.Magenta;
+            btnAtualizarTarefa.Name = "btnAtualizarTarefa";
+            btnAtualizarTarefa.Size = new Size(44, 44);
+            btnAtualizarTarefa.Text = "toolStripButton1";
+            btnAtualizarTarefa.Click += btnAtualizarTarefa_Click;
             // 
             // painelRegistros
             // 
@@ -216,5 +261,10 @@
         private ToolStripMenuItem btnExcluir;
         private Panel painelRegistros;
         private ToolStripButton btnFiltrar;
+        private ToolStripMenuItem tarefasMenuItem;
+        private ToolStripButton btnAddItemTarefa;
+        private ToolStripButton btnAtualizarTarefa;
+        private ToolStripSeparator toolStripSeparator1;
+        private ToolStripSeparator toolStripSeparator2;
     }
 }

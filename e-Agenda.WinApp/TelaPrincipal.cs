@@ -1,17 +1,19 @@
 using e_Agenda.WinApp.ModuloCompartilhado;
 using e_Agenda.WinApp.ModuloCompromisso;
 using e_Agenda.WinApp.ModuloContato;
+using e_Agenda.WinApp.ModuloTarefa;
 
 namespace e_Agenda.WinApp
 {
     public partial class TelaPrincipal : Form
     {
-        IControler? controlador;
+        private IControler? controlador;
 
-        RepositorioContato repositorioContato = new RepositorioContato(new List<Contato>());
+        private readonly RepositorioContato repositorioContato = new RepositorioContato(new List<Contato>());
 
-        RepositorioCompromisso repositorioCompromisso = new RepositorioCompromisso(new List<Compromisso>());
+        private readonly RepositorioCompromisso repositorioCompromisso = new RepositorioCompromisso(new List<Compromisso>());
 
+        private readonly RepositorioTarefa repositorioTarefa = new RepositorioTarefa(new List<Tarefa>());
         public TelaPrincipal()
         {
             InitializeComponent();
@@ -32,6 +34,10 @@ namespace e_Agenda.WinApp
             btnEditar.Enabled = true;
 
             btnExcluir.Enabled = true;
+
+            btnAddItemTarefa.Enabled = false;
+
+            btnAtualizarTarefa.Enabled = false;
 
             statusLabel.Text = "Menu Contato";
         }
@@ -88,12 +94,61 @@ namespace e_Agenda.WinApp
             btnEditar.Enabled = true;
 
             btnExcluir.Enabled = true;
+
+            btnAddItemTarefa.Enabled = false;
+
+            btnAtualizarTarefa.Enabled = false;
+
         }
 
         private void btnFiltrar_Click(object sender, EventArgs e)
         {
             if (controlador is ControladorCompromisso ctrl)
                 ctrl.AbrirFormFiltro();
+        }
+
+
+        private void tarefasMenuItem_Click(object sender, EventArgs e)
+        {
+            controlador = new ControladorTarefa(repositorioTarefa);
+
+            ConfigurarToolTips(controlador);
+
+            ConfigurarListagem(controlador);
+
+            btnFiltrar.Enabled = false;
+
+            btnAdicionar.Enabled = true;
+
+            btnEditar.Enabled = true;
+
+            btnExcluir.Enabled = true;
+
+            btnAddItemTarefa.Enabled = true;
+
+            btnAtualizarTarefa.Enabled = true;
+
+            btnExcluir.ToolTipText = "Excluir tarefa";
+
+            btnAddItemTarefa.ToolTipText = "Adicionar Tarefa";
+
+            btnAtualizarTarefa.ToolTipText = "Atualizar Tarefa";
+
+            statusLabel.Text = "Menu Tarefas";
+
+        }
+
+        private void btnAddItemTarefa_Click(object sender, EventArgs e)
+        {
+            if (controlador is ControladorTarefa ctrl)
+
+                ctrl.CadastrarItem();
+        }
+
+        private void btnAtualizarTarefa_Click(object sender, EventArgs e)
+        {
+            if (controlador is ControladorTarefa ctrl)
+                ctrl.AtualizarItensTarefa();
         }
     }
 }

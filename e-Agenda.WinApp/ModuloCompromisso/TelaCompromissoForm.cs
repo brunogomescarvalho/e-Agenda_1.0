@@ -39,7 +39,7 @@ namespace e_Agenda.WinApp.ModuloCompromisso
         {
             string id = textId.Text;
 
-            Contato contato = comboBoxContatos.SelectedItem == null ? null! : (Contato)comboBoxContatos.SelectedItem;
+            Contato contato = (Contato)comboBoxContatos.SelectedItem;
 
             string assunto = textBoxAssunto.Text;
 

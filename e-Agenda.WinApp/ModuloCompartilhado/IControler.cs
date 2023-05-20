@@ -23,5 +23,6 @@ namespace e_Agenda.WinApp.ModuloCompartilhado
         UserControl ObterListagem();
 
         string ObterTipoCadastro();
+        
     }
 }
