@@ -3,7 +3,7 @@ using e_Agenda.WinApp.ModuloContato;
 
 namespace e_Agenda.WinApp.ModuloCompromisso
 {
-    public class ControladorCompromisso : ControladorBase<RepositorioCompromisso, Compromisso>
+    public partial class ControladorCompromisso : ControladorBase<RepositorioCompromisso, Compromisso>
     {
         
         public readonly RepositorioContato? RepositorioContato;
@@ -15,14 +15,18 @@ namespace e_Agenda.WinApp.ModuloCompromisso
         public ControladorCompromisso( RepositorioCompromisso repositorioCompromisso,RepositorioContato repositorioContato)
         {
             RepositorioBase = repositorioCompromisso;
+
             RepositorioContato = repositorioContato;
+
             this.repositorioCompromisso = repositorioCompromisso;
+
             ConfigurarTela();
         }
 
         public override void Editar()
         {
-            Compromisso compromissoSelecionado = listaCompromissosControl!.ObterCompromissoSelecionado();
+            int id = listaCompromissosControl!.ObterIdCompromissoSelecionado();
+            Compromisso compromissoSelecionado = repositorioCompromisso.BuscarPorId(id);
 
             if (compromissoSelecionado == null)
                 return;
@@ -31,11 +35,12 @@ namespace e_Agenda.WinApp.ModuloCompromisso
 
             if (opcao == DialogResult.Yes)
             {
-                var compromissoForm = new TelaCompromissoForm(ObterContatos());
+                var compromissoForm = new TelaCompromissoForm(ObterContatos())
+                {
+                    Text = "Editar Compromisso",
 
-                compromissoForm.Text = "Editar Compromisso";
-
-                compromissoForm.Compromisso = compromissoSelecionado;
+                    Compromisso = compromissoSelecionado
+                };
 
                 DialogResult opcaoSalvar = compromissoForm.ShowDialog();
 
@@ -52,7 +57,8 @@ namespace e_Agenda.WinApp.ModuloCompromisso
 
         public override void Excluir()
         {
-            Compromisso compromissoSelecionado = listaCompromissosControl!.ObterCompromissoSelecionado();
+            int id = listaCompromissosControl!.ObterIdCompromissoSelecionado();
+            Compromisso compromissoSelecionado = repositorioCompromisso.BuscarPorId(id);
 
             if (compromissoSelecionado == null)
                 return;
@@ -62,6 +68,7 @@ namespace e_Agenda.WinApp.ModuloCompromisso
             if (opcao == DialogResult.Yes)
             {
                 RepositorioBase!.Excluir(compromissoSelecionado);
+
                 AtualizarCompromissos();
             }
         }
@@ -109,7 +116,7 @@ namespace e_Agenda.WinApp.ModuloCompromisso
             {
                 StatusCompromisso status = telaFiltro.Getstatus();
 
-                var listaFiltrada = repositorioCompromisso.FiltrarLista(status);
+                List<Compromisso> listaFiltrada = repositorioCompromisso.FiltrarLista(status);
 
                 listaCompromissosControl!.AtualizarListagem(listaFiltrada);
             }
@@ -130,16 +137,15 @@ namespace e_Agenda.WinApp.ModuloCompromisso
         public override void ConfigurarTela()
         {
             Configuracao = new Configuracao(
-           "Compromisso",
-           "Inserir Compromisso",
-           "Editar Compromisso",
-           "Excluir Compromisso", "Filtrar Compromissos", "", "", true, false, false);
-        }
+            "Compromisso",
+            "Inserir Compromisso",
+            "Editar Compromisso",
+            "Excluir Compromisso")
+            {
+                ToolTipoFiltrar = "Filtrar Compromissos",
+                BtnFiltrarEnabled = true
+            };
 
-        public enum StatusCompromisso
-        {
-            Passado,Futuro,Hoje,
-            Todos
         }
 
     }

@@ -1,10 +1,10 @@
 ﻿
 namespace e_Agenda.WinApp.ModuloTarefa
 {
-    public partial class TelaItemForm : Form
+    public partial class TelaItemTarefaForm : Form
     {
 
-        public TelaItemForm(Tarefa tarefa)
+        public TelaItemTarefaForm(Tarefa tarefa)
         {
             InitializeComponent();
 

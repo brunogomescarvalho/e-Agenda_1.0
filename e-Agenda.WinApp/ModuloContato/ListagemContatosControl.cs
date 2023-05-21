@@ -1,13 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.ComponentModel;
-using System.Data;
-using System.Drawing;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using System.Windows.Forms;
-
+﻿
 namespace e_Agenda.WinApp.ModuloContato
 {
     public partial class ListagemContatosControl : UserControl
@@ -19,14 +10,28 @@ namespace e_Agenda.WinApp.ModuloContato
 
         public void AtualizarLista(List<Contato> contatos)
         {
-            listContatos.Items.Clear();
+            listContatos.Rows.Clear();
 
-            contatos.ForEach(i => listContatos.Items.Add(i));
+            if (contatos.Count > 1)
+                listContatos.Rows.Add(contatos.Count - 1);
+
+            for (int i = 0; i < contatos.Count; i++)
+            {
+                listContatos.Rows[i].Cells[0].Value = contatos[i].Id;
+                listContatos.Rows[i].Cells[1].Value = contatos[i].Nome;
+                listContatos.Rows[i].Cells[2].Value = contatos[i].Telefone;
+                listContatos.Rows[i].Cells[3].Value = contatos[i].Email;
+                listContatos.Rows[i].Cells[4].Value = contatos[i].Empresa;
+                listContatos.Rows[i].Cells[5].Value = contatos[i].Cargo;
+            }
         }
 
-        public Contato ObterContatoSelecionado()
+        public int ObterIdContatoSelecionado()
         {
-            return (Contato)listContatos.SelectedItem;
+            var selectedRow = listContatos.SelectedRows[0];
+
+            return Convert.ToInt16(selectedRow.Cells[0].Value);
+              
         }
     }
 }

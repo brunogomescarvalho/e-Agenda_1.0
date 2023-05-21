@@ -28,18 +28,79 @@
         /// </summary>
         private void InitializeComponent()
         {
-            listCompromissos = new ListBox();
+            listCompromissos = new DataGridView();
+            idCompromisso = new DataGridViewTextBoxColumn();
+            AssuntoCompromisso = new DataGridViewTextBoxColumn();
+            localCompromisso = new DataGridViewTextBoxColumn();
+            dataCompromisso = new DataGridViewTextBoxColumn();
+            horaInicio = new DataGridViewTextBoxColumn();
+            terminoCompromisso = new DataGridViewTextBoxColumn();
+            contato = new DataGridViewTextBoxColumn();
+            ((System.ComponentModel.ISupportInitialize)listCompromissos).BeginInit();
             SuspendLayout();
             // 
             // listCompromissos
             // 
+            listCompromissos.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            listCompromissos.Columns.AddRange(new DataGridViewColumn[] { idCompromisso, AssuntoCompromisso, localCompromisso, dataCompromisso, horaInicio, terminoCompromisso, contato });
             listCompromissos.Dock = DockStyle.Fill;
-            listCompromissos.FormattingEnabled = true;
-            listCompromissos.ItemHeight = 20;
             listCompromissos.Location = new Point(0, 0);
+            listCompromissos.MultiSelect = false;
             listCompromissos.Name = "listCompromissos";
+            listCompromissos.RowHeadersWidth = 51;
+            listCompromissos.RowTemplate.Height = 29;
+            listCompromissos.SelectionMode = DataGridViewSelectionMode.FullRowSelect;
             listCompromissos.Size = new Size(771, 628);
             listCompromissos.TabIndex = 0;
+            // 
+            // idCompromisso
+            // 
+            idCompromisso.HeaderText = "Id";
+            idCompromisso.MinimumWidth = 6;
+            idCompromisso.Name = "idCompromisso";
+            idCompromisso.Width = 125;
+            // 
+            // AssuntoCompromisso
+            // 
+            AssuntoCompromisso.HeaderText = "Assunto";
+            AssuntoCompromisso.MinimumWidth = 6;
+            AssuntoCompromisso.Name = "AssuntoCompromisso";
+            AssuntoCompromisso.Width = 125;
+            // 
+            // localCompromisso
+            // 
+            localCompromisso.HeaderText = "Local";
+            localCompromisso.MinimumWidth = 6;
+            localCompromisso.Name = "localCompromisso";
+            localCompromisso.Width = 125;
+            // 
+            // dataCompromisso
+            // 
+            dataCompromisso.HeaderText = "Data";
+            dataCompromisso.MinimumWidth = 6;
+            dataCompromisso.Name = "dataCompromisso";
+            dataCompromisso.Width = 125;
+            // 
+            // horaInicio
+            // 
+            horaInicio.HeaderText = "Início";
+            horaInicio.MinimumWidth = 6;
+            horaInicio.Name = "horaInicio";
+            horaInicio.Width = 125;
+            // 
+            // terminoCompromisso
+            // 
+            terminoCompromisso.HeaderText = "Término";
+            terminoCompromisso.MinimumWidth = 6;
+            terminoCompromisso.Name = "terminoCompromisso";
+            terminoCompromisso.Width = 125;
+            // 
+            // contato
+            // 
+            contato.HeaderText = "Contato";
+            contato.MinimumWidth = 6;
+            contato.Name = "contato";
+            contato.Width = 125;
             // 
             // ListaCompromissosControl
             // 
@@ -48,11 +109,19 @@
             Controls.Add(listCompromissos);
             Name = "ListaCompromissosControl";
             Size = new Size(771, 628);
+            ((System.ComponentModel.ISupportInitialize)listCompromissos).EndInit();
             ResumeLayout(false);
         }
 
         #endregion
 
-        private ListBox listCompromissos;
+        private DataGridView listCompromissos;
+        private DataGridViewTextBoxColumn idCompromisso;
+        private DataGridViewTextBoxColumn AssuntoCompromisso;
+        private DataGridViewTextBoxColumn localCompromisso;
+        private DataGridViewTextBoxColumn dataCompromisso;
+        private DataGridViewTextBoxColumn horaInicio;
+        private DataGridViewTextBoxColumn terminoCompromisso;
+        private DataGridViewTextBoxColumn contato;
     }
 }

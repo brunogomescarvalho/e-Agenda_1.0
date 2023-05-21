@@ -15,7 +15,9 @@ namespace e_Agenda.WinApp.ModuloContato
 
         public override void Editar()
         {
-            Contato contatoSelecionado = listagemContatosControl!.ObterContatoSelecionado();
+            int id = listagemContatosControl!.ObterIdContatoSelecionado();
+
+            Contato contatoSelecionado = RepositorioBase!.BuscarPorId(id);
 
             if (contatoSelecionado == null)
                 return;
@@ -27,11 +29,12 @@ namespace e_Agenda.WinApp.ModuloContato
 
             if (opcao == DialogResult.Yes)
             {
-                TelaContatoForm contatoForm = new TelaContatoForm();
+                var contatoForm = new TelaContatoForm
+                {
+                    Text = "Editar Contato",
 
-                contatoForm.Text = "Editar Contato";
-
-                contatoForm.Contato = contatoSelecionado;
+                    Contato = contatoSelecionado
+                };
 
                 DialogResult opcaoSalvar = contatoForm.ShowDialog();
 
@@ -48,7 +51,9 @@ namespace e_Agenda.WinApp.ModuloContato
 
         public override void Excluir()
         {
-            Contato contatoSelecionado = listagemContatosControl!.ObterContatoSelecionado();
+            int id = listagemContatosControl!.ObterIdContatoSelecionado();
+
+            Contato contatoSelecionado = RepositorioBase!.BuscarPorId(id);
 
             if (contatoSelecionado == null)
                 return;
@@ -105,7 +110,7 @@ namespace e_Agenda.WinApp.ModuloContato
             "Contato",
             "Inserir Contato",
             "Editar Contato",
-            "Excluir Contato","","","",false,false,false);
+            "Excluir Contato");
         }
     }
 }

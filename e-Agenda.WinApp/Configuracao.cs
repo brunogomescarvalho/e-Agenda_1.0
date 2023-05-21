@@ -3,67 +3,32 @@ namespace e_Agenda.WinApp
 {
     public class Configuracao
     {
-      
-        public string ToolTipInserir { get; }
 
-        public string ToolTipEditar { get; }
+        public string ToolTipInserir { get; private set; }
+        public string ToolTipEditar { get; private set; }
+        public string ToolTipExcluir { get; private set; }
+        public string StatusLabel { get; private set; }
 
-        public string ToolTipExcluir { get; }
+        public string ToolTipAdicionarItemTarefa { get; set; } = string.Empty;
+        public string ToolTipAtualizarTarefa { get; set; } = string.Empty;
+        public string ToolTipoFiltrar { get; set; } = string.Empty;
 
-        public string ToolTipoFiltrar { get; }
+        public bool BtnFiltrarEnabled { get; set; }
+        public bool BtnAdicionarEnabled { get; set; }
+        public bool BtnEditarEnabled { get; set; }
+        public bool BtnExcluirEnabled { get; set; }
+        public bool BtnAddItemTarefaEnabled { get; set; }
+        public bool BtnAtualizarTarefaEnabled { get; set; }
 
-        public bool BtnFiltrarEnabled { get; }
 
-        public bool BtnAdicionarEnabled { get; }
 
-        public bool BtnEditarEnabled { get; }
-
-        public bool BtnExcluirEnabled { get; }
-
-        public bool BtnAddItemTarefaEnabled { get; }
-
-        public bool BtnAtualizarTarefaEnabled { get; }
-
-        public string ToolTipAdicionarItemTarefa { get; }
-
-        public string ToolTipAtualizarTarefa { get; }
-
-        public string StatusLabel { get; }
-
-        public Configuracao(
-                            string statusLabel,
-
-                            string toolTipInserir,
-                            string toolTipEditar,
-                            string toolTipExcluir,
-
-                            string toolTipoFiltrar,
-
-                            string btnAddItemTarefaToolTipText,
-                            string btnAtualizarTarefaToolTipText,
-
-                            bool btnFiltrarEnabled,
-
-                            bool btnAddItemTarefaEnabled,
-                            bool btnAtualizarTarefaEnabled
-
-                         )
+        public Configuracao(string statusLabel, string toolTipInserir, string toolTipEditar, string toolTipExcluir)
         {
             StatusLabel = statusLabel;
 
             ToolTipInserir = toolTipInserir;
             ToolTipEditar = toolTipEditar;
             ToolTipExcluir = toolTipExcluir;
-
-            ToolTipoFiltrar = toolTipoFiltrar;
-
-            ToolTipAdicionarItemTarefa = btnAddItemTarefaToolTipText;
-            ToolTipAtualizarTarefa = btnAtualizarTarefaToolTipText;
-
-            BtnFiltrarEnabled = btnFiltrarEnabled;
-
-            BtnAddItemTarefaEnabled = btnAddItemTarefaEnabled;
-            BtnAtualizarTarefaEnabled = btnAtualizarTarefaEnabled;
 
             BtnAdicionarEnabled = true;
             BtnEditarEnabled = true;

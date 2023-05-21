@@ -12,7 +12,7 @@ namespace e_Agenda.WinApp.ModuloTarefa
 
         public DateTime DataCriacao { get; private set; }
 
-        public DateTime DataConclusao { get; private set; }
+        public DateTime? DataConclusao { get; private set; }
 
         public double PorcentagemConcluida { get; private set; }
 
@@ -70,9 +70,5 @@ namespace e_Agenda.WinApp.ModuloTarefa
             this.Titulo = tarefa.Titulo;
         }
 
-        public override string ToString()
-        {
-            return $"{Id,-5} {Prioridade,-10} {DataCriacao,-15:d} {(EstaConcluida? $"{DataConclusao,-15:d}": $"{"Não Concluída",-15}")} {PorcentagemConcluida}%";
-        }
     }
 }

@@ -28,18 +28,71 @@
         /// </summary>
         private void InitializeComponent()
         {
-            listTarefasControl = new ListBox();
+            listTarefasControl = new DataGridView();
+            idTarefa = new DataGridViewTextBoxColumn();
+            TituloTarefa = new DataGridViewTextBoxColumn();
+            PrioridadeTarefa = new DataGridViewTextBoxColumn();
+            DataAberturaTarefa = new DataGridViewTextBoxColumn();
+            DataConclusaoTarefa = new DataGridViewTextBoxColumn();
+            PorcentagemTarefa = new DataGridViewTextBoxColumn();
+            ((System.ComponentModel.ISupportInitialize)listTarefasControl).BeginInit();
             SuspendLayout();
             // 
             // listTarefasControl
             // 
+            listTarefasControl.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            listTarefasControl.Columns.AddRange(new DataGridViewColumn[] { idTarefa, TituloTarefa, PrioridadeTarefa, DataAberturaTarefa, DataConclusaoTarefa, PorcentagemTarefa });
             listTarefasControl.Dock = DockStyle.Fill;
-            listTarefasControl.FormattingEnabled = true;
-            listTarefasControl.ItemHeight = 20;
             listTarefasControl.Location = new Point(0, 0);
+            listTarefasControl.MultiSelect = false;
             listTarefasControl.Name = "listTarefasControl";
+            listTarefasControl.RowHeadersWidth = 51;
+            listTarefasControl.RowTemplate.Height = 29;
+            listTarefasControl.SelectionMode = DataGridViewSelectionMode.FullRowSelect;
             listTarefasControl.Size = new Size(572, 542);
             listTarefasControl.TabIndex = 0;
+            // 
+            // idTarefa
+            // 
+            idTarefa.HeaderText = "Id";
+            idTarefa.MinimumWidth = 6;
+            idTarefa.Name = "idTarefa";
+            idTarefa.Width = 125;
+            // 
+            // TituloTarefa
+            // 
+            TituloTarefa.HeaderText = "Título";
+            TituloTarefa.MinimumWidth = 6;
+            TituloTarefa.Name = "TituloTarefa";
+            TituloTarefa.Width = 125;
+            // 
+            // PrioridadeTarefa
+            // 
+            PrioridadeTarefa.HeaderText = "Prioridade";
+            PrioridadeTarefa.MinimumWidth = 6;
+            PrioridadeTarefa.Name = "PrioridadeTarefa";
+            PrioridadeTarefa.Width = 125;
+            // 
+            // DataAberturaTarefa
+            // 
+            DataAberturaTarefa.HeaderText = "Data Abertura";
+            DataAberturaTarefa.MinimumWidth = 6;
+            DataAberturaTarefa.Name = "DataAberturaTarefa";
+            DataAberturaTarefa.Width = 125;
+            // 
+            // DataConclusaoTarefa
+            // 
+            DataConclusaoTarefa.HeaderText = "Data Conclusão";
+            DataConclusaoTarefa.MinimumWidth = 6;
+            DataConclusaoTarefa.Name = "DataConclusaoTarefa";
+            DataConclusaoTarefa.Width = 125;
+            // 
+            // PorcentagemTarefa
+            // 
+            PorcentagemTarefa.HeaderText = "Porcentagem";
+            PorcentagemTarefa.MinimumWidth = 6;
+            PorcentagemTarefa.Name = "PorcentagemTarefa";
+            PorcentagemTarefa.Width = 125;
             // 
             // ListagemTarefasControl
             // 
@@ -48,11 +101,18 @@
             Controls.Add(listTarefasControl);
             Name = "ListagemTarefasControl";
             Size = new Size(572, 542);
+            ((System.ComponentModel.ISupportInitialize)listTarefasControl).EndInit();
             ResumeLayout(false);
         }
 
         #endregion
 
-        private ListBox listTarefasControl;
+        private DataGridView listTarefasControl;
+        private DataGridViewTextBoxColumn idTarefa;
+        private DataGridViewTextBoxColumn TituloTarefa;
+        private DataGridViewTextBoxColumn PrioridadeTarefa;
+        private DataGridViewTextBoxColumn DataAberturaTarefa;
+        private DataGridViewTextBoxColumn DataConclusaoTarefa;
+        private DataGridViewTextBoxColumn PorcentagemTarefa;
     }
 }

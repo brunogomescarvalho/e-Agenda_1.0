@@ -1,9 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-
+﻿
 namespace e_Agenda.WinApp.ModuloCompartilhado
 {
     public abstract class RepositorioBase<TEntidade> where TEntidade : EntidadeBase<TEntidade>
@@ -36,12 +31,15 @@ namespace e_Agenda.WinApp.ModuloCompartilhado
         public void Editar(TEntidade entidade)
         {
             TEntidade buscada = BuscarPorId(entidade.Id);
+
             buscada.Editar(entidade);
         }
 
         public void Excluir(TEntidade entidade)
         {
-            registros.Remove(entidade);
+            TEntidade buscada = BuscarPorId(entidade.Id);
+
+            registros.Remove(buscada);
         }
     }
 }

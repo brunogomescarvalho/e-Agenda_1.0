@@ -28,6 +28,7 @@ namespace e_Agenda.WinApp.ModuloContato
             Empresa = empresa;
             Cargo = cargo;
         }
+       
 
         public override void Editar(Contato contato)
         {
@@ -36,11 +37,6 @@ namespace e_Agenda.WinApp.ModuloContato
             Telefone = contato.Telefone;
             Empresa = contato.Empresa;
             Cargo = contato.Cargo;
-        }
-
-        public override string ToString()
-        {
-            return $"{Id,-5} {Nome, -20} {Telefone,-20} {Email,-20} {Empresa,-20} {Cargo,-10}";
         }
     }
 }

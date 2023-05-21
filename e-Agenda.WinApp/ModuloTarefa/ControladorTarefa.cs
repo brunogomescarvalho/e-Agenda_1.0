@@ -4,13 +4,15 @@ namespace e_Agenda.WinApp.ModuloTarefa
 {
     public class ControladorTarefa : ControladorBase<RepositorioTarefa, Tarefa>
     {
-      
-
+     
         public ListagemTarefasControl? listagemTarefasControl;
+
+        private RepositorioTarefa RepositorioTarefa;
 
         public ControladorTarefa(RepositorioTarefa repositorioTarefa)
         {
             RepositorioBase = repositorioTarefa;
+            RepositorioTarefa = repositorioTarefa;
             ConfigurarTela(); 
         }
 
@@ -23,7 +25,7 @@ namespace e_Agenda.WinApp.ModuloTarefa
 
             DialogResult confimacao = ConfirmarAcao($"Confirma editar a tarefa Id: {tarefa.Id} - Titulo: {tarefa.Titulo} ?", "Editar Tarefa");
 
-            if (confimacao == DialogResult.Cancel)
+            if (confimacao == DialogResult.No)
                 return;
 
             TelaTarefaForm formTarefa = new TelaTarefaForm();
@@ -55,12 +57,12 @@ namespace e_Agenda.WinApp.ModuloTarefa
 
             DialogResult confimacao = ConfirmarAcao($"Confirma excluir a tarefa Id: {tarefa.Id} - Titulo: {tarefa.Titulo} ?", "Excluir Tarefa");
 
-            if (confimacao == DialogResult.Cancel)
-                return;
+            if (confimacao == DialogResult.Yes)
+            {
+                RepositorioBase!.Excluir(tarefa);
 
-            RepositorioBase!.Excluir(tarefa);
-
-            AtualizarTarefa();
+                AtualizarTarefa();
+            }  
 
         }
 
@@ -91,7 +93,8 @@ namespace e_Agenda.WinApp.ModuloTarefa
 
         private void AtualizarTarefa()
         {
-            List<Tarefa> tarefas = RepositorioBase!.Listar();
+            List<Tarefa> tarefas = RepositorioTarefa.ObterTarefasPorPrioridade();
+
 
             listagemTarefasControl!.AtualizarLista(tarefas);
         }
@@ -103,7 +106,7 @@ namespace e_Agenda.WinApp.ModuloTarefa
             if (tarefa == null)
                 return;
 
-            var telaItens = new TelaItemForm(tarefa!);
+            var telaItens = new TelaItemTarefaForm(tarefa!);
 
             DialogResult opcao = telaItens.ShowDialog();
 
@@ -121,7 +124,9 @@ namespace e_Agenda.WinApp.ModuloTarefa
 
         private Tarefa ObterTarefa()
         {
-            Tarefa tarefa = listagemTarefasControl!.ObterContatoSelecionado();
+            int idtTarefa = listagemTarefasControl!.ObterIdTarefaSelecionada();
+
+            Tarefa tarefa = RepositorioBase!.BuscarPorId(idtTarefa);
 
             if (tarefa == null)
                 MessageBox.Show("É necessário selecionar uma tarefa!", "Tarefa Não Selecionada", MessageBoxButtons.OK, MessageBoxIcon.Exclamation) ;
@@ -174,10 +179,16 @@ namespace e_Agenda.WinApp.ModuloTarefa
         public override void ConfigurarTela()
         {
             Configuracao = new Configuracao(
+
             "Tarefa",
             "Inserir Tarefa",
             "Editar Tarefa",
-            "Excluir Tarefa","","Adicionar Item Tarefa", "Finalizar Item Tarefa", false, true, true);
+            "Excluir Tarefa");
+
+            Configuracao.BtnAddItemTarefaEnabled = true;
+            Configuracao.BtnAtualizarTarefaEnabled = true;  
+
+
         }
     }
 }
