@@ -20,7 +20,7 @@
 
         public override string ToString()
         {
-            return $"{Descricao,-15} {(Concluido? "Concluído": "Não Conlcuído")}";
+            return $"{Descricao,-15} {(Concluido? "Concluído": "Não Concluído")}";
         }
 
     }

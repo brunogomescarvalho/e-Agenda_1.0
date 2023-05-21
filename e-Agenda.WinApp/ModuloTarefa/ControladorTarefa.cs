@@ -1,19 +1,20 @@
 ﻿using e_Agenda.WinApp.ModuloCompartilhado;
+using static e_Agenda.WinApp.ModuloTarefa.TelaFiltrarTarefasForm;
 
 namespace e_Agenda.WinApp.ModuloTarefa
 {
     public class ControladorTarefa : ControladorBase<RepositorioTarefa, Tarefa>
     {
-     
-        public ListagemTarefasControl? listagemTarefasControl;
 
-        private RepositorioTarefa RepositorioTarefa;
+        private ListagemTarefasControl? listagemTarefasControl;
+
+        private readonly RepositorioTarefa RepositorioTarefa;
 
         public ControladorTarefa(RepositorioTarefa repositorioTarefa)
         {
             RepositorioBase = repositorioTarefa;
             RepositorioTarefa = repositorioTarefa;
-            ConfigurarTela(); 
+            ConfigurarTela();
         }
 
         public override void Editar()
@@ -34,7 +35,7 @@ namespace e_Agenda.WinApp.ModuloTarefa
 
             DialogResult opcao = formTarefa.ShowDialog();
 
-            if(opcao == DialogResult.OK)
+            if (opcao == DialogResult.OK)
             {
                 Tarefa tarefaEditada = formTarefa.Tarefa;
 
@@ -45,7 +46,7 @@ namespace e_Agenda.WinApp.ModuloTarefa
                 AtualizarTarefa();
             }
 
-            
+
         }
 
         public override void Excluir()
@@ -62,7 +63,7 @@ namespace e_Agenda.WinApp.ModuloTarefa
                 RepositorioBase!.Excluir(tarefa);
 
                 AtualizarTarefa();
-            }  
+            }
 
         }
 
@@ -70,7 +71,7 @@ namespace e_Agenda.WinApp.ModuloTarefa
         {
             var telaForm = new TelaTarefaForm();
 
-            var opcao = telaForm.ShowDialog();
+            DialogResult opcao = telaForm.ShowDialog();
 
             if (opcao == DialogResult.OK)
             {
@@ -83,7 +84,7 @@ namespace e_Agenda.WinApp.ModuloTarefa
         }
 
         public override UserControl ObterListagem()
-        { 
+        {
             listagemTarefasControl ??= new ListagemTarefasControl();
 
             AtualizarTarefa();
@@ -93,8 +94,7 @@ namespace e_Agenda.WinApp.ModuloTarefa
 
         private void AtualizarTarefa()
         {
-            List<Tarefa> tarefas = RepositorioTarefa.ObterTarefasPorPrioridade();
-
+            List<Tarefa> tarefas = RepositorioTarefa.ObterTarefasPendentes();
 
             listagemTarefasControl!.AtualizarLista(tarefas);
         }
@@ -114,7 +114,7 @@ namespace e_Agenda.WinApp.ModuloTarefa
             {
                 List<Item> itens = telaItens.ObterItens();
 
-               tarefa.AdicionarItem(itens);
+                tarefa.AdicionarItem(itens);
 
                 tarefa.CalcularPorcentagemConcluida();
 
@@ -129,8 +129,8 @@ namespace e_Agenda.WinApp.ModuloTarefa
             Tarefa tarefa = RepositorioBase!.BuscarPorId(idtTarefa);
 
             if (tarefa == null)
-                MessageBox.Show("É necessário selecionar uma tarefa!", "Tarefa Não Selecionada", MessageBoxButtons.OK, MessageBoxIcon.Exclamation) ;
-            
+                MessageBox.Show("É necessário selecionar uma tarefa!", "Tarefa Não Selecionada", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
+
             return tarefa!;
         }
 
@@ -141,27 +141,27 @@ namespace e_Agenda.WinApp.ModuloTarefa
             if (tarefa == null)
                 return;
 
-            if(tarefa.EstaConcluida)
+            if (tarefa.EstaConcluida)
             {
                 MessageBox.Show("A tarefa selecionada já está concluída!", "Tarefa Concluída", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
                 return;
             }
 
-            if(tarefa.Itens.Count==0)
+            if (tarefa.Itens.Count == 0)
             {
                 MessageBox.Show("A tarefa selecionada não possui itens cadastrados!", "Atualizar Tarefas", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
                 return;
             }
 
             var telaAtualizar = new TelaAtualizarTarefaForm(tarefa);
-            
+
             DialogResult opcao = telaAtualizar.ShowDialog();
 
             if (opcao == DialogResult.OK)
             {
-                var itensParaFinalizar = telaAtualizar.itensFinalizado;
+                List<Item> itensParaFinalizar = telaAtualizar.BuscarItensSelecionados();
 
-                foreach (var item in tarefa.Itens)
+                foreach (Item item in tarefa.Itens)
                 {
                     if (itensParaFinalizar.Contains(item))
                     {
@@ -171,7 +171,45 @@ namespace e_Agenda.WinApp.ModuloTarefa
 
                 tarefa.CalcularPorcentagemConcluida();
 
+                tarefa.TarefaConcluidaEventHandler += Tarefa_TarefaConcluidaEventHandler;
+
                 AtualizarTarefa();
+            }
+
+        }
+
+        private void Tarefa_TarefaConcluidaEventHandler()
+        {
+            MessageBox.Show("A tarefa foi concluída e movida para a lista de tarefas concluídas!", "Tarefa Concluída", MessageBoxButtons.OK, MessageBoxIcon.Asterisk);
+            return;
+        }
+
+        public void AbrirFormFiltro()
+        {
+            var telaFiltro = new TelaFiltrarTarefasForm();
+
+            DialogResult opcao = telaFiltro.ShowDialog();
+
+            List<Tarefa> tarefas = null!;
+
+            if (opcao == DialogResult.OK)
+            {
+                TipoDeBusca tipoDeBusca = telaFiltro.ObterOpcao();
+
+                switch (tipoDeBusca)
+                {
+                    case TipoDeBusca.todas:
+                        tarefas = this.RepositorioTarefa.ObterTodasTarefas();
+                        break;
+                    case TipoDeBusca.concluidas:
+                        tarefas = this.RepositorioTarefa.ObterTarefasConcluidas();
+                        break;
+                    case TipoDeBusca.pendentes:
+                        tarefas = this.RepositorioTarefa.ObterTarefasPendentes();
+                        break;
+                }
+
+                listagemTarefasControl!.AtualizarLista(tarefas);
             }
 
         }
@@ -185,9 +223,10 @@ namespace e_Agenda.WinApp.ModuloTarefa
             "Editar Tarefa",
             "Excluir Tarefa");
 
+            Configuracao.ToolTipoFiltrar = "Filtrar Tarefas";
             Configuracao.BtnAddItemTarefaEnabled = true;
-            Configuracao.BtnAtualizarTarefaEnabled = true;  
-
+            Configuracao.BtnAtualizarTarefaEnabled = true;
+            Configuracao.BtnFiltrarEnabled = true;
 
         }
     }

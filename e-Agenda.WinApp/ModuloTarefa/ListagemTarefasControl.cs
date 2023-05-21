@@ -23,7 +23,7 @@ namespace e_Agenda.WinApp.ModuloTarefa
                 listTarefasControl.Rows[i].Cells[2].Value = tarefas[i].Prioridade;
                 listTarefasControl.Rows[i].Cells[3].Value = tarefas[i].DataCriacao.ToShortDateString();
                 listTarefasControl.Rows[i].Cells[4].Value = tarefas[i].DataConclusao?.ToShortDateString();
-                listTarefasControl.Rows[i].Cells[5].Value = tarefas[i].PorcentagemConcluida;
+                listTarefasControl.Rows[i].Cells[5].Value = tarefas[i].PorcentagemConcluida + " %";
             }
 
         }

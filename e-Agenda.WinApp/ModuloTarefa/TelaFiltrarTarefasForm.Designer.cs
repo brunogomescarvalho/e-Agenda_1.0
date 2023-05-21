@@ -28,46 +28,120 @@
         /// </summary>
         private void InitializeComponent()
         {
-            dataGridView1 = new DataGridView();
-            ID = new DataGridViewTextBoxColumn();
-            ((System.ComponentModel.ISupportInitialize)dataGridView1).BeginInit();
+            panelOpcoes = new TableLayoutPanel();
+            btnTodasTarefas = new RadioButton();
+            btnPendentes = new RadioButton();
+            btnConcluidas = new RadioButton();
+            btnFiltrar = new Button();
+            btnCancelar = new Button();
+            panelOpcoes.SuspendLayout();
             SuspendLayout();
             // 
-            // dataGridView1
+            // panelOpcoes
             // 
-            dataGridView1.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            dataGridView1.Columns.AddRange(new DataGridViewColumn[] { ID });
-            dataGridView1.Dock = DockStyle.Fill;
-            dataGridView1.Location = new Point(0, 0);
-            dataGridView1.Name = "dataGridView1";
-            dataGridView1.RowHeadersWidth = 51;
-            dataGridView1.RowTemplate.Height = 29;
-            dataGridView1.Size = new Size(800, 450);
-            dataGridView1.TabIndex = 0;
+            panelOpcoes.ColumnCount = 1;
+            panelOpcoes.ColumnStyles.Add(new ColumnStyle(SizeType.Percent, 100F));
+            panelOpcoes.Controls.Add(btnTodasTarefas, 0, 0);
+            panelOpcoes.Controls.Add(btnPendentes, 0, 1);
+            panelOpcoes.Controls.Add(btnConcluidas, 0, 2);
+            panelOpcoes.Location = new Point(53, 33);
+            panelOpcoes.Name = "panelOpcoes";
+            panelOpcoes.RowCount = 3;
+            panelOpcoes.RowStyles.Add(new RowStyle(SizeType.Percent, 33.3333321F));
+            panelOpcoes.RowStyles.Add(new RowStyle(SizeType.Percent, 33.3333321F));
+            panelOpcoes.RowStyles.Add(new RowStyle(SizeType.Percent, 33.3333321F));
+            panelOpcoes.Size = new Size(321, 145);
+            panelOpcoes.TabIndex = 0;
             // 
-            // ID
+            // btnTodasTarefas
             // 
-            ID.HeaderText = "ID";
-            ID.MinimumWidth = 6;
-            ID.Name = "ID";
-            ID.ReadOnly = true;
-            ID.Width = 125;
+            btnTodasTarefas.AutoSize = true;
+            btnTodasTarefas.Dock = DockStyle.Fill;
+            btnTodasTarefas.Font = new Font("Segoe UI", 9F, FontStyle.Regular, GraphicsUnit.Point);
+            btnTodasTarefas.Location = new Point(3, 3);
+            btnTodasTarefas.Name = "btnTodasTarefas";
+            btnTodasTarefas.Size = new Size(315, 42);
+            btnTodasTarefas.TabIndex = 0;
+            btnTodasTarefas.TabStop = true;
+            btnTodasTarefas.Tag = "todas";
+            btnTodasTarefas.Text = "Visualizar Todas as Tarefas";
+            btnTodasTarefas.UseVisualStyleBackColor = true;
+            // 
+            // btnPendentes
+            // 
+            btnPendentes.AutoSize = true;
+            btnPendentes.Dock = DockStyle.Fill;
+            btnPendentes.Location = new Point(3, 51);
+            btnPendentes.Name = "btnPendentes";
+            btnPendentes.Size = new Size(315, 42);
+            btnPendentes.TabIndex = 1;
+            btnPendentes.TabStop = true;
+            btnPendentes.Tag = "pendentes";
+            btnPendentes.Text = "Visualizar Tarefas Pendentes";
+            btnPendentes.UseVisualStyleBackColor = true;
+            // 
+            // btnConcluidas
+            // 
+            btnConcluidas.AutoSize = true;
+            btnConcluidas.Dock = DockStyle.Fill;
+            btnConcluidas.Font = new Font("Segoe UI", 9F, FontStyle.Regular, GraphicsUnit.Point);
+            btnConcluidas.Location = new Point(3, 99);
+            btnConcluidas.Name = "btnConcluidas";
+            btnConcluidas.Size = new Size(315, 43);
+            btnConcluidas.TabIndex = 2;
+            btnConcluidas.TabStop = true;
+            btnConcluidas.Tag = "concluidas";
+            btnConcluidas.Text = "Visualizar Tarefas Concluídas";
+            btnConcluidas.UseVisualStyleBackColor = true;
+            // 
+            // btnFiltrar
+            // 
+            btnFiltrar.DialogResult = DialogResult.OK;
+            btnFiltrar.Location = new Point(151, 206);
+            btnFiltrar.Name = "btnFiltrar";
+            btnFiltrar.Size = new Size(94, 47);
+            btnFiltrar.TabIndex = 1;
+            btnFiltrar.Text = "Filtrar";
+            btnFiltrar.UseVisualStyleBackColor = true;
+            // 
+            // btnCancelar
+            // 
+            btnCancelar.DialogResult = DialogResult.Cancel;
+            btnCancelar.Location = new Point(282, 206);
+            btnCancelar.Name = "btnCancelar";
+            btnCancelar.Size = new Size(94, 47);
+            btnCancelar.TabIndex = 2;
+            btnCancelar.Text = "Cancelar";
+            btnCancelar.UseVisualStyleBackColor = true;
             // 
             // TelaFiltrarTarefasForm
             // 
             AutoScaleDimensions = new SizeF(8F, 20F);
             AutoScaleMode = AutoScaleMode.Font;
-            ClientSize = new Size(800, 450);
-            Controls.Add(dataGridView1);
+            ClientSize = new Size(411, 279);
+            Controls.Add(btnCancelar);
+            Controls.Add(btnFiltrar);
+            Controls.Add(panelOpcoes);
+            MaximizeBox = false;
+            MaximumSize = new Size(429, 326);
+            MinimizeBox = false;
+            MinimumSize = new Size(429, 326);
             Name = "TelaFiltrarTarefasForm";
-            Text = "TelaFiltrarTarefasForm";
-            ((System.ComponentModel.ISupportInitialize)dataGridView1).EndInit();
+            ShowIcon = false;
+            StartPosition = FormStartPosition.CenterScreen;
+            Text = "Filtrar Tarefas";
+            panelOpcoes.ResumeLayout(false);
+            panelOpcoes.PerformLayout();
             ResumeLayout(false);
         }
 
         #endregion
 
-        private DataGridView dataGridView1;
-        private DataGridViewTextBoxColumn ID;
+        private TableLayoutPanel panelOpcoes;
+        private RadioButton btnTodasTarefas;
+        private RadioButton btnPendentes;
+        private RadioButton btnConcluidas;
+        private Button btnFiltrar;
+        private Button btnCancelar;
     }
 }

@@ -4,19 +4,19 @@ namespace e_Agenda.WinApp.ModuloTarefa
     public partial class TelaAtualizarTarefaForm : Form
     {
 
-        public List<Item> itensFinalizado;
+        private List<Item> itensFinalizado;
 
         public TelaAtualizarTarefaForm(Tarefa tarefa)
         {
             InitializeComponent();
-
-            itensFinalizado = new List<Item>();
 
             textTarefa.Text = tarefa.ToString();
 
             listItens.Items.Clear();
 
             tarefa.BuscarItensNaoConcluidos().ForEach(i => { listItens.Items.Add(i); });
+
+            itensFinalizado = new List<Item>();
         }
 
         private void btnSalvar_Click(object sender, EventArgs e)
@@ -27,6 +27,11 @@ namespace e_Agenda.WinApp.ModuloTarefa
 
                 itensFinalizado.Add(itemConvertido);
             }
+        }
+
+        public List<Item>BuscarItensSelecionados()
+        {
+            return itensFinalizado;
         }
     }
 }

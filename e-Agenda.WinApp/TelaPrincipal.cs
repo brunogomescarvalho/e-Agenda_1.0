@@ -73,6 +73,11 @@ namespace e_Agenda.WinApp
         {
             if (controlador is ControladorCompromisso ctrl)
                 ctrl.AbrirFormFiltro();
+
+            else if (controlador is ControladorTarefa ctrlTarefa)
+                ctrlTarefa.AbrirFormFiltro();
+                
+
         }
 
 

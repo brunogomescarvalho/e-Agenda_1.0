@@ -2,6 +2,9 @@
 
 namespace e_Agenda.WinApp.ModuloTarefa
 {
+
+    public delegate void onTarefaConcluidaEventHandler();
+
     public class Tarefa : EntidadeBase<Tarefa>
     {
         public Prioridade Prioridade { get; private set; }
@@ -14,10 +17,11 @@ namespace e_Agenda.WinApp.ModuloTarefa
 
         public DateTime? DataConclusao { get; private set; }
 
-        public double PorcentagemConcluida { get; private set; }
+        public decimal PorcentagemConcluida { get; private set; }
 
         public bool EstaConcluida { get => PorcentagemConcluida == 100; }
 
+        public event onTarefaConcluidaEventHandler TarefaConcluidaEventHandler = null!;
         public Tarefa(Prioridade prioridade, string titulo)
         {
             Prioridade = prioridade;
@@ -27,6 +31,7 @@ namespace e_Agenda.WinApp.ModuloTarefa
             Titulo = titulo;
 
             DataCriacao = DateTime.Now;
+            
         }
 
         public void AdicionarItem(List<Item> itens)
@@ -37,20 +42,22 @@ namespace e_Agenda.WinApp.ModuloTarefa
 
         public void CalcularPorcentagemConcluida()
         {
-            var porcentagemPorItem = 100 / Itens.Count;
+            decimal porcentagemPorItem = Math.Round(100M / Itens.Count,2);
 
             PorcentagemConcluida = 0;
 
-            foreach (var item in Itens)
-            {
-                if(item.Concluido == true)
-                {
-                    PorcentagemConcluida += porcentagemPorItem;
-                }
-            }
+            PorcentagemConcluida = Itens.Sum(item => item.Concluido ? porcentagemPorItem : 0);
 
-            if(EstaConcluida)
+            bool finalizou = Itens.Exists(i=>i.Concluido==false);
+
+            if (!finalizou == true)
+            {
+                PorcentagemConcluida = 100;
                 DataConclusao = DateTime.Now;
+
+                TarefaConcluidaEventHandler();
+            } 
+               
         }
 
 
