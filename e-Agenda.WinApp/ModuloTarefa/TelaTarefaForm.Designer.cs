@@ -30,7 +30,7 @@
         {
             btnSalvar = new Button();
             btnCancelar = new Button();
-            comboPrioridade = new ComboBox();
+            textPrioridade = new ComboBox();
             labelPrioridade = new Label();
             labelTitulo = new Label();
             textDescricao = new TextBox();
@@ -57,14 +57,14 @@
             btnCancelar.Text = "Cancelar";
             btnCancelar.UseVisualStyleBackColor = true;
             // 
-            // comboPrioridade
+            // textPrioridade
             // 
-            comboPrioridade.FormattingEnabled = true;
-            comboPrioridade.Items.AddRange(new object[] { "Alta", "Baixa", "Normal" });
-            comboPrioridade.Location = new Point(167, 92);
-            comboPrioridade.Name = "comboPrioridade";
-            comboPrioridade.Size = new Size(353, 28);
-            comboPrioridade.TabIndex = 2;
+            textPrioridade.FormattingEnabled = true;
+            textPrioridade.Items.AddRange(new object[] { "Alta", "Baixa", "Normal" });
+            textPrioridade.Location = new Point(167, 92);
+            textPrioridade.Name = "textPrioridade";
+            textPrioridade.Size = new Size(353, 28);
+            textPrioridade.TabIndex = 2;
             // 
             // labelPrioridade
             // 
@@ -101,7 +101,7 @@
             Controls.Add(textDescricao);
             Controls.Add(labelTitulo);
             Controls.Add(labelPrioridade);
-            Controls.Add(comboPrioridade);
+            Controls.Add(textPrioridade);
             Controls.Add(btnCancelar);
             Controls.Add(btnSalvar);
             MaximizeBox = false;
@@ -118,7 +118,7 @@
 
         private Button btnSalvar;
         private Button btnCancelar;
-        private ComboBox comboPrioridade;
+        private ComboBox textPrioridade;
         private Label labelPrioridade;
         private Label labelTitulo;
         private TextBox textDescricao;

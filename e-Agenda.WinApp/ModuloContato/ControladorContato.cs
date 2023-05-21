@@ -4,22 +4,14 @@ namespace e_Agenda.WinApp.ModuloContato
 {
     public class ControladorContato : ControladorBase<RepositorioContato,Contato>
     {
-        public override string ToolTipInserir => "Inserir Novo Contato";
-
-        public override string ToolTipEditar =>"Editar Contato";
-
-        public override string ToolTipExcluir =>"Excluir Contato";
-
-        private ListagemContatosControl? listagemContatosControl;
-
       
-
+        private ListagemContatosControl? listagemContatosControl;
 
         public ControladorContato(RepositorioContato repositorioContato)
         {
             RepositorioBase = repositorioContato;
+            ConfigurarTela();
         }
-
 
         public override void Editar()
         {
@@ -107,9 +99,13 @@ namespace e_Agenda.WinApp.ModuloContato
             listagemContatosControl!.AtualizarLista(contatos);
         }
 
-        public override string ObterTipoCadastro()
+        public override void ConfigurarTela()
         {
-            return "Cadastro Contato";
+            Configuracao = new Configuracao(
+            "Contato",
+            "Inserir Contato",
+            "Editar Contato",
+            "Excluir Contato","","","",false,false,false);
         }
     }
 }

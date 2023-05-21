@@ -1,41 +1,72 @@
 ﻿using e_Agenda.WinApp.ModuloCompartilhado;
-using e_Agenda.WinApp.ModuloContato;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace e_Agenda.WinApp.ModuloTarefa
 {
     public class ControladorTarefa : ControladorBase<RepositorioTarefa, Tarefa>
     {
-        public override string ToolTipInserir =>"Inserir Tarefa";
-
-        public override string ToolTipEditar =>"Editar Tarefa";
-
-        public override string ToolTipExcluir =>"Excluir Tarefa";
+      
 
         public ListagemTarefasControl? listagemTarefasControl;
 
         public ControladorTarefa(RepositorioTarefa repositorioTarefa)
         {
             RepositorioBase = repositorioTarefa;
+            ConfigurarTela(); 
         }
 
         public override void Editar()
         {
-            throw new NotImplementedException();
+            Tarefa tarefa = ObterTarefa();
+
+            if (tarefa == null)
+                return;
+
+            DialogResult confimacao = ConfirmarAcao($"Confirma editar a tarefa Id: {tarefa.Id} - Titulo: {tarefa.Titulo} ?", "Editar Tarefa");
+
+            if (confimacao == DialogResult.Cancel)
+                return;
+
+            TelaTarefaForm formTarefa = new TelaTarefaForm();
+
+            formTarefa.Text = "Editar Tarefa";
+
+            DialogResult opcao = formTarefa.ShowDialog();
+
+            if(opcao == DialogResult.OK)
+            {
+                Tarefa tarefaEditada = formTarefa.Tarefa;
+
+                tarefa.Editar(tarefaEditada);
+
+                RepositorioBase!.Editar(tarefa);
+
+                AtualizarTarefa();
+            }
+
+            
         }
 
         public override void Excluir()
         {
-          
+            Tarefa tarefa = ObterTarefa();
+
+            if (tarefa == null)
+                return;
+
+            DialogResult confimacao = ConfirmarAcao($"Confirma excluir a tarefa Id: {tarefa.Id} - Titulo: {tarefa.Titulo} ?", "Excluir Tarefa");
+
+            if (confimacao == DialogResult.Cancel)
+                return;
+
+            RepositorioBase!.Excluir(tarefa);
+
+            AtualizarTarefa();
+
         }
 
         public override void Inserir()
         {
-            TelaTarefaForm telaForm = new TelaTarefaForm();
+            var telaForm = new TelaTarefaForm();
 
             var opcao = telaForm.ShowDialog();
 
@@ -56,11 +87,6 @@ namespace e_Agenda.WinApp.ModuloTarefa
             AtualizarTarefa();
 
             return listagemTarefasControl;
-        }
-
-        public override string ObterTipoCadastro()
-        {
-            return "Cadastro Tarefa";
         }
 
         private void AtualizarTarefa()
@@ -98,7 +124,7 @@ namespace e_Agenda.WinApp.ModuloTarefa
             Tarefa tarefa = listagemTarefasControl!.ObterContatoSelecionado();
 
             if (tarefa == null)
-                MessageBox.Show("Para incluir itens é necessário selecionar uma tarefa!", "Tarefa Não Selecionada", MessageBoxButtons.OK, MessageBoxIcon.Exclamation) ;
+                MessageBox.Show("É necessário selecionar uma tarefa!", "Tarefa Não Selecionada", MessageBoxButtons.OK, MessageBoxIcon.Exclamation) ;
             
             return tarefa!;
         }
@@ -109,6 +135,12 @@ namespace e_Agenda.WinApp.ModuloTarefa
 
             if (tarefa == null)
                 return;
+
+            if(tarefa.EstaConcluida)
+            {
+                MessageBox.Show("A tarefa selecionada já está concluída!", "Tarefa Concluída", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
+                return;
+            }
 
             if(tarefa.Itens.Count==0)
             {
@@ -137,6 +169,15 @@ namespace e_Agenda.WinApp.ModuloTarefa
                 AtualizarTarefa();
             }
 
+        }
+
+        public override void ConfigurarTela()
+        {
+            Configuracao = new Configuracao(
+            "Tarefa",
+            "Inserir Tarefa",
+            "Editar Tarefa",
+            "Excluir Tarefa","","Adicionar Item Tarefa", "Finalizar Item Tarefa", false, true, true);
         }
     }
 }

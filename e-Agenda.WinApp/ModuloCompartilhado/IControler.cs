@@ -8,12 +8,7 @@ namespace e_Agenda.WinApp.ModuloCompartilhado
 {
     public interface IControler
     {
-        string ToolTipInserir { get; }
-
-        string ToolTipEditar { get; }
-
-        string ToolTipExcluir { get; }
-
+        Configuracao Configuracao { get; protected set; }
         void Inserir();
 
         void Editar();
@@ -22,7 +17,6 @@ namespace e_Agenda.WinApp.ModuloCompartilhado
 
         UserControl ObterListagem();
 
-        string ObterTipoCadastro();
-        
+      
     }
 }

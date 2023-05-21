@@ -48,6 +48,9 @@ namespace e_Agenda.WinApp.ModuloTarefa
                     PorcentagemConcluida += porcentagemPorItem;
                 }
             }
+
+            if(EstaConcluida)
+                DataConclusao = DateTime.Now;
         }
 
 
@@ -61,44 +64,15 @@ namespace e_Agenda.WinApp.ModuloTarefa
             return Itens.FindAll(i => i.Concluido == true);
         }
 
-        public override void Editar(Tarefa entidade)
+        public override void Editar(Tarefa tarefa)
         {
-            throw new NotImplementedException();
+            this.Prioridade = tarefa.Prioridade;
+            this.Titulo = tarefa.Titulo;
         }
 
         public override string ToString()
         {
-            return $"{Id,-5} {Prioridade,-10} {DataCriacao,-15:d} {(EstaConcluida? $"{DataConclusao,-15:d}": $"{"Não Conluída",-15}")} {PorcentagemConcluida}%";
+            return $"{Id,-5} {Prioridade,-10} {DataCriacao,-15:d} {(EstaConcluida? $"{DataConclusao,-15:d}": $"{"Não Concluída",-15}")} {PorcentagemConcluida}%";
         }
-    }
-
-    public enum Prioridade
-    {
-        Alta,Normal,Baixa
-    }
-
-    public class Item
-    {
-        private string Descricao { get; set; }
-
-        public bool Concluido { get; private set; }
-
-        public Item(string descricao)
-        {
-            Descricao = descricao;
-            Concluido = false;
-        }
-
-        public void ConcluirItem()
-        {
-            Concluido = true;
-        }
-
-
-        public override string ToString()
-        {
-            return $"{Descricao,-15} {(Concluido? "Concluído": "Não Conlcuído")}";
-        }
-
     }
 }

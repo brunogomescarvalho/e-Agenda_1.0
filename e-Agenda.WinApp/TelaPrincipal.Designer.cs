@@ -45,6 +45,8 @@
             toolStripSeparator2 = new ToolStripSeparator();
             btnAddItemTarefa = new ToolStripButton();
             btnAtualizarTarefa = new ToolStripButton();
+            toolStripSeparator3 = new ToolStripSeparator();
+            textTipoCadastro = new ToolStripLabel();
             painelRegistros = new Panel();
             menuStrip.SuspendLayout();
             statusStrip.SuspendLayout();
@@ -124,7 +126,7 @@
             toolStrip1.BackColor = SystemColors.GradientInactiveCaption;
             toolStrip1.Font = new Font("Segoe UI", 12F, FontStyle.Regular, GraphicsUnit.Point);
             toolStrip1.ImageScalingSize = new Size(24, 24);
-            toolStrip1.Items.AddRange(new ToolStripItem[] { btnAdicionar, btnEditar, btnExcluir, toolStripSeparator1, btnFiltrar, toolStripSeparator2, btnAddItemTarefa, btnAtualizarTarefa });
+            toolStrip1.Items.AddRange(new ToolStripItem[] { btnAdicionar, btnEditar, btnExcluir, toolStripSeparator1, btnFiltrar, toolStripSeparator2, btnAddItemTarefa, btnAtualizarTarefa, toolStripSeparator3, textTipoCadastro });
             toolStrip1.LayoutStyle = ToolStripLayoutStyle.Flow;
             toolStrip1.Location = new Point(0, 48);
             toolStrip1.Name = "toolStrip1";
@@ -210,8 +212,18 @@
             btnAtualizarTarefa.ImageTransparentColor = Color.Magenta;
             btnAtualizarTarefa.Name = "btnAtualizarTarefa";
             btnAtualizarTarefa.Size = new Size(44, 44);
-            btnAtualizarTarefa.Text = "toolStripButton1";
             btnAtualizarTarefa.Click += btnAtualizarTarefa_Click;
+            // 
+            // toolStripSeparator3
+            // 
+            toolStripSeparator3.Name = "toolStripSeparator3";
+            toolStripSeparator3.Size = new Size(6, 23);
+            // 
+            // textTipoCadastro
+            // 
+            textTipoCadastro.Margin = new Padding(10, 5, 0, 1);
+            textTipoCadastro.Name = "textTipoCadastro";
+            textTipoCadastro.Size = new Size(0, 0);
             // 
             // painelRegistros
             // 
@@ -266,5 +278,7 @@
         private ToolStripButton btnAtualizarTarefa;
         private ToolStripSeparator toolStripSeparator1;
         private ToolStripSeparator toolStripSeparator2;
+        private ToolStripSeparator toolStripSeparator3;
+        private ToolStripLabel textTipoCadastro;
     }
 }

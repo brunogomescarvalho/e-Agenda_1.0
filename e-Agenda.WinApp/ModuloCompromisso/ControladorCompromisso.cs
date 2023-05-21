@@ -1,27 +1,14 @@
 ﻿using e_Agenda.WinApp.ModuloCompartilhado;
 using e_Agenda.WinApp.ModuloContato;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace e_Agenda.WinApp.ModuloCompromisso
 {
     public class ControladorCompromisso : ControladorBase<RepositorioCompromisso, Compromisso>
     {
-        public override string ToolTipInserir => "Inserir Compromisso";
-
-        public override string ToolTipEditar => "Editar Compromisso";
-
-        public override string ToolTipExcluir => "Excluir Compromisso";
-
-
+        
         public readonly RepositorioContato? RepositorioContato;
 
-
         public readonly RepositorioCompromisso repositorioCompromisso;
-
 
         public ListaCompromissosControl? listaCompromissosControl;
 
@@ -30,6 +17,7 @@ namespace e_Agenda.WinApp.ModuloCompromisso
             RepositorioBase = repositorioCompromisso;
             RepositorioContato = repositorioContato;
             this.repositorioCompromisso = repositorioCompromisso;
+            ConfigurarTela();
         }
 
         public override void Editar()
@@ -39,10 +27,7 @@ namespace e_Agenda.WinApp.ModuloCompromisso
             if (compromissoSelecionado == null)
                 return;
 
-            string question = $"Confirma editar o contato {compromissoSelecionado.Id} - {compromissoSelecionado.Assunto} ?";
-            string titulo = "Editar Compromisso";
-
-            DialogResult opcao = MessageBox.Show(question, titulo, MessageBoxButtons.YesNo, MessageBoxIcon.Question);
+            DialogResult opcao = ConfirmarAcao($"Confirma editar o contato {compromissoSelecionado.Id} - {compromissoSelecionado.Assunto} ?", "Editar Compromisso");
 
             if (opcao == DialogResult.Yes)
             {
@@ -72,10 +57,7 @@ namespace e_Agenda.WinApp.ModuloCompromisso
             if (compromissoSelecionado == null)
                 return;
 
-            string question = $"Confirma excluir o compromisso {compromissoSelecionado.Id} - {compromissoSelecionado.Assunto} ?";
-            string titulo = "Excluir Compromisso";
-
-            DialogResult opcao = MessageBox.Show(question, titulo, MessageBoxButtons.YesNo, MessageBoxIcon.Question);
+            DialogResult opcao = ConfirmarAcao($"Confirma editar o contato {compromissoSelecionado.Id} - {compromissoSelecionado.Assunto} ?", "Editar Compromisso");
 
             if (opcao == DialogResult.Yes)
             {
@@ -140,14 +122,18 @@ namespace e_Agenda.WinApp.ModuloCompromisso
             listaCompromissosControl!.AtualizarListagem(compromissos);
         }
 
-        public override string ObterTipoCadastro()
-        {
-            return "Cadastro de Compromisso";
-        }
-
         public List<Contato> ObterContatos()
         {
             return RepositorioContato!.Listar();
+        }
+
+        public override void ConfigurarTela()
+        {
+            Configuracao = new Configuracao(
+           "Compromisso",
+           "Inserir Compromisso",
+           "Editar Compromisso",
+           "Excluir Compromisso", "Filtrar Compromissos", "", "", true, false, false);
         }
 
         public enum StatusCompromisso

@@ -27,27 +27,9 @@ namespace e_Agenda.WinApp
 
             ConfigurarListagem(controlador);
 
-            btnFiltrar.Enabled = false;
-
-            btnAdicionar.Enabled = true;
-
-            btnEditar.Enabled = true;
-
-            btnExcluir.Enabled = true;
-
-            btnAddItemTarefa.Enabled = false;
-
-            btnAtualizarTarefa.Enabled = false;
-
-            statusLabel.Text = "Menu Contato";
+            ConfigurarBotoes(controlador);
         }
 
-        private void ConfigurarToolTips(IControler controladorBase)
-        {
-            btnAdicionar.ToolTipText = controladorBase.ToolTipInserir;
-            btnEditar.ToolTipText = controladorBase.ToolTipEditar;
-            btnExcluir.ToolTipText = controladorBase.ToolTipExcluir;
-        }
 
         private void ConfigurarListagem(IControler controladorBase)
         {
@@ -83,21 +65,7 @@ namespace e_Agenda.WinApp
 
             ConfigurarListagem(controlador);
 
-            statusLabel.Text = "Menu Compromisso";
-
-            btnFiltrar.ToolTipText = "Filtrar Compromissos";
-
-            btnFiltrar.Enabled = true;
-
-            btnAdicionar.Enabled = true;
-
-            btnEditar.Enabled = true;
-
-            btnExcluir.Enabled = true;
-
-            btnAddItemTarefa.Enabled = false;
-
-            btnAtualizarTarefa.Enabled = false;
+            ConfigurarBotoes(controlador);
 
         }
 
@@ -116,25 +84,7 @@ namespace e_Agenda.WinApp
 
             ConfigurarListagem(controlador);
 
-            btnFiltrar.Enabled = false;
-
-            btnAdicionar.Enabled = true;
-
-            btnEditar.Enabled = true;
-
-            btnExcluir.Enabled = true;
-
-            btnAddItemTarefa.Enabled = true;
-
-            btnAtualizarTarefa.Enabled = true;
-
-            btnExcluir.ToolTipText = "Excluir tarefa";
-
-            btnAddItemTarefa.ToolTipText = "Adicionar Tarefa";
-
-            btnAtualizarTarefa.ToolTipText = "Atualizar Tarefa";
-
-            statusLabel.Text = "Menu Tarefas";
+            ConfigurarBotoes(controlador);
 
         }
 
@@ -149,6 +99,40 @@ namespace e_Agenda.WinApp
         {
             if (controlador is ControladorTarefa ctrl)
                 ctrl.AtualizarItensTarefa();
+        }
+
+        public void ConfigurarBotoes(IControler controlador)
+        {
+            btnFiltrar.Enabled = controlador.Configuracao.BtnFiltrarEnabled;
+
+            btnAdicionar.Enabled = controlador.Configuracao.BtnAdicionarEnabled;
+
+            btnEditar.Enabled = controlador.Configuracao.BtnEditarEnabled;
+
+            btnExcluir.Enabled = controlador.Configuracao.BtnExcluirEnabled;
+
+            btnAddItemTarefa.Enabled = controlador.Configuracao.BtnAddItemTarefaEnabled;
+
+            btnAtualizarTarefa.Enabled = controlador.Configuracao.BtnAtualizarTarefaEnabled;
+
+            textTipoCadastro.Text = controlador.Configuracao.StatusLabel;
+
+            statusLabel.Text = "Menu " + controlador.Configuracao.StatusLabel;
+        }
+
+        private void ConfigurarToolTips(IControler controlador)
+        {
+            btnAdicionar.ToolTipText = controlador.Configuracao.ToolTipInserir;
+
+            btnEditar.ToolTipText = controlador.Configuracao.ToolTipEditar;
+
+            btnExcluir.ToolTipText = controlador.Configuracao.ToolTipExcluir;
+
+            btnAddItemTarefa.ToolTipText = controlador.Configuracao.ToolTipAdicionarItemTarefa;
+
+            btnAtualizarTarefa.ToolTipText = controlador.Configuracao.ToolTipAtualizarTarefa;
+
+            btnFiltrar.ToolTipText = controlador.Configuracao.ToolTipoFiltrar;
         }
     }
 }

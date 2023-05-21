@@ -22,15 +22,18 @@ namespace e_Agenda.WinApp.ModuloTarefa
         public Tarefa Tarefa
         {
             get => tarefa!;
-            set => textDescricao.Text = value.Titulo.ToString();
+            set
+            {
+                textDescricao.Text = value.Titulo.ToString();
+                textPrioridade.Text = value.Prioridade.ToString();
+            }
         }
-
 
         private void btnSalvar_Click(object sender, EventArgs e)
         {
             string descricao = textDescricao.Text;
 
-            string prioridadeStr = comboPrioridade.Text;
+            string prioridadeStr = textPrioridade.Text;
 
             Prioridade prioridade = Prioridade.Normal;
 
