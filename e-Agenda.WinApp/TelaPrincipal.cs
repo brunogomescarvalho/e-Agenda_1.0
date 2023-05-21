@@ -48,7 +48,7 @@ namespace e_Agenda.WinApp
         }
 
         private void btnEditar_Click(object sender, EventArgs e)
-        {
+        { 
             controlador?.Editar();
         }
 

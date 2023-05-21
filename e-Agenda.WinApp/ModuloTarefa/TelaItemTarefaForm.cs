@@ -19,6 +19,12 @@ namespace e_Agenda.WinApp.ModuloTarefa
         {
             string descricao = textDescricao.Text;
 
+            if(descricao.Trim().Length == 0 ) 
+            {
+                MessageBox.Show("Informe a descrição para o item da tarefa!");
+                return;
+            }
+
             var novoItem = new Item(descricao);
 
             listItens.Items.Add(novoItem);

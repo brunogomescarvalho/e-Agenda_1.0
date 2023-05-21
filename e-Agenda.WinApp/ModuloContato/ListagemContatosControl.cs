@@ -28,9 +28,18 @@ namespace e_Agenda.WinApp.ModuloContato
 
         public int ObterIdContatoSelecionado()
         {
-            var selectedRow = listContatos.SelectedRows[0];
+            try
+            {
+                var selectedRow = listContatos.SelectedRows[0];
 
-            return Convert.ToInt16(selectedRow.Cells[0].Value);
+                return Convert.ToInt16(selectedRow.Cells[0].Value);
+            }
+            catch(ArgumentOutOfRangeException)
+            {
+                return -1;
+            }
+          
+
               
         }
     }
