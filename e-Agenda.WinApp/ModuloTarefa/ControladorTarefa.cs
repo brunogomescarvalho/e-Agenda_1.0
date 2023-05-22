@@ -190,13 +190,15 @@ namespace e_Agenda.WinApp.ModuloTarefa
             return;
         }
 
-        public void AbrirFormFiltro(ToolStripLabel tooltip)
+        public void AbrirFormFiltro()
         {
             var telaFiltro = new TelaFiltrarTarefasForm();
 
             DialogResult opcao = telaFiltro.ShowDialog();
 
             List<Tarefa> tarefas = null!;
+
+            string opcaoString = "";
 
             if (opcao == DialogResult.OK)
             {
@@ -206,18 +208,19 @@ namespace e_Agenda.WinApp.ModuloTarefa
                 {
                     case TipoDeBusca.todas:
                         tarefas = RepositorioTarefa.ObterTodasTarefas();
-                        tooltip.Text = "Tarefas";
+                        opcaoString = "Tarefas";
                         break;
                     case TipoDeBusca.concluidas:
                         tarefas = RepositorioTarefa.ObterTarefasConcluidas();
-                        tooltip.Text = "Tarefas Concluídas";
+                        opcaoString = "Tarefas Concluídas";
                         break;
                     case TipoDeBusca.pendentes:
-                        tooltip.Text = "Tarefas Pendentes";
+                        opcaoString = "Tarefas Pendentes";
                         tarefas = this.RepositorioTarefa.ObterTarefasPendentes();
                         break;
                 }
 
+                TelaPrincipal.Instancia.AlterarTextCadastro(opcaoString);
                 listagemTarefasControl!.AtualizarLista(tarefas);
             }
 

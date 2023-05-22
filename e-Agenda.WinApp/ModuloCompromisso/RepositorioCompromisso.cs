@@ -28,33 +28,20 @@ namespace e_Agenda.WinApp.ModuloCompromisso
 
         }
 
-        public List<Compromisso>FiltrarLista(StatusCompromisso status)
-        {
-            switch (status)
-            {
-                case StatusCompromisso.Passado: return BuscarPassados();
-                    
-                case StatusCompromisso.Futuro: return BuscarProximos();
-                    
-                case StatusCompromisso.Hoje: return BuscarDeHoje();
-                    
-               default: return Listar();
-                 
-            }
-        }
+       
 
 
-        private List<Compromisso>BuscarPassados()
+        public List<Compromisso>BuscarPassados()
         {
             return registros.FindAll(i => i.Data.Date < DateTime.Now.Date);
         }
 
-        private List<Compromisso>BuscarProximos()
+        public List<Compromisso>BuscarProximos()
         {
             return registros.FindAll(i => i.Data.Date > DateTime.Now.Date);
         }
 
-        private List<Compromisso>BuscarDeHoje()
+        public List<Compromisso>BuscarDeHoje()
         {
             return registros.FindAll(i=>i.Data.Date == DateTime.Now.Date);
         }

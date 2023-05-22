@@ -79,10 +79,10 @@ namespace e_Agenda.WinApp
         private void btnFiltrar_Click(object sender, EventArgs e)
         {
             if (controlador is ControladorCompromisso ctrl)
-                ctrl.AbrirFormFiltro(textTipoCadastro);
+                ctrl.AbrirFormFiltro();
 
             else if (controlador is ControladorTarefa ctrlTarefa)
-                ctrlTarefa.AbrirFormFiltro(textTipoCadastro);
+                ctrlTarefa.AbrirFormFiltro();
               
         }
 
@@ -149,6 +149,11 @@ namespace e_Agenda.WinApp
         public void AlterarTextRodape(string menssagem)
         {
             statusLabel.Text = menssagem;
+        }
+
+        public void AlterarTextCadastro(string menssagem)
+        {
+            textTipoCadastro.Text = menssagem;
         }
     }
 }
