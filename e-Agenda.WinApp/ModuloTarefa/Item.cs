@@ -2,7 +2,7 @@
 {
     public class Item
     {
-        private string Descricao { get; set; }
+        public string Descricao { get;private set; }
 
         public bool Concluido { get; private set; }
 
@@ -20,7 +20,7 @@
 
         public override string ToString()
         {
-            return $"{Descricao,-15} {(Concluido? "Concluído": "Não Concluído")}";
+            return $"{Descricao,-15} {(Concluido ? "Concluído" : "Não Concluído")}";
         }
 
     }

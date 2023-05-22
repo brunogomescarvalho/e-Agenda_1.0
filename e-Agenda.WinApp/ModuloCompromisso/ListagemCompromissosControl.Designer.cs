@@ -47,6 +47,7 @@
             listCompromissos.Location = new Point(0, 0);
             listCompromissos.MultiSelect = false;
             listCompromissos.Name = "listCompromissos";
+            listCompromissos.RowHeadersVisible = false;
             listCompromissos.RowHeadersWidth = 51;
             listCompromissos.RowTemplate.Height = 29;
             listCompromissos.SelectionMode = DataGridViewSelectionMode.FullRowSelect;

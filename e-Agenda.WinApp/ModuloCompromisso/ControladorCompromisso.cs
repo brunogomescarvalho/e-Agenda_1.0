@@ -106,7 +106,7 @@ namespace e_Agenda.WinApp.ModuloCompromisso
             return listaCompromissosControl;
         }
 
-        public void AbrirFormFiltro()
+        public void AbrirFormFiltro(ToolStripLabel textTipoCadastro)
         {
             var telaFiltro = new TelaFiltroCompromisso();
 
@@ -119,6 +119,27 @@ namespace e_Agenda.WinApp.ModuloCompromisso
                 List<Compromisso> listaFiltrada = repositorioCompromisso.FiltrarLista(status);
 
                 listaCompromissosControl!.AtualizarListagem(listaFiltrada);
+
+                AlterarTextTipoCadastro(textTipoCadastro,status);
+            }
+        }
+
+        private void AlterarTextTipoCadastro(ToolStripLabel textTipoCadastro, StatusCompromisso status)
+        {
+            switch (status)
+            {
+                case StatusCompromisso.Passado:
+                    textTipoCadastro.Text = "Compromissos Passados";
+                    break;
+                case StatusCompromisso.Futuro:
+                    textTipoCadastro.Text = "Compromissos Futuros";
+                    break;
+                case StatusCompromisso.Hoje:
+                    textTipoCadastro.Text = "Compromissos de Hoje";
+                    break;
+                case StatusCompromisso.Todos:
+                    textTipoCadastro.Text = "Compromissos";
+                    break;
             }
         }
 
@@ -137,7 +158,7 @@ namespace e_Agenda.WinApp.ModuloCompromisso
         public override void ConfigurarTela()
         {
             Configuracao = new Configuracao(
-            "Compromisso",
+            "Compromissos",
             "Inserir Compromisso",
             "Editar Compromisso",
             "Excluir Compromisso")

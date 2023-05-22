@@ -34,8 +34,8 @@
 
                 return Convert.ToInt32(selectedRow.Cells[0].Value);
             }
-           
-              catch (ArgumentOutOfRangeException)
+
+            catch (ArgumentOutOfRangeException)
             {
                 return -1;
             }

@@ -38,5 +38,10 @@ namespace e_Agenda.WinApp.ModuloContato
             Empresa = contato.Empresa;
             Cargo = contato.Cargo;
         }
+
+        public override string ToString()
+        {
+          return  $"Id: {Id} - Nome: {Nome} - Telefone: {Telefone} - Empresa: {Empresa}";
+        }
     }
 }

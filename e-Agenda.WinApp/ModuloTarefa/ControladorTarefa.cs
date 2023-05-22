@@ -169,9 +169,9 @@ namespace e_Agenda.WinApp.ModuloTarefa
                     }
                 }
 
-                tarefa.CalcularPorcentagemConcluida();
-
                 tarefa.TarefaConcluidaEventHandler += Tarefa_TarefaConcluidaEventHandler;
+
+                tarefa.CalcularPorcentagemConcluida();
 
                 AtualizarTarefa();
             }
@@ -184,7 +184,7 @@ namespace e_Agenda.WinApp.ModuloTarefa
             return;
         }
 
-        public void AbrirFormFiltro()
+        public void AbrirFormFiltro(ToolStripLabel tooltip)
         {
             var telaFiltro = new TelaFiltrarTarefasForm();
 
@@ -199,12 +199,15 @@ namespace e_Agenda.WinApp.ModuloTarefa
                 switch (tipoDeBusca)
                 {
                     case TipoDeBusca.todas:
-                        tarefas = this.RepositorioTarefa.ObterTodasTarefas();
+                        tarefas = RepositorioTarefa.ObterTodasTarefas();
+                        tooltip.Text = "Tarefas";
                         break;
                     case TipoDeBusca.concluidas:
-                        tarefas = this.RepositorioTarefa.ObterTarefasConcluidas();
+                        tarefas = RepositorioTarefa.ObterTarefasConcluidas();
+                        tooltip.Text = "Tarefas Concluídas";
                         break;
                     case TipoDeBusca.pendentes:
+                        tooltip.Text = "Tarefas Pendentes";
                         tarefas = this.RepositorioTarefa.ObterTarefasPendentes();
                         break;
                 }
@@ -218,7 +221,7 @@ namespace e_Agenda.WinApp.ModuloTarefa
         {
             Configuracao = new Configuracao(
 
-            "Tarefa",
+            "Tarefas",
             "Inserir Tarefa",
             "Editar Tarefa",
             "Excluir Tarefa");

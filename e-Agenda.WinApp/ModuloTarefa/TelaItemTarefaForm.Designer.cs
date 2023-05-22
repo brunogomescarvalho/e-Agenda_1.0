@@ -34,8 +34,11 @@
             btnIncluir = new Button();
             labelDescricao = new Label();
             textDescricao = new TextBox();
-            listItens = new ListBox();
             textTarefa = new TextBox();
+            listItens = new DataGridView();
+            descricao = new DataGridViewTextBoxColumn();
+            status = new DataGridViewTextBoxColumn();
+            ((System.ComponentModel.ISupportInitialize)listItens).BeginInit();
             SuspendLayout();
             // 
             // btnSalvar
@@ -95,15 +98,6 @@
             textDescricao.Size = new Size(338, 27);
             textDescricao.TabIndex = 11;
             // 
-            // listItens
-            // 
-            listItens.FormattingEnabled = true;
-            listItens.ItemHeight = 20;
-            listItens.Location = new Point(35, 137);
-            listItens.Name = "listItens";
-            listItens.Size = new Size(578, 284);
-            listItens.TabIndex = 14;
-            // 
             // textTarefa
             // 
             textTarefa.Location = new Point(145, 31);
@@ -112,25 +106,57 @@
             textTarefa.Size = new Size(338, 27);
             textTarefa.TabIndex = 15;
             // 
-            // TelaItemForm
+            // listItens
+            // 
+            listItens.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            listItens.Columns.AddRange(new DataGridViewColumn[] { descricao, status });
+            listItens.Location = new Point(52, 150);
+            listItens.MultiSelect = false;
+            listItens.Name = "listItens";
+            listItens.ReadOnly = true;
+            listItens.RowHeadersVisible = false;
+            listItens.RowHeadersWidth = 51;
+            listItens.RowTemplate.Height = 29;
+            listItens.SelectionMode = DataGridViewSelectionMode.FullRowSelect;
+            listItens.Size = new Size(561, 276);
+            listItens.TabIndex = 16;
+            // 
+            // descricao
+            // 
+            descricao.HeaderText = "Descrição";
+            descricao.MinimumWidth = 6;
+            descricao.Name = "descricao";
+            descricao.ReadOnly = true;
+            descricao.Width = 125;
+            // 
+            // status
+            // 
+            status.HeaderText = "Status";
+            status.MinimumWidth = 6;
+            status.Name = "status";
+            status.ReadOnly = true;
+            status.Width = 125;
+            // 
+            // TelaItemTarefaForm
             // 
             AutoScaleDimensions = new SizeF(8F, 20F);
             AutoScaleMode = AutoScaleMode.Font;
             ClientSize = new Size(660, 535);
+            Controls.Add(listItens);
             Controls.Add(textTarefa);
             Controls.Add(labelDescricao);
             Controls.Add(btnIncluir);
-            Controls.Add(listItens);
             Controls.Add(textDescricao);
             Controls.Add(label1);
             Controls.Add(btnCancelar);
             Controls.Add(btnSalvar);
             MaximizeBox = false;
             MinimizeBox = false;
-            Name = "TelaItemForm";
+            Name = "TelaItemTarefaForm";
             ShowIcon = false;
             StartPosition = FormStartPosition.CenterScreen;
             Text = "Cadastrar Item Tarefa";
+            ((System.ComponentModel.ISupportInitialize)listItens).EndInit();
             ResumeLayout(false);
             PerformLayout();
         }
@@ -142,7 +168,9 @@
         private Button btnIncluir;
         private Label labelDescricao;
         private TextBox textDescricao;
-        private ListBox listItens;
         private TextBox textTarefa;
+        private DataGridView listItens;
+        private DataGridViewTextBoxColumn descricao;
+        private DataGridViewTextBoxColumn status;
     }
 }

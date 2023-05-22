@@ -97,6 +97,7 @@
             listContatos.Location = new Point(0, 0);
             listContatos.MultiSelect = false;
             listContatos.Name = "listContatos";
+            listContatos.RowHeadersVisible = false;
             listContatos.RowHeadersWidth = 51;
             listContatos.RowTemplate.Height = 29;
             listContatos.SelectionMode = DataGridViewSelectionMode.FullRowSelect;

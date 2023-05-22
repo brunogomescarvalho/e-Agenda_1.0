@@ -72,10 +72,10 @@ namespace e_Agenda.WinApp
         private void btnFiltrar_Click(object sender, EventArgs e)
         {
             if (controlador is ControladorCompromisso ctrl)
-                ctrl.AbrirFormFiltro();
+                ctrl.AbrirFormFiltro(textTipoCadastro);
 
             else if (controlador is ControladorTarefa ctrlTarefa)
-                ctrlTarefa.AbrirFormFiltro();
+                ctrlTarefa.AbrirFormFiltro(textTipoCadastro);
                 
 
         }

@@ -3,23 +3,40 @@ namespace e_Agenda.WinApp.ModuloTarefa
 {
     public partial class TelaItemTarefaForm : Form
     {
+        private readonly List<Item> itens;
 
         public TelaItemTarefaForm(Tarefa tarefa)
         {
             InitializeComponent();
 
+            itens = new List<Item>();
+
+            CarregarListaItens(tarefa);
+        }
+
+
+
+        private void CarregarListaItens(Tarefa tarefa)
+        {
             textTarefa.Text = tarefa.ToString();
 
-            listItens.Items.Clear();
+            listItens.Rows.Clear();
 
-            tarefa.Itens.ForEach(i => listItens.Items.Add(i));
+            if (tarefa.Itens.Count > 1)
+                listItens.Rows.Add(tarefa.Itens.Count - 1);
+
+            for (int i = 0; i < tarefa.Itens.Count; i++)
+            {
+                listItens.Rows[i].Cells[0].Value = tarefa.Itens[i].Descricao;
+                listItens.Rows[i].Cells[1].Value = tarefa.Itens[i].Concluido ? "Concluído" : "Pendente";
+            }
         }
 
         private void btnIncluir_Click(object sender, EventArgs e)
         {
             string descricao = textDescricao.Text;
 
-            if(descricao.Trim().Length == 0 ) 
+            if (descricao.Trim().Length == 0)
             {
                 MessageBox.Show("Informe a descrição para o item da tarefa!");
                 return;
@@ -27,22 +44,20 @@ namespace e_Agenda.WinApp.ModuloTarefa
 
             var novoItem = new Item(descricao);
 
-            listItens.Items.Add(novoItem);
+            var novaLinha = new DataGridViewRow();
 
-            textDescricao.Text = "";
+            novaLinha.CreateCells(listItens);
+
+            novaLinha.Cells[0].Value = novoItem.Descricao;
+            novaLinha.Cells[1].Value = novoItem.Concluido ? "Concluído" : "Pendente";
+
+            listItens.Rows.Add(novaLinha);
+
+            itens.Add(novoItem);
         }
 
         public List<Item> ObterItens()
         {
-            List<Item> itens = new List<Item>();
-
-            foreach (var item in listItens.Items)
-            {
-                Item itemDaTarefa = (Item)item;
-
-                itens.Add(itemDaTarefa);
-            }
-
             return itens;
         }
 

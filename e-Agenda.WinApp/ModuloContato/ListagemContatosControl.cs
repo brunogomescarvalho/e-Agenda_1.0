@@ -34,11 +34,11 @@ namespace e_Agenda.WinApp.ModuloContato
 
                 return Convert.ToInt16(selectedRow.Cells[0].Value);
             }
-            catch(ArgumentOutOfRangeException)
+            catch (ArgumentOutOfRangeException)
             {
                 return -1;
             }
-          
+
         }
     }
 }
