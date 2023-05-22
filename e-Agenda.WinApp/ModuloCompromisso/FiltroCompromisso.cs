@@ -2,10 +2,10 @@
 {
     public partial class ControladorCompromisso
     {
-        public enum StatusCompromisso
+        public enum FiltroCompromisso
         {
             Passado,Futuro,Hoje,
-            Todos
+            Todos,Data
         }
 
     }

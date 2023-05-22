@@ -8,6 +8,9 @@ namespace e_Agenda.WinApp.ModuloCompromisso
 
         string opcao = "";
 
+        public DateTime DataInicial { get; private set; }
+        public DateTime DataFinal { get; private set; }
+
         public TelaFiltroCompromisso()
         {
             InitializeComponent();
@@ -38,17 +41,28 @@ namespace e_Agenda.WinApp.ModuloCompromisso
 
         }
 
-        public StatusCompromisso Getstatus()
+        public FiltroCompromisso Getstatus()
         {
             if (opcao == "Hoje")
-                return StatusCompromisso.Hoje;
-            else if (opcao == "Passados")
-                return StatusCompromisso.Passado;
-            else if (opcao == "Próximos")
-                return StatusCompromisso.Futuro;
-            else
-                return StatusCompromisso.Todos;
+                return FiltroCompromisso.Hoje;
 
+            else if (opcao == "Passados")
+                return FiltroCompromisso.Passado;
+
+            else if (opcao == "Próximos")
+                return FiltroCompromisso.Futuro;
+
+            else if (opcao == "Datas")
+            {
+                DataInicial = dateTimeInicial.Value;
+                DataFinal = dateTimeFinal.Value;
+
+                return FiltroCompromisso.Data;
+            }
+
+            else
+                return FiltroCompromisso.Todos;
         }
+
     }
 }

@@ -116,9 +116,21 @@ namespace e_Agenda.WinApp.ModuloCompromisso
 
             if(result == DialogResult.OK)
             {
-                StatusCompromisso status = telaFiltro.Getstatus();
+                FiltroCompromisso status = telaFiltro.Getstatus();
 
-                List<Compromisso> listaFiltrada = FiltrarLista(status);
+                List<Compromisso> listaFiltrada;
+
+                if (status == FiltroCompromisso.Data)
+                {
+                    DateTime dataInicial = telaFiltro.DataInicial.Date;
+                    DateTime dataFinal = telaFiltro.DataFinal.Date;
+
+                    listaFiltrada = repositorioCompromisso.BuscarPorDatas(dataInicial, dataFinal);
+                }
+                else
+                {
+                    listaFiltrada = FiltrarLista(status);
+                }
 
                 listaCompromissosControl!.AtualizarListagem(listaFiltrada);
 
@@ -126,37 +138,37 @@ namespace e_Agenda.WinApp.ModuloCompromisso
             }
         }
 
-        private void AlterarTextTipoCadastro(StatusCompromisso status)
+        private void AlterarTextTipoCadastro(FiltroCompromisso status)
         {
             string opcao="";
 
             switch (status)
             {
-                case StatusCompromisso.Passado:
+                case FiltroCompromisso.Passado:
                     opcao = "Compromissos Passados";
                     break;
-                case StatusCompromisso.Futuro:
+                case FiltroCompromisso.Futuro:
                     opcao = "Compromissos Futuros";
                     break;
-                case StatusCompromisso.Hoje:
+                case FiltroCompromisso.Hoje:
                     opcao = "Compromissos de Hoje";
                     break;
-                case StatusCompromisso.Todos:
+                case FiltroCompromisso.Todos:
                     opcao = "Compromissos";
                     break;     
             }
             TelaPrincipal.Instancia.AlterarTextCadastro(opcao);
         }
 
-        public List<Compromisso> FiltrarLista(StatusCompromisso status)
+        public List<Compromisso> FiltrarLista(FiltroCompromisso status)
         {
             switch (status)
             {
-                case StatusCompromisso.Passado: return repositorioCompromisso. BuscarPassados();
+                case FiltroCompromisso.Passado: return repositorioCompromisso. BuscarPassados();
 
-                case StatusCompromisso.Futuro: return repositorioCompromisso.BuscarProximos();
+                case FiltroCompromisso.Futuro: return repositorioCompromisso.BuscarProximos();
 
-                case StatusCompromisso.Hoje: return repositorioCompromisso.BuscarDeHoje();
+                case FiltroCompromisso.Hoje: return repositorioCompromisso.BuscarDeHoje();
 
                 default: return repositorioCompromisso.Listar();
 

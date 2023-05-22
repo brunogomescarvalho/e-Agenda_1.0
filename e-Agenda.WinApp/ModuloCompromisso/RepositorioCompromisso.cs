@@ -33,18 +33,24 @@ namespace e_Agenda.WinApp.ModuloCompromisso
 
         public List<Compromisso>BuscarPassados()
         {
-            return registros.FindAll(i => i.Data.Date < DateTime.Now.Date);
+            return registros.FindAll(i => i.Data.Date < DateTime.Now.Date || i.Data.Date <= DateTime.Now.Date && i.HoraInicio.Hour < DateTime.Now.Hour);
         }
 
         public List<Compromisso>BuscarProximos()
         {
-            return registros.FindAll(i => i.Data.Date > DateTime.Now.Date);
+            return registros.FindAll(i => i.Data.Date > DateTime.Now.Date || i.Data.Date >= DateTime.Now.Date && i.HoraInicio.Hour > DateTime.Now.Hour);
         }
 
         public List<Compromisso>BuscarDeHoje()
         {
-            return registros.FindAll(i=>i.Data.Date == DateTime.Now.Date);
+            return registros.FindAll(i=>i.Data.Date == DateTime.Now.Date && i.HoraInicio.Hour > DateTime.Now.Hour );
         }
+
+        public List<Compromisso> BuscarPorDatas(DateTime dataInicial, DateTime dataFinal)
+        {
+            return registros.FindAll(i=>i.Data.Date >= dataInicial && i.Data.Date <= dataFinal);
+        }
+
 
 
         private void IniciarCompromissos()

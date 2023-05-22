@@ -33,9 +33,16 @@
             radioButtonHoje = new RadioButton();
             radioButtonProximos = new RadioButton();
             radioButtonPassados = new RadioButton();
+            radioDatas = new RadioButton();
             buttonFiltrar = new Button();
             buttonCancelar = new Button();
+            panel1 = new Panel();
+            labelDataFinal = new Label();
+            labelDataInicial = new Label();
+            dateTimeFinal = new DateTimePicker();
+            dateTimeInicial = new DateTimePicker();
             tableLayoutPanel1.SuspendLayout();
+            panel1.SuspendLayout();
             SuspendLayout();
             // 
             // tableLayoutPanel1
@@ -46,14 +53,16 @@
             tableLayoutPanel1.Controls.Add(radioButtonHoje, 0, 1);
             tableLayoutPanel1.Controls.Add(radioButtonProximos, 0, 2);
             tableLayoutPanel1.Controls.Add(radioButtonPassados, 0, 3);
-            tableLayoutPanel1.Location = new Point(55, 64);
+            tableLayoutPanel1.Controls.Add(radioDatas, 0, 4);
+            tableLayoutPanel1.Location = new Point(12, 12);
             tableLayoutPanel1.Name = "tableLayoutPanel1";
-            tableLayoutPanel1.RowCount = 4;
-            tableLayoutPanel1.RowStyles.Add(new RowStyle(SizeType.Percent, 25F));
-            tableLayoutPanel1.RowStyles.Add(new RowStyle(SizeType.Percent, 25F));
-            tableLayoutPanel1.RowStyles.Add(new RowStyle(SizeType.Percent, 25F));
-            tableLayoutPanel1.RowStyles.Add(new RowStyle(SizeType.Percent, 25F));
-            tableLayoutPanel1.Size = new Size(692, 184);
+            tableLayoutPanel1.RowCount = 5;
+            tableLayoutPanel1.RowStyles.Add(new RowStyle(SizeType.Percent, 20F));
+            tableLayoutPanel1.RowStyles.Add(new RowStyle(SizeType.Percent, 20F));
+            tableLayoutPanel1.RowStyles.Add(new RowStyle(SizeType.Percent, 20F));
+            tableLayoutPanel1.RowStyles.Add(new RowStyle(SizeType.Percent, 20F));
+            tableLayoutPanel1.RowStyles.Add(new RowStyle(SizeType.Percent, 20F));
+            tableLayoutPanel1.Size = new Size(500, 184);
             tableLayoutPanel1.TabIndex = 0;
             // 
             // radioButtonTodos
@@ -63,7 +72,7 @@
             radioButtonTodos.Dock = DockStyle.Fill;
             radioButtonTodos.Location = new Point(3, 3);
             radioButtonTodos.Name = "radioButtonTodos";
-            radioButtonTodos.Size = new Size(686, 40);
+            radioButtonTodos.Size = new Size(494, 30);
             radioButtonTodos.TabIndex = 0;
             radioButtonTodos.TabStop = true;
             radioButtonTodos.Tag = "Todos";
@@ -74,9 +83,9 @@
             // 
             radioButtonHoje.AutoSize = true;
             radioButtonHoje.Dock = DockStyle.Fill;
-            radioButtonHoje.Location = new Point(3, 49);
+            radioButtonHoje.Location = new Point(3, 39);
             radioButtonHoje.Name = "radioButtonHoje";
-            radioButtonHoje.Size = new Size(686, 40);
+            radioButtonHoje.Size = new Size(494, 30);
             radioButtonHoje.TabIndex = 1;
             radioButtonHoje.Tag = "Hoje";
             radioButtonHoje.Text = "Visualizar compromissos para hoje";
@@ -86,9 +95,9 @@
             // 
             radioButtonProximos.AutoSize = true;
             radioButtonProximos.Dock = DockStyle.Fill;
-            radioButtonProximos.Location = new Point(3, 95);
+            radioButtonProximos.Location = new Point(3, 75);
             radioButtonProximos.Name = "radioButtonProximos";
-            radioButtonProximos.Size = new Size(686, 40);
+            radioButtonProximos.Size = new Size(494, 30);
             radioButtonProximos.TabIndex = 2;
             radioButtonProximos.Tag = "Próximos";
             radioButtonProximos.Text = "Visualizar próximos compromissos";
@@ -98,19 +107,32 @@
             // 
             radioButtonPassados.AutoSize = true;
             radioButtonPassados.Dock = DockStyle.Fill;
-            radioButtonPassados.Location = new Point(3, 141);
+            radioButtonPassados.Location = new Point(3, 111);
             radioButtonPassados.Name = "radioButtonPassados";
-            radioButtonPassados.Size = new Size(686, 40);
+            radioButtonPassados.Size = new Size(494, 30);
             radioButtonPassados.TabIndex = 3;
             radioButtonPassados.TabStop = true;
             radioButtonPassados.Tag = "Passados";
             radioButtonPassados.Text = "Visualizar compromissos passados";
             radioButtonPassados.UseVisualStyleBackColor = true;
             // 
+            // radioDatas
+            // 
+            radioDatas.AutoSize = true;
+            radioDatas.Dock = DockStyle.Fill;
+            radioDatas.Location = new Point(3, 147);
+            radioDatas.Name = "radioDatas";
+            radioDatas.Size = new Size(494, 34);
+            radioDatas.TabIndex = 4;
+            radioDatas.TabStop = true;
+            radioDatas.Tag = "Datas";
+            radioDatas.Text = "Visualizar Por Datas";
+            radioDatas.UseVisualStyleBackColor = true;
+            // 
             // buttonFiltrar
             // 
             buttonFiltrar.DialogResult = DialogResult.OK;
-            buttonFiltrar.Location = new Point(304, 284);
+            buttonFiltrar.Location = new Point(361, 345);
             buttonFiltrar.Name = "buttonFiltrar";
             buttonFiltrar.Size = new Size(88, 44);
             buttonFiltrar.TabIndex = 1;
@@ -120,18 +142,65 @@
             // buttonCancelar
             // 
             buttonCancelar.DialogResult = DialogResult.Cancel;
-            buttonCancelar.Location = new Point(436, 284);
+            buttonCancelar.Location = new Point(455, 345);
             buttonCancelar.Name = "buttonCancelar";
             buttonCancelar.Size = new Size(87, 44);
             buttonCancelar.TabIndex = 2;
             buttonCancelar.Text = "Cancelar";
             buttonCancelar.UseVisualStyleBackColor = true;
             // 
+            // panel1
+            // 
+            panel1.Controls.Add(labelDataFinal);
+            panel1.Controls.Add(labelDataInicial);
+            panel1.Controls.Add(dateTimeFinal);
+            panel1.Controls.Add(dateTimeInicial);
+            panel1.Location = new Point(11, 213);
+            panel1.Name = "panel1";
+            panel1.Size = new Size(498, 113);
+            panel1.TabIndex = 3;
+            // 
+            // labelDataFinal
+            // 
+            labelDataFinal.AutoSize = true;
+            labelDataFinal.Location = new Point(241, 25);
+            labelDataFinal.Name = "labelDataFinal";
+            labelDataFinal.Size = new Size(76, 20);
+            labelDataFinal.TabIndex = 3;
+            labelDataFinal.Text = "Data Final";
+            // 
+            // labelDataInicial
+            // 
+            labelDataInicial.AutoSize = true;
+            labelDataInicial.Location = new Point(24, 25);
+            labelDataInicial.Name = "labelDataInicial";
+            labelDataInicial.Size = new Size(84, 20);
+            labelDataInicial.TabIndex = 2;
+            labelDataInicial.Text = "Data Inicial";
+            // 
+            // dateTimeFinal
+            // 
+            dateTimeFinal.Format = DateTimePickerFormat.Custom;
+            dateTimeFinal.Location = new Point(241, 67);
+            dateTimeFinal.Name = "dateTimeFinal";
+            dateTimeFinal.Size = new Size(197, 27);
+            dateTimeFinal.TabIndex = 1;
+            // 
+            // dateTimeInicial
+            // 
+            dateTimeInicial.CalendarMonthBackground = SystemColors.HighlightText;
+            dateTimeInicial.Format = DateTimePickerFormat.Short;
+            dateTimeInicial.Location = new Point(15, 67);
+            dateTimeInicial.Name = "dateTimeInicial";
+            dateTimeInicial.Size = new Size(189, 27);
+            dateTimeInicial.TabIndex = 0;
+            // 
             // TelaFiltroCompromisso
             // 
             AutoScaleDimensions = new SizeF(8F, 20F);
             AutoScaleMode = AutoScaleMode.Font;
-            ClientSize = new Size(569, 351);
+            ClientSize = new Size(569, 417);
+            Controls.Add(panel1);
             Controls.Add(buttonCancelar);
             Controls.Add(buttonFiltrar);
             Controls.Add(tableLayoutPanel1);
@@ -144,6 +213,8 @@
             TransparencyKey = Color.Transparent;
             tableLayoutPanel1.ResumeLayout(false);
             tableLayoutPanel1.PerformLayout();
+            panel1.ResumeLayout(false);
+            panel1.PerformLayout();
             ResumeLayout(false);
         }
 
@@ -156,5 +227,11 @@
         private RadioButton radioButtonPassados;
         private Button buttonFiltrar;
         private Button buttonCancelar;
+        private RadioButton radioDatas;
+        private Panel panel1;
+        private Label labelDataFinal;
+        private Label labelDataInicial;
+        private DateTimePicker dateTimeFinal;
+        private DateTimePicker dateTimeInicial;
     }
 }
