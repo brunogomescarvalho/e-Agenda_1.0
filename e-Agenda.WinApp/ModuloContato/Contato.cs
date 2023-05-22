@@ -40,7 +40,7 @@ namespace e_Agenda.WinApp.ModuloContato
             Cargo = contato.Cargo;
         }
 
-        public string[] Validar()
+        public override string[] Validar()
         {
             List<string> erros = new List<string>();
 

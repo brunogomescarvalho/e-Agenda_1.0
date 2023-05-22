@@ -1,4 +1,5 @@
 ﻿using e_Agenda.WinApp.ModuloCompartilhado;
+using static System.Windows.Forms.VisualStyles.VisualStyleElement.ListView;
 
 namespace e_Agenda.WinApp.ModuloTarefa
 {
@@ -80,5 +81,17 @@ namespace e_Agenda.WinApp.ModuloTarefa
             return $"{Id,-5} {Prioridade,-10} {DataCriacao,-15:d} {(EstaConcluida ? $"{DataConclusao,-15:d}" : $"{"Não Concluída",-15}")} {PorcentagemConcluida}%";
         }
 
+        public override string[] Validar()
+        {
+            List<string> erros = new List<string>();
+
+            if (string.IsNullOrEmpty(Titulo))
+                erros.Add("Preencha o campo título");
+
+            else if (string.IsNullOrEmpty(Prioridade.ToString()))
+                erros.Add("Selecione a prioridade da tarefa");
+
+            return erros.ToArray();
+        }
     }
 }

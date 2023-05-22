@@ -1,5 +1,6 @@
 ﻿using e_Agenda.WinApp.ModuloCompartilhado;
 using e_Agenda.WinApp.ModuloContato;
+using static System.Windows.Forms.VisualStyles.VisualStyleElement.ListView;
 
 namespace e_Agenda.WinApp.ModuloCompromisso
 {
@@ -30,6 +31,19 @@ namespace e_Agenda.WinApp.ModuloCompromisso
             Data = compromisso.Data;
             HoraInicio = compromisso.HoraInicio;
             HoraTermino = compromisso.HoraTermino;
+        }
+
+        public override string[] Validar()
+        {
+            List<string> erros = new List<string>();
+
+            if (string.IsNullOrEmpty(Assunto))
+                erros.Add("Preencha o campo assunto");
+
+            else if (string.IsNullOrEmpty(Local))
+                erros.Add("Preencha o campo local");
+
+            return erros.ToArray();
         }
     }
 }

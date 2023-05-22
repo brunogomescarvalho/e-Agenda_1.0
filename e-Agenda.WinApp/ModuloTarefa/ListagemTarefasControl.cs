@@ -1,5 +1,4 @@
-﻿using e_Agenda.WinApp.ModuloContato;
-
+﻿
 namespace e_Agenda.WinApp.ModuloTarefa
 {
     public partial class ListagemTarefasControl : UserControl

@@ -37,6 +37,20 @@ namespace e_Agenda.WinApp.ModuloCompromisso
 
         private void bntSalvar_Click(object sender, EventArgs e)
         {
+           Compromisso compromisso= ObterCompromisso();
+
+            string[] erros = compromisso.Validar();
+
+            if(erros.Length > 0)
+            {
+                TelaPrincipal.Instancia.AlterarTextRodape(erros[0]);
+
+                DialogResult = DialogResult.None;
+            }
+        }
+
+        private Compromisso ObterCompromisso()
+        {
             string id = textId.Text;
 
             Contato contato = (Contato)comboBoxContatos.SelectedItem;
@@ -64,6 +78,7 @@ namespace e_Agenda.WinApp.ModuloCompromisso
             if (idCompromisso > 0)
                 compromisso.AtribuirId(idCompromisso);
 
+            return compromisso;
         }
 
         private void checkIncluirContato_CheckedChanged(object sender, EventArgs e)

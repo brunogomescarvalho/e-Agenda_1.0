@@ -1,14 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.ComponentModel;
-using System.Data;
-using System.Drawing;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using System.Windows.Forms;
-
-namespace e_Agenda.WinApp.ModuloTarefa
+﻿namespace e_Agenda.WinApp.ModuloTarefa
 {
     public partial class TelaTarefaForm : Form
     {
@@ -45,6 +35,15 @@ namespace e_Agenda.WinApp.ModuloTarefa
             }
 
             tarefa = new Tarefa(prioridade, descricao);
+
+            string[]erros = tarefa.Validar();
+
+            if(erros.Length > 0)
+            {
+                TelaPrincipal.Instancia.AlterarTextRodape(erros[0]);
+
+                DialogResult = DialogResult.None;
+            }
         }
     }
 }

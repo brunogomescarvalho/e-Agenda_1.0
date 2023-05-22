@@ -26,6 +26,7 @@ namespace e_Agenda.WinApp.ModuloCompromisso
         public override void Editar()
         {
             int id = listaCompromissosControl!.ObterIdCompromissoSelecionado();
+
             Compromisso compromissoSelecionado = repositorioCompromisso.BuscarPorId(id);
 
             if (compromissoSelecionado == null)
@@ -58,12 +59,13 @@ namespace e_Agenda.WinApp.ModuloCompromisso
         public override void Excluir()
         {
             int id = listaCompromissosControl!.ObterIdCompromissoSelecionado();
+
             Compromisso compromissoSelecionado = repositorioCompromisso.BuscarPorId(id);
 
             if (compromissoSelecionado == null)
                 return;
 
-            DialogResult opcao = ConfirmarAcao($"Confirma editar o contato {compromissoSelecionado.Id} - {compromissoSelecionado.Assunto} ?", "Editar Compromisso");
+            DialogResult opcao = ConfirmarAcao($"Confirma excluir o contato {compromissoSelecionado.Id} - {compromissoSelecionado.Assunto} ?", "Editar Compromisso");
 
             if (opcao == DialogResult.Yes)
             {
