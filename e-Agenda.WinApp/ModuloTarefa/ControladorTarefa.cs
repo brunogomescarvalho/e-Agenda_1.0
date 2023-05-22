@@ -103,6 +103,12 @@ namespace e_Agenda.WinApp.ModuloTarefa
         {
             Tarefa tarefa = ObterTarefa();
 
+            if (tarefa.EstaConcluida)
+            {
+                MessageBox.Show("A tarefa selecionada já está concluída!", "Tarefa Concluída", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
+                return;
+            }
+
             if (tarefa == null)
                 return;
 
