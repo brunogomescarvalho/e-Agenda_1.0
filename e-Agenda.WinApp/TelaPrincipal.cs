@@ -14,9 +14,16 @@ namespace e_Agenda.WinApp
         private readonly RepositorioCompromisso repositorioCompromisso = new RepositorioCompromisso(new List<Compromisso>());
 
         private readonly RepositorioTarefa repositorioTarefa = new RepositorioTarefa(new List<Tarefa>());
+
+        private static TelaPrincipal telaPrincipal = null!;
+
+        public static TelaPrincipal Instancia { get => telaPrincipal; }
+
         public TelaPrincipal()
         {
             InitializeComponent();
+
+            telaPrincipal ??= this;
         }
 
         private void contatosMenuItem_Click(object sender, EventArgs e)
@@ -76,8 +83,7 @@ namespace e_Agenda.WinApp
 
             else if (controlador is ControladorTarefa ctrlTarefa)
                 ctrlTarefa.AbrirFormFiltro(textTipoCadastro);
-                
-
+              
         }
 
 
@@ -106,7 +112,7 @@ namespace e_Agenda.WinApp
                 ctrl.AtualizarItensTarefa();
         }
 
-        public void ConfigurarBotoes(IControler controlador)
+        private void ConfigurarBotoes(IControler controlador)
         {
             btnFiltrar.Enabled = controlador.Configuracao.BtnFiltrarEnabled;
 
@@ -138,6 +144,11 @@ namespace e_Agenda.WinApp
             btnAtualizarTarefa.ToolTipText = controlador.Configuracao.ToolTipAtualizarTarefa;
 
             btnFiltrar.ToolTipText = controlador.Configuracao.ToolTipoFiltrar;
+        }
+
+        public void AlterarTextRodape(string menssagem)
+        {
+            statusLabel.Text = menssagem;
         }
     }
 }

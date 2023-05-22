@@ -156,7 +156,6 @@
             // 
             btnSalvar.Anchor = AnchorStyles.Bottom | AnchorStyles.Right;
             btnSalvar.DialogResult = DialogResult.OK;
-            btnSalvar.Enabled = false;
             btnSalvar.Location = new Point(363, 361);
             btnSalvar.Name = "btnSalvar";
             btnSalvar.Size = new Size(85, 56);
