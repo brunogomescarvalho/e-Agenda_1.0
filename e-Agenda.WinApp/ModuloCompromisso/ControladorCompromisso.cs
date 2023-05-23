@@ -101,7 +101,7 @@ namespace e_Agenda.WinApp.ModuloCompromisso
 
         public override UserControl ObterListagem()
         {
-            listaCompromissosControl ??= new ListaCompromissosControl(repositorioCompromisso.Listar());
+            listaCompromissosControl ??= new ListaCompromissosControl();
 
             AtualizarCompromissos();
 

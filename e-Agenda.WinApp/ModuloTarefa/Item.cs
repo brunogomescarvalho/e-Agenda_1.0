@@ -17,6 +17,15 @@
             Concluido = true;
         }
 
+        public string[] Validar()
+        {
+            List<string> erros = new();
+
+            if(Descricao.Trim().Length > 0) { erros.Add("Preencha o campo "); }
+
+            return erros.ToArray();
+        }
+
 
         public override string ToString()
         {

@@ -81,5 +81,15 @@ namespace e_Agenda.WinApp.ModuloContato
         {
             return $"Id: {Id} - Nome: {Nome} - Telefone: {Telefone} - Empresa: {Empresa}";
         }
+
+        public override bool Equals(object? obj)
+        {
+            return obj is Contato contato &&
+                   Nome == contato.Nome &&
+                   Email == contato.Email &&
+                   Telefone == contato.Telefone &&
+                   Empresa == contato.Empresa &&
+                   Cargo == contato.Cargo;
+        }
     }
 }

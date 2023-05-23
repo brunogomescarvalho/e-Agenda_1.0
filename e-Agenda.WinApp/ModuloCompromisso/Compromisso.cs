@@ -45,5 +45,7 @@ namespace e_Agenda.WinApp.ModuloCompromisso
 
             return erros.ToArray();
         }
+
+      
     }
 }

@@ -1,12 +1,4 @@
 ﻿using e_Agenda.WinApp.ModuloCompartilhado;
-using System;
-using System.Collections;
-using System.Collections.Generic;
-using System.Linq;
-using System.Security.Cryptography.X509Certificates;
-using System.Text;
-using System.Threading.Tasks;
-using static e_Agenda.WinApp.ModuloCompromisso.ControladorCompromisso;
 
 namespace e_Agenda.WinApp.ModuloCompromisso
 {
@@ -19,17 +11,29 @@ namespace e_Agenda.WinApp.ModuloCompromisso
         }
         public bool VerificarHorario(Compromisso c)
         {
-            var compromissosDoDia = registros.FindAll(i => i.Data == c.Data);
+            var compromissosDoDia = registros.FindAll(i => i.Data.Date == c.Data.Date);
 
-            var ocupado = compromissosDoDia.FindAll(i => i.HoraInicio >= c.HoraInicio && i.HoraInicio <=c.HoraTermino || 
-            i.HoraTermino >=c.HoraInicio && i.HoraTermino <=c.HoraTermino); 
+            var horaInicialCompromisso = new TimeSpan(c.HoraInicio.Hour, c.HoraInicio.Minute, c.HoraInicio.Second);
+            var horaFinalCompromisso = new TimeSpan(c.HoraTermino.Hour, c.HoraTermino.Minute, c.HoraTermino.Second);
 
-            return !ocupado.Any();
+            foreach (Compromisso item in compromissosDoDia)
+            {
+                var horarioJaCadastradoInicio = new TimeSpan(item.HoraInicio.Hour, item.HoraInicio.Minute, item.HoraInicio.Second);
+                var horarioJaCadastradoFinal = new TimeSpan(item.HoraTermino.Hour, item.HoraTermino.Minute, item.HoraTermino.Second);
+
+                if (horaInicialCompromisso <= horarioJaCadastradoInicio && horaFinalCompromisso >= horarioJaCadastradoFinal)
+                    return false;
+                else if (horaInicialCompromisso <= horarioJaCadastradoInicio && horaFinalCompromisso >= horarioJaCadastradoFinal)
+                    return false;
+                else if (horaFinalCompromisso <= horarioJaCadastradoInicio && horaFinalCompromisso <= horarioJaCadastradoFinal)
+                    return false;
+                else if (horaInicialCompromisso >= horarioJaCadastradoInicio && horaFinalCompromisso <= horarioJaCadastradoFinal)
+                    return false;
+            }
+
+            return true;
 
         }
-
-       
-
 
         public List<Compromisso>BuscarPassados()
         {
@@ -60,7 +64,7 @@ namespace e_Agenda.WinApp.ModuloCompromisso
             new Compromisso(null, "Reunião de equipe", "Sala de conferências", DateTime.Now.AddDays(-4), new DateTime(1,1,1, 11, 30, 00), new DateTime(1,1,1, 12, 00, 00)),
             new Compromisso(null, "Treinamento de vendas", "Auditório principal", DateTime.Now.AddDays(-3), new DateTime(1,1,1, 10, 30, 00), new DateTime(1,1,1, 11, 30, 00)),
             new Compromisso(null, "Entrevista de emprego", "Centro de Tecnologia Sala 3B", DateTime.Now.AddDays(-2), new DateTime(1,1,1, 9, 00, 00), new DateTime(1,1,1, 10, 30, 00)),
-            new Compromisso(null, "Almoço de negócios", "Restaurante Hotel", DateTime.Now,  new DateTime(1,1,1, 12, 30, 00),  new DateTime(1,1,1, 13, 30, 00)),
+            new Compromisso(null, "Almoço de negócios", "Restaurante Hotel", DateTime.Now.Date,  new DateTime(1,1,1, 12, 30, 00),  new DateTime(1,1,1, 13, 30, 00)),
             new Compromisso(null, "Reunião de planejamento", "Sala de projetos", DateTime.Now.AddDays(1), new DateTime(1,1,1, 14, 30, 00), new DateTime(1,1,1, 15, 30, 00)),
             new Compromisso(null, "Workshop de inovação", "Centro de convenções", DateTime.Now.AddDays(2), new DateTime(1,1,1, 10, 30, 00), new DateTime(1,1,1, 11, 30, 00)),
             new Compromisso(null, "Apresentação de produtos", "Showroom", DateTime.Now.AddDays(3), new DateTime(1,1,1, 15, 30, 00), new DateTime(1,1,1, 16, 30, 00)),

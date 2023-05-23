@@ -2,7 +2,7 @@
 {
     public partial class ListaCompromissosControl : UserControl
     {
-        public ListaCompromissosControl(List<Compromisso> lista)
+        public ListaCompromissosControl()
         {
             InitializeComponent();
         }

@@ -14,6 +14,9 @@ namespace e_Agenda.WinApp.ModuloCompromisso
 
             set
             {
+                if(value.Contato != null)
+                    InserirContatoComboBox(value);
+
                 textId.Text = value.Id.ToString();
                 textBoxAssunto.Text = value.Assunto;
                 textBoxLocal.Text = value.Local;
@@ -22,6 +25,25 @@ namespace e_Agenda.WinApp.ModuloCompromisso
                 textHorarioFinal.Text = value.HoraTermino.ToShortTimeString();
             }
         }
+
+        private void InserirContatoComboBox(Compromisso value)
+        {
+            PopularComboBoxListaContatos();
+
+            comboBoxContatos.Enabled = true;
+            checkIncluirContato.Checked = true;
+
+            var contatoSelecionado = contatos.FirstOrDefault(i => i.Id == value.Contato!.Id);
+
+            foreach (Contato contato in comboBoxContatos.Items)
+            {
+                if(contato.Equals(contatoSelecionado))
+                {
+                    comboBoxContatos.SelectedItem = contato;
+                }
+            }
+        }
+
 
         public TelaCompromissoForm(List<Contato> contatos)
         {
@@ -32,16 +54,23 @@ namespace e_Agenda.WinApp.ModuloCompromisso
 
         private void TelaCompromissoForm_Load(object sender, EventArgs e)
         {
+            PopularComboBoxListaContatos();
+        }
+
+        private void PopularComboBoxListaContatos()
+        {
+            comboBoxContatos.Items.Clear();
             contatos.ForEach(contato => { comboBoxContatos.Items.Add(contato); });
+            comboBoxContatos.DisplayMember = "nome";
         }
 
         private void bntSalvar_Click(object sender, EventArgs e)
         {
-           Compromisso compromisso= ObterCompromisso();
+            Compromisso compromisso = ObterCompromisso();
 
             string[] erros = compromisso.Validar();
 
-            if(erros.Length > 0)
+            if (erros.Length > 0)
             {
                 TelaPrincipal.Instancia.AlterarTextRodape(erros[0]);
 
@@ -88,7 +117,12 @@ namespace e_Agenda.WinApp.ModuloCompromisso
             if (chekc.Checked)
                 comboBoxContatos.Enabled = true;
             else
+            {
                 comboBoxContatos.Enabled = false;
+                comboBoxContatos.SelectedItem = null;
+
+            }
+               
         }
     }
 }

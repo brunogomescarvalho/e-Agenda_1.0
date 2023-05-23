@@ -127,7 +127,6 @@ namespace e_Agenda.WinApp.ModuloTarefa
                 AtualizarTarefa();
             }
         }
-
         private Tarefa ObterTarefa()
         {
             int idtTarefa = listagemTarefasControl!.ObterIdTarefaSelecionada();
@@ -189,6 +188,8 @@ namespace e_Agenda.WinApp.ModuloTarefa
             MessageBox.Show("A tarefa foi concluída e movida para a lista de tarefas concluídas!", "Tarefa Concluída", MessageBoxButtons.OK, MessageBoxIcon.Asterisk);
             return;
         }
+
+     
 
         public void AbrirFormFiltro()
         {

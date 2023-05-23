@@ -36,13 +36,13 @@
             radioDatas = new RadioButton();
             buttonFiltrar = new Button();
             buttonCancelar = new Button();
-            panel1 = new Panel();
+            panelDatas = new Panel();
             labelDataFinal = new Label();
             labelDataInicial = new Label();
             dateTimeFinal = new DateTimePicker();
             dateTimeInicial = new DateTimePicker();
             tableLayoutPanel1.SuspendLayout();
-            panel1.SuspendLayout();
+            panelDatas.SuspendLayout();
             SuspendLayout();
             // 
             // tableLayoutPanel1
@@ -149,16 +149,16 @@
             buttonCancelar.Text = "Cancelar";
             buttonCancelar.UseVisualStyleBackColor = true;
             // 
-            // panel1
+            // panelDatas
             // 
-            panel1.Controls.Add(labelDataFinal);
-            panel1.Controls.Add(labelDataInicial);
-            panel1.Controls.Add(dateTimeFinal);
-            panel1.Controls.Add(dateTimeInicial);
-            panel1.Location = new Point(11, 213);
-            panel1.Name = "panel1";
-            panel1.Size = new Size(498, 113);
-            panel1.TabIndex = 3;
+            panelDatas.Controls.Add(labelDataFinal);
+            panelDatas.Controls.Add(labelDataInicial);
+            panelDatas.Controls.Add(dateTimeFinal);
+            panelDatas.Controls.Add(dateTimeInicial);
+            panelDatas.Location = new Point(11, 213);
+            panelDatas.Name = "panelDatas";
+            panelDatas.Size = new Size(498, 113);
+            panelDatas.TabIndex = 3;
             // 
             // labelDataFinal
             // 
@@ -200,7 +200,7 @@
             AutoScaleDimensions = new SizeF(8F, 20F);
             AutoScaleMode = AutoScaleMode.Font;
             ClientSize = new Size(569, 417);
-            Controls.Add(panel1);
+            Controls.Add(panelDatas);
             Controls.Add(buttonCancelar);
             Controls.Add(buttonFiltrar);
             Controls.Add(tableLayoutPanel1);
@@ -210,11 +210,11 @@
             ShowIcon = false;
             StartPosition = FormStartPosition.CenterScreen;
             Text = "Filtrar Compromissos";
-            TransparencyKey = Color.Transparent;
+            TransparencyKey = Color.Gray;
             tableLayoutPanel1.ResumeLayout(false);
             tableLayoutPanel1.PerformLayout();
-            panel1.ResumeLayout(false);
-            panel1.PerformLayout();
+            panelDatas.ResumeLayout(false);
+            panelDatas.PerformLayout();
             ResumeLayout(false);
         }
 
@@ -228,7 +228,7 @@
         private Button buttonFiltrar;
         private Button buttonCancelar;
         private RadioButton radioDatas;
-        private Panel panel1;
+        private Panel panelDatas;
         private Label labelDataFinal;
         private Label labelDataInicial;
         private DateTimePicker dateTimeFinal;

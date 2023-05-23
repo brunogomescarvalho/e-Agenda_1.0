@@ -51,6 +51,7 @@
             // 
             // comboBoxContatos
             // 
+            comboBoxContatos.DisplayMember = "(nenhu";
             comboBoxContatos.Enabled = false;
             comboBoxContatos.FlatStyle = FlatStyle.Flat;
             comboBoxContatos.Font = new Font("Segoe UI", 9F, FontStyle.Regular, GraphicsUnit.Point);

@@ -38,7 +38,8 @@ namespace e_Agenda.WinApp.ModuloTarefa
 
             if (descricao.Trim().Length == 0)
             {
-                MessageBox.Show("Informe a descrição para o item da tarefa!");
+                TelaPrincipal.Instancia.AlterarTextRodape("Informe a descrição para o item da tarefa!");
+                DialogResult = DialogResult.None;
                 return;
             }
 
