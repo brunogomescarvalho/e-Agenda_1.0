@@ -30,6 +30,7 @@
         {
             try
             {
+
                 var selectedRow = listCompromissos.SelectedRows[0];
 
                 return Convert.ToInt32(selectedRow.Cells[0].Value);

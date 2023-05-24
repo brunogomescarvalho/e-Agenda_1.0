@@ -5,14 +5,14 @@ namespace e_Agenda.WinApp.ModuloCompromisso
 {
     public partial class ControladorCompromisso : ControladorBase<RepositorioCompromisso, Compromisso>
     {
-        
+
         public readonly RepositorioContato? RepositorioContato;
 
         public readonly RepositorioCompromisso repositorioCompromisso;
 
         public ListaCompromissosControl? listaCompromissosControl;
 
-        public ControladorCompromisso( RepositorioCompromisso repositorioCompromisso,RepositorioContato repositorioContato)
+        public ControladorCompromisso(RepositorioCompromisso repositorioCompromisso, RepositorioContato repositorioContato)
         {
             RepositorioBase = repositorioCompromisso;
 
@@ -77,17 +77,17 @@ namespace e_Agenda.WinApp.ModuloCompromisso
 
         public override void Inserir()
         {
-           var telaCompromissoForm = new TelaCompromissoForm(ObterContatos());
+            var telaCompromissoForm = new TelaCompromissoForm(ObterContatos());
 
-           DialogResult opcao = telaCompromissoForm.ShowDialog();
+            DialogResult opcao = telaCompromissoForm.ShowDialog();
 
-            if(opcao == DialogResult.OK)
+            if (opcao == DialogResult.OK)
             {
                 Compromisso compromisso = telaCompromissoForm.Compromisso;
 
                 bool horarioDisponivel = repositorioCompromisso.VerificarHorario(compromisso);
 
-                if(horarioDisponivel == false)
+                if (horarioDisponivel == false)
                 {
                     MessageBox.Show("Já existe um compromisso agendado para o horário informado", "Horário Indiponível", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
                     return;
@@ -114,7 +114,7 @@ namespace e_Agenda.WinApp.ModuloCompromisso
 
             DialogResult result = telaFiltro.ShowDialog();
 
-            if(result == DialogResult.OK)
+            if (result == DialogResult.OK)
             {
                 FiltroCompromisso status = telaFiltro.Getstatus();
 
@@ -140,7 +140,7 @@ namespace e_Agenda.WinApp.ModuloCompromisso
 
         private void AlterarTextTipoCadastro(FiltroCompromisso status)
         {
-            string opcao="";
+            string opcao = "";
 
             switch (status)
             {
@@ -155,7 +155,7 @@ namespace e_Agenda.WinApp.ModuloCompromisso
                     break;
                 case FiltroCompromisso.Todos:
                     opcao = "Compromissos";
-                    break;     
+                    break;
             }
             TelaPrincipal.Instancia.AlterarTextCadastro(opcao);
         }
@@ -164,7 +164,7 @@ namespace e_Agenda.WinApp.ModuloCompromisso
         {
             switch (status)
             {
-                case FiltroCompromisso.Passado: return repositorioCompromisso. BuscarPassados();
+                case FiltroCompromisso.Passado: return repositorioCompromisso.BuscarPassados();
 
                 case FiltroCompromisso.Futuro: return repositorioCompromisso.BuscarProximos();
 

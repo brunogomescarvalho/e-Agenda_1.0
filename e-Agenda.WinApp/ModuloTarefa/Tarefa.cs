@@ -42,21 +42,22 @@ namespace e_Agenda.WinApp.ModuloTarefa
 
         public void CalcularPorcentagemConcluida()
         {
+
             decimal porcentagemPorItem = Math.Round(100M / Itens.Count, 2);
 
             PorcentagemConcluida = 0;
 
             PorcentagemConcluida = Itens.Sum(item => item.Concluido ? porcentagemPorItem : 0);
 
-            bool finalizou = Itens.Exists(i => i.Concluido == false) == false;
+            bool finalizou = Itens.Exists(i => i.Concluido==false).Equals(false);
 
-            if (finalizou)
+            if (finalizou == true)
             {
                 PorcentagemConcluida = 100;
                 DataConclusao = DateTime.Now;
-
                 TarefaConcluidaEventHandler();
             }
+            
         }
 
 

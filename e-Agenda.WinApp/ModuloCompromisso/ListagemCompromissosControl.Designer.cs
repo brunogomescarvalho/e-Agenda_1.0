@@ -59,6 +59,7 @@
             idCompromisso.HeaderText = "Id";
             idCompromisso.MinimumWidth = 6;
             idCompromisso.Name = "idCompromisso";
+            idCompromisso.ReadOnly = true;
             idCompromisso.Width = 125;
             // 
             // AssuntoCompromisso
@@ -66,6 +67,7 @@
             AssuntoCompromisso.HeaderText = "Assunto";
             AssuntoCompromisso.MinimumWidth = 6;
             AssuntoCompromisso.Name = "AssuntoCompromisso";
+            AssuntoCompromisso.ReadOnly = true;
             AssuntoCompromisso.Width = 125;
             // 
             // localCompromisso
@@ -73,6 +75,7 @@
             localCompromisso.HeaderText = "Local";
             localCompromisso.MinimumWidth = 6;
             localCompromisso.Name = "localCompromisso";
+            localCompromisso.ReadOnly = true;
             localCompromisso.Width = 125;
             // 
             // dataCompromisso
@@ -80,6 +83,7 @@
             dataCompromisso.HeaderText = "Data";
             dataCompromisso.MinimumWidth = 6;
             dataCompromisso.Name = "dataCompromisso";
+            dataCompromisso.ReadOnly = true;
             dataCompromisso.Width = 125;
             // 
             // horaInicio
@@ -87,6 +91,7 @@
             horaInicio.HeaderText = "Início";
             horaInicio.MinimumWidth = 6;
             horaInicio.Name = "horaInicio";
+            horaInicio.ReadOnly = true;
             horaInicio.Width = 125;
             // 
             // terminoCompromisso
@@ -94,6 +99,7 @@
             terminoCompromisso.HeaderText = "Término";
             terminoCompromisso.MinimumWidth = 6;
             terminoCompromisso.Name = "terminoCompromisso";
+            terminoCompromisso.ReadOnly = true;
             terminoCompromisso.Width = 125;
             // 
             // contato
@@ -101,6 +107,7 @@
             contato.HeaderText = "Contato";
             contato.MinimumWidth = 6;
             contato.Name = "contato";
+            contato.ReadOnly = true;
             contato.Width = 125;
             // 
             // ListaCompromissosControl

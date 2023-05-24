@@ -73,7 +73,6 @@ namespace e_Agenda.WinApp.ModuloCompromisso
 
             for (int i = 0; i < listCompromissos.Count; i++)
             {
-                listCompromissos[i].AtribuirId(i + 50);
                 this.Cadastrar(listCompromissos[i]);
             }
 

@@ -57,6 +57,7 @@
             idTarefa.HeaderText = "Id";
             idTarefa.MinimumWidth = 6;
             idTarefa.Name = "idTarefa";
+            idTarefa.ReadOnly = true;
             idTarefa.Width = 125;
             // 
             // TituloTarefa
@@ -64,6 +65,7 @@
             TituloTarefa.HeaderText = "Título";
             TituloTarefa.MinimumWidth = 6;
             TituloTarefa.Name = "TituloTarefa";
+            TituloTarefa.ReadOnly = true;
             TituloTarefa.Width = 125;
             // 
             // PrioridadeTarefa
@@ -71,6 +73,7 @@
             PrioridadeTarefa.HeaderText = "Prioridade";
             PrioridadeTarefa.MinimumWidth = 6;
             PrioridadeTarefa.Name = "PrioridadeTarefa";
+            PrioridadeTarefa.ReadOnly = true;
             PrioridadeTarefa.Width = 125;
             // 
             // DataAberturaTarefa
@@ -78,6 +81,7 @@
             DataAberturaTarefa.HeaderText = "Data Abertura";
             DataAberturaTarefa.MinimumWidth = 6;
             DataAberturaTarefa.Name = "DataAberturaTarefa";
+            DataAberturaTarefa.ReadOnly = true;
             DataAberturaTarefa.Width = 125;
             // 
             // DataConclusaoTarefa
@@ -85,6 +89,7 @@
             DataConclusaoTarefa.HeaderText = "Data Conclusão";
             DataConclusaoTarefa.MinimumWidth = 6;
             DataConclusaoTarefa.Name = "DataConclusaoTarefa";
+            DataConclusaoTarefa.ReadOnly = true;
             DataConclusaoTarefa.Width = 125;
             // 
             // PorcentagemTarefa
@@ -92,6 +97,7 @@
             PorcentagemTarefa.HeaderText = "Porcentagem";
             PorcentagemTarefa.MinimumWidth = 6;
             PorcentagemTarefa.Name = "PorcentagemTarefa";
+            PorcentagemTarefa.ReadOnly = true;
             PorcentagemTarefa.Width = 125;
             // 
             // ListagemTarefasControl

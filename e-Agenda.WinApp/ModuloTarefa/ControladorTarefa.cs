@@ -10,6 +10,8 @@ namespace e_Agenda.WinApp.ModuloTarefa
 
         private readonly RepositorioTarefa RepositorioTarefa;
 
+        private bool tarefaConcluida = false;
+
         public ControladorTarefa(RepositorioTarefa repositorioTarefa)
         {
             RepositorioBase = repositorioTarefa;
@@ -143,6 +145,8 @@ namespace e_Agenda.WinApp.ModuloTarefa
         {
             Tarefa tarefa = ObterTarefa();
 
+            tarefa.TarefaConcluidaEventHandler += Tarefa_TarefaConcluidaEventHandler;
+
             if (tarefa == null)
                 return;
 
@@ -174,19 +178,21 @@ namespace e_Agenda.WinApp.ModuloTarefa
                     }
                 }
 
-                tarefa.TarefaConcluidaEventHandler += Tarefa_TarefaConcluidaEventHandler;
-
                 tarefa.CalcularPorcentagemConcluida();
-
+               
                 AtualizarTarefa();
+                
             }
 
         }
 
         private void Tarefa_TarefaConcluidaEventHandler()
         {
-            MessageBox.Show("A tarefa foi concluída e movida para a lista de tarefas concluídas!", "Tarefa Concluída", MessageBoxButtons.OK, MessageBoxIcon.Asterisk);
-            return;
+            if(tarefaConcluida == false)
+            {
+                MessageBox.Show("A tarefa foi concluída e movida para a lista de tarefas concluídas!", "Tarefa Concluída", MessageBoxButtons.OK, MessageBoxIcon.Asterisk);
+                tarefaConcluida = true;
+            }
         }
 
      

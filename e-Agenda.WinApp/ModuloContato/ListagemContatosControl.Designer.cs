@@ -35,15 +35,15 @@
             dataGridViewTextBoxColumn2 = new DataGridViewTextBoxColumn();
             dataGridViewTextBoxColumn3 = new DataGridViewTextBoxColumn();
             listContatos = new DataGridView();
+            dataGridViewTextBoxColumn4 = new DataGridViewTextBoxColumn();
+            dataGridViewTextBoxColumn5 = new DataGridViewTextBoxColumn();
+            dataGridViewTextBoxColumn6 = new DataGridViewTextBoxColumn();
             IdContato = new DataGridViewTextBoxColumn();
             NomeContato = new DataGridViewTextBoxColumn();
             TeleContato = new DataGridViewTextBoxColumn();
             EmailContato = new DataGridViewTextBoxColumn();
             EmpresaContato = new DataGridViewTextBoxColumn();
             CargoContato = new DataGridViewTextBoxColumn();
-            dataGridViewTextBoxColumn4 = new DataGridViewTextBoxColumn();
-            dataGridViewTextBoxColumn5 = new DataGridViewTextBoxColumn();
-            dataGridViewTextBoxColumn6 = new DataGridViewTextBoxColumn();
             ((System.ComponentModel.ISupportInitialize)listContatos).BeginInit();
             SuspendLayout();
             // 
@@ -104,48 +104,6 @@
             listContatos.Size = new Size(505, 428);
             listContatos.TabIndex = 0;
             // 
-            // IdContato
-            // 
-            IdContato.HeaderText = "Id";
-            IdContato.MinimumWidth = 6;
-            IdContato.Name = "IdContato";
-            IdContato.Width = 125;
-            // 
-            // NomeContato
-            // 
-            NomeContato.HeaderText = "Nome";
-            NomeContato.MinimumWidth = 6;
-            NomeContato.Name = "NomeContato";
-            NomeContato.Width = 125;
-            // 
-            // TeleContato
-            // 
-            TeleContato.HeaderText = "Telefone";
-            TeleContato.MinimumWidth = 6;
-            TeleContato.Name = "TeleContato";
-            TeleContato.Width = 125;
-            // 
-            // EmailContato
-            // 
-            EmailContato.HeaderText = "Email";
-            EmailContato.MinimumWidth = 6;
-            EmailContato.Name = "EmailContato";
-            EmailContato.Width = 125;
-            // 
-            // EmpresaContato
-            // 
-            EmpresaContato.HeaderText = "Empresa";
-            EmpresaContato.MinimumWidth = 6;
-            EmpresaContato.Name = "EmpresaContato";
-            EmpresaContato.Width = 125;
-            // 
-            // CargoContato
-            // 
-            CargoContato.HeaderText = "Cargo";
-            CargoContato.MinimumWidth = 6;
-            CargoContato.Name = "CargoContato";
-            CargoContato.Width = 125;
-            // 
             // dataGridViewTextBoxColumn4
             // 
             dataGridViewTextBoxColumn4.HeaderText = "ID";
@@ -166,6 +124,54 @@
             dataGridViewTextBoxColumn6.MinimumWidth = 6;
             dataGridViewTextBoxColumn6.Name = "dataGridViewTextBoxColumn6";
             dataGridViewTextBoxColumn6.Width = 125;
+            // 
+            // IdContato
+            // 
+            IdContato.HeaderText = "Id";
+            IdContato.MinimumWidth = 6;
+            IdContato.Name = "IdContato";
+            IdContato.ReadOnly = true;
+            IdContato.Width = 125;
+            // 
+            // NomeContato
+            // 
+            NomeContato.HeaderText = "Nome";
+            NomeContato.MinimumWidth = 6;
+            NomeContato.Name = "NomeContato";
+            NomeContato.ReadOnly = true;
+            NomeContato.Width = 125;
+            // 
+            // TeleContato
+            // 
+            TeleContato.HeaderText = "Telefone";
+            TeleContato.MinimumWidth = 6;
+            TeleContato.Name = "TeleContato";
+            TeleContato.ReadOnly = true;
+            TeleContato.Width = 125;
+            // 
+            // EmailContato
+            // 
+            EmailContato.HeaderText = "Email";
+            EmailContato.MinimumWidth = 6;
+            EmailContato.Name = "EmailContato";
+            EmailContato.ReadOnly = true;
+            EmailContato.Width = 125;
+            // 
+            // EmpresaContato
+            // 
+            EmpresaContato.HeaderText = "Empresa";
+            EmpresaContato.MinimumWidth = 6;
+            EmpresaContato.Name = "EmpresaContato";
+            EmpresaContato.ReadOnly = true;
+            EmpresaContato.Width = 125;
+            // 
+            // CargoContato
+            // 
+            CargoContato.HeaderText = "Cargo";
+            CargoContato.MinimumWidth = 6;
+            CargoContato.Name = "CargoContato";
+            CargoContato.ReadOnly = true;
+            CargoContato.Width = 125;
             // 
             // ListagemContatosControl
             // 

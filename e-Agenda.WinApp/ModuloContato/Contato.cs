@@ -30,7 +30,7 @@ namespace e_Agenda.WinApp.ModuloContato
             Cargo = cargo;
         }
 
-
+       
         public override void Editar(Contato contato)
         {
             Nome = contato.Nome;
