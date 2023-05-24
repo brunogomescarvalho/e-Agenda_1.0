@@ -145,8 +145,6 @@ namespace e_Agenda.WinApp.ModuloTarefa
         {
             Tarefa tarefa = ObterTarefa();
 
-            tarefa.TarefaConcluidaEventHandler += Tarefa_TarefaConcluidaEventHandler;
-
             if (tarefa == null)
                 return;
 
@@ -177,6 +175,8 @@ namespace e_Agenda.WinApp.ModuloTarefa
                         item.ConcluirItem();
                     }
                 }
+
+                tarefa.TarefaConcluidaEventHandler += Tarefa_TarefaConcluidaEventHandler;
 
                 tarefa.CalcularPorcentagemConcluida();
                
