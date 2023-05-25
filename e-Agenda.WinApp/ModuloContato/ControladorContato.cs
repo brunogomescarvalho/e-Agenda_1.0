@@ -1,116 +1,108 @@
-﻿using e_Agenda.WinApp.ModuloCompartilhado;
+﻿namespace e_Agenda.WinApp.ModuloContato;
 
-namespace e_Agenda.WinApp.ModuloContato
+public class ControladorContato : ControladorBase
 {
-    public class ControladorContato : ControladorBase<RepositorioContato,Contato>
+    private RepositorioContato repositorioContato;
+    private ListagemContatosControl? listagemContatosControl;
+
+    public ControladorContato(RepositorioContato repositorioContato)
     {
-      
-        private ListagemContatosControl? listagemContatosControl;
+        this.repositorioContato = repositorioContato;
+        ConfigurarTela();
+    }
 
-        public ControladorContato(RepositorioContato repositorioContato)
+    public override void Inserir()
+    {
+        TelaContatoForm contatoForm = new TelaContatoForm();
+
+        DialogResult opcao = contatoForm.ShowDialog();
+
+        if (opcao == DialogResult.OK)
         {
-            RepositorioBase = repositorioContato;
-            ConfigurarTela();
-        }
+            Contato contato = contatoForm.Contato!;
 
-        public override void Editar()
-        {
-            int id = listagemContatosControl!.ObterIdContatoSelecionado();
-
-            Contato contatoSelecionado = RepositorioBase!.BuscarPorId(id);
-
-            if (contatoSelecionado == null)
-                return;
-
-            string question = $"Confirma editar o contato {contatoSelecionado.Id} - {contatoSelecionado.Nome} ?";
-            string titulo = "Editar Contato";
-
-            DialogResult opcao = MessageBox.Show(question, titulo, MessageBoxButtons.YesNo, MessageBoxIcon.Question);
-
-            if (opcao == DialogResult.Yes)
-            {
-                var contatoForm = new TelaContatoForm
-                {
-                    Text = "Editar Contato",
-
-                    Contato = contatoSelecionado
-                };
-
-                DialogResult opcaoSalvar = contatoForm.ShowDialog();
-
-                if (opcaoSalvar == DialogResult.OK)
-                {
-                    contatoSelecionado = contatoForm.Contato;
-
-                    RepositorioBase!.Editar(contatoSelecionado);
-
-                    AtualizarContatos();
-                }
-            }
-        }
-
-        public override void Excluir()
-        {
-            int id = listagemContatosControl!.ObterIdContatoSelecionado();
-
-            Contato contatoSelecionado = RepositorioBase!.BuscarPorId(id);
-
-            if (contatoSelecionado == null)
-                return;
-
-            string question = $"Confirma excluir o contato {contatoSelecionado.Id} - {contatoSelecionado.Nome} ?";
-            string titulo = "Excluir Contato";
-
-            DialogResult opcao = MessageBox.Show(question, titulo, MessageBoxButtons.YesNo, MessageBoxIcon.Question);
-
-            if (opcao == DialogResult.Yes)
-            {
-                RepositorioBase!.Excluir(contatoSelecionado);
-
-                AtualizarContatos();
-            }
-        }
-
-        public override void Inserir()
-        {
-           TelaContatoForm contatoForm = new TelaContatoForm();
-
-           DialogResult opcao = contatoForm.ShowDialog();
-
-            if( opcao == DialogResult.OK )
-            {
-                Contato contato = contatoForm.Contato!;
-
-                RepositorioBase!.Cadastrar(contato);
-
-                AtualizarContatos();
-
-            }
-        }
-
-        public override UserControl ObterListagem()
-        {
-            listagemContatosControl ??= new ListagemContatosControl();
+            repositorioContato.Cadastrar(contato);
 
             AtualizarContatos();
 
-            return listagemContatosControl;
         }
+    }
+    public override void Editar()
+    {
+        int id = listagemContatosControl!.ObterIdContatoSelecionado();
 
-        private void AtualizarContatos()
+        Contato contatoSelecionado = repositorioContato.BuscarPorId(id);
+
+        if (contatoSelecionado == null)
+            return;
+
+        DialogResult opcao = ConfirmarAcao($"Confirma editar o contato {contatoSelecionado.Id} - {contatoSelecionado.Nome} ?", "Editar Contato");
+
+        if (opcao == DialogResult.Yes)
         {
-            List<Contato> contatos = RepositorioBase!.Listar();
+            var contatoForm = new TelaContatoForm
+            {
+                Text = "Editar Contato",
 
-            listagemContatosControl!.AtualizarLista(contatos);
+                Contato = contatoSelecionado
+            };
+
+            DialogResult opcaoSalvar = contatoForm.ShowDialog();
+
+            if (opcaoSalvar == DialogResult.OK)
+            {
+                contatoSelecionado = contatoForm.Contato;
+
+                repositorioContato.Editar(contatoSelecionado);
+
+                AtualizarContatos();
+            }
         }
+    }
 
-        public override void ConfigurarTela()
+    public override void Excluir()
+    {
+        int id = listagemContatosControl!.ObterIdContatoSelecionado();
+
+        Contato contatoSelecionado = repositorioContato!.BuscarPorId(id);
+
+        if (contatoSelecionado == null)
+            return;
+
+        DialogResult opcao = ConfirmarAcao($"Confirma excluir o contato {contatoSelecionado.Id} - {contatoSelecionado.Nome} ?", "Excluir Contato");
+
+        if (opcao == DialogResult.Yes)
         {
-            Configuracao = new Configuracao(
-            "Contato",
-            "Inserir Contato",
-            "Editar Contato",
-            "Excluir Contato");
+            repositorioContato!.Excluir(contatoSelecionado);
+
+            AtualizarContatos();
         }
+    }
+
+    public override UserControl ObterListagem()
+    {
+        listagemContatosControl ??= new ListagemContatosControl();
+
+        AtualizarContatos();
+
+        return listagemContatosControl;
+    }
+
+    private void AtualizarContatos()
+    {
+        List<Contato> contatos = repositorioContato!.Listar();
+
+        listagemContatosControl!.AtualizarLista(contatos);
+
+        TelaPrincipal.Instancia.AlterarTextRodape($"Exibindo {contatos.Count} contatos.");
+    }
+
+    public override void ConfigurarTela()
+    {
+        Configuracao = new Configuracao(
+
+        "Inserir Contato",
+        "Editar Contato",
+        "Excluir Contato");
     }
 }

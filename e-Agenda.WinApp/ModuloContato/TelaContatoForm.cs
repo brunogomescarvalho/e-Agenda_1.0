@@ -1,14 +1,9 @@
-﻿using System.Text.RegularExpressions;
-
+﻿
 namespace e_Agenda.WinApp.ModuloContato
 {
     public partial class TelaContatoForm : Form
     {
         private Contato? contato;
-
-        private bool telefoneValido;
-
-        private bool emailValido;
 
         public Contato Contato
         {

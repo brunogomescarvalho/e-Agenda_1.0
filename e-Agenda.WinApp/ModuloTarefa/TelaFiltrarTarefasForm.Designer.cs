@@ -103,6 +103,7 @@
             btnFiltrar.TabIndex = 1;
             btnFiltrar.Text = "Filtrar";
             btnFiltrar.UseVisualStyleBackColor = true;
+            btnFiltrar.Click += btnFiltrar_Click;
             // 
             // btnCancelar
             // 

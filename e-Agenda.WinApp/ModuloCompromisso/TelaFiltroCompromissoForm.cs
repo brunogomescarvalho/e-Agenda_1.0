@@ -1,68 +1,34 @@
-﻿
-using static e_Agenda.WinApp.ModuloCompromisso.ControladorCompromisso;
-
-namespace e_Agenda.WinApp.ModuloCompromisso
+﻿namespace e_Agenda.WinApp.ModuloCompromisso
 {
     public partial class TelaFiltroCompromisso : Form
     {
-
-        string opcao = "";
-
+        public FiltroCompromisso FiltroCompromisso { get; private set; }
         public DateTime DataInicial { get; private set; }
         public DateTime DataFinal { get; private set; }
 
         public TelaFiltroCompromisso()
         {
             InitializeComponent();
-
-            IniciarRadioButtons();
         }
 
-        private void IniciarRadioButtons()
+        private void buttonFiltrar_Click(object sender, EventArgs e)
         {
-            foreach (var item in tableLayoutPanel1.Controls)
-            {
-                if (item is RadioButton radioBtn)
-                {
-                    radioBtn.CheckedChanged += RadioBtn_CheckedChanged;
-                }
+            if (radioButtonHoje.Checked)
+                FiltroCompromisso = FiltroCompromisso.Hoje;
 
-            }
-        }
+            else if (radioButtonPassados.Checked)
+                FiltroCompromisso = FiltroCompromisso.Passados;
 
-        private void RadioBtn_CheckedChanged(object? sender, EventArgs e)
-        {
-            RadioButton radioBtn = (RadioButton)sender!;
+            else if (radioButtonProximos.Checked)
+                FiltroCompromisso = FiltroCompromisso.Futuros;
 
-            if (radioBtn.Checked)
-            {
-                opcao = radioBtn.Tag.ToString()!;
-            }
-
-        }
-
-        public FiltroCompromisso Getstatus()
-        {
-            if (opcao == "Hoje")
-                return FiltroCompromisso.Hoje;
-
-            else if (opcao == "Passados")
-                return FiltroCompromisso.Passado;
-
-            else if (opcao == "Próximos")
-                return FiltroCompromisso.Futuro;
-
-            else if (opcao == "Datas")
+            else if (radioButtonDatas.Checked)
             {
                 DataInicial = dateTimeInicial.Value;
                 DataFinal = dateTimeFinal.Value;
-
-                return FiltroCompromisso.Data;
+                FiltroCompromisso = FiltroCompromisso.Data;
             }
-
-            else
-                return FiltroCompromisso.Todos;
+            else FiltroCompromisso = FiltroCompromisso.Todos;
         }
-
     }
 }

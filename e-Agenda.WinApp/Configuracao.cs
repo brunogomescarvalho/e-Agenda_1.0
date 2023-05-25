@@ -22,9 +22,9 @@ namespace e_Agenda.WinApp
 
 
 
-        public Configuracao(string statusLabel, string toolTipInserir, string toolTipEditar, string toolTipExcluir)
+        public Configuracao( string toolTipInserir, string toolTipEditar, string toolTipExcluir)
         {
-            StatusLabel = statusLabel;
+          
 
             ToolTipInserir = toolTipInserir;
             ToolTipEditar = toolTipEditar;

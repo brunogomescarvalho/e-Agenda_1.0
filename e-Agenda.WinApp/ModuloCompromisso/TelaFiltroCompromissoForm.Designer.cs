@@ -33,7 +33,7 @@
             radioButtonHoje = new RadioButton();
             radioButtonProximos = new RadioButton();
             radioButtonPassados = new RadioButton();
-            radioDatas = new RadioButton();
+            radioButtonDatas = new RadioButton();
             buttonFiltrar = new Button();
             buttonCancelar = new Button();
             panelDatas = new Panel();
@@ -53,7 +53,7 @@
             tableLayoutPanel1.Controls.Add(radioButtonHoje, 0, 1);
             tableLayoutPanel1.Controls.Add(radioButtonProximos, 0, 2);
             tableLayoutPanel1.Controls.Add(radioButtonPassados, 0, 3);
-            tableLayoutPanel1.Controls.Add(radioDatas, 0, 4);
+            tableLayoutPanel1.Controls.Add(radioButtonDatas, 0, 4);
             tableLayoutPanel1.Location = new Point(12, 12);
             tableLayoutPanel1.Name = "tableLayoutPanel1";
             tableLayoutPanel1.RowCount = 5;
@@ -116,18 +116,18 @@
             radioButtonPassados.Text = "Visualizar compromissos passados";
             radioButtonPassados.UseVisualStyleBackColor = true;
             // 
-            // radioDatas
+            // radioButtonDatas
             // 
-            radioDatas.AutoSize = true;
-            radioDatas.Dock = DockStyle.Fill;
-            radioDatas.Location = new Point(3, 147);
-            radioDatas.Name = "radioDatas";
-            radioDatas.Size = new Size(494, 34);
-            radioDatas.TabIndex = 4;
-            radioDatas.TabStop = true;
-            radioDatas.Tag = "Datas";
-            radioDatas.Text = "Visualizar Por Datas";
-            radioDatas.UseVisualStyleBackColor = true;
+            radioButtonDatas.AutoSize = true;
+            radioButtonDatas.Dock = DockStyle.Fill;
+            radioButtonDatas.Location = new Point(3, 147);
+            radioButtonDatas.Name = "radioButtonDatas";
+            radioButtonDatas.Size = new Size(494, 34);
+            radioButtonDatas.TabIndex = 4;
+            radioButtonDatas.TabStop = true;
+            radioButtonDatas.Tag = "Datas";
+            radioButtonDatas.Text = "Visualizar Por Datas";
+            radioButtonDatas.UseVisualStyleBackColor = true;
             // 
             // buttonFiltrar
             // 
@@ -138,6 +138,7 @@
             buttonFiltrar.TabIndex = 1;
             buttonFiltrar.Text = "Filtrar";
             buttonFiltrar.UseVisualStyleBackColor = true;
+            buttonFiltrar.Click += buttonFiltrar_Click;
             // 
             // buttonCancelar
             // 
@@ -227,7 +228,7 @@
         private RadioButton radioButtonPassados;
         private Button buttonFiltrar;
         private Button buttonCancelar;
-        private RadioButton radioDatas;
+        private RadioButton radioButtonDatas;
         private Panel panelDatas;
         private Label labelDataFinal;
         private Label labelDataInicial;

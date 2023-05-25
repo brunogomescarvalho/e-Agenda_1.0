@@ -3,22 +3,24 @@ namespace e_Agenda.WinApp.ModuloTarefa
 {
     public partial class TelaItemTarefaForm : Form
     {
-        private readonly List<Item> itens;
+        private readonly List<ItemTarefa> itens;
 
         public TelaItemTarefaForm(Tarefa tarefa)
         {
             InitializeComponent();
 
-            itens = new List<Item>();
+            itens = new List<ItemTarefa>();
 
             CarregarListaItens(tarefa);
         }
 
 
-
         private void CarregarListaItens(Tarefa tarefa)
         {
-            textTarefa.Text = tarefa.ToString();
+            textNumero.Text = tarefa.Id.ToString();
+            textTitulo.Text = tarefa.Titulo.ToString();
+            textPrioridade.Text = tarefa.Prioridade.ToString();
+            textProgresso.Text = $"{tarefa.PorcentagemConcluida}%";
 
             listItens.Rows.Clear();
 
@@ -43,8 +45,15 @@ namespace e_Agenda.WinApp.ModuloTarefa
                 return;
             }
 
-            var novoItem = new Item(descricao);
+            var novoItem = new ItemTarefa(descricao);
 
+            IncluirNovaLinha(novoItem);
+
+            itens.Add(novoItem);
+        }
+
+        private void IncluirNovaLinha(ItemTarefa novoItem)
+        {
             var novaLinha = new DataGridViewRow();
 
             novaLinha.CreateCells(listItens);
@@ -53,11 +62,9 @@ namespace e_Agenda.WinApp.ModuloTarefa
             novaLinha.Cells[1].Value = novoItem.Concluido ? "Concluído" : "Pendente";
 
             listItens.Rows.Add(novaLinha);
-
-            itens.Add(novoItem);
         }
 
-        public List<Item> ObterItens()
+        public List<ItemTarefa> ObterItens()
         {
             return itens;
         }

@@ -1,91 +1,75 @@
-﻿using e_Agenda.WinApp.ModuloCompartilhado;
-using e_Agenda.WinApp.ModuloContato;
+﻿using e_Agenda.WinApp.ModuloContato;
 
-namespace e_Agenda.WinApp.ModuloCompromisso
+namespace e_Agenda.WinApp.ModuloCompromisso;
+public partial class ControladorCompromisso : ControladorBase
 {
-    public partial class ControladorCompromisso : ControladorBase<RepositorioCompromisso, Compromisso>
+
+    public readonly RepositorioContato repositorioContato;
+
+    public readonly RepositorioCompromisso repositorioCompromisso;
+
+    public ListaCompromissosControl? listaCompromissosControl;
+
+    public ControladorCompromisso(RepositorioCompromisso repositorioCompromisso, RepositorioContato repositorioContato)
     {
+        this.repositorioCompromisso = repositorioCompromisso;
 
-        public readonly RepositorioContato? RepositorioContato;
+        this.repositorioContato = repositorioContato;
 
-        public readonly RepositorioCompromisso repositorioCompromisso;
+        ConfigurarTela();
+    }
 
-        public ListaCompromissosControl? listaCompromissosControl;
+    public override void Inserir()
+    {
+        var telaCompromissoForm = new TelaCompromissoForm(ObterContatos());
 
-        public ControladorCompromisso(RepositorioCompromisso repositorioCompromisso, RepositorioContato repositorioContato)
+        DialogResult opcao = telaCompromissoForm.ShowDialog();
+
+        if (opcao == DialogResult.OK)
         {
-            RepositorioBase = repositorioCompromisso;
+            Compromisso compromisso = telaCompromissoForm.Compromisso;
 
-            RepositorioContato = repositorioContato;
+            bool horarioDisponivel = repositorioCompromisso.VerificarHorarioDisponivel(compromisso);
 
-            this.repositorioCompromisso = repositorioCompromisso;
-
-            ConfigurarTela();
-        }
-
-        public override void Editar()
-        {
-            int id = listaCompromissosControl!.ObterIdCompromissoSelecionado();
-
-            Compromisso compromissoSelecionado = repositorioCompromisso.BuscarPorId(id);
-
-            if (compromissoSelecionado == null)
+            if (horarioDisponivel == false)
+            {
+                MessageBox.Show("Já existe um compromisso agendado para o horário informado", "Horário Indiponível", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
                 return;
-
-            DialogResult opcao = ConfirmarAcao($"Confirma editar o contato {compromissoSelecionado.Id} - {compromissoSelecionado.Assunto} ?", "Editar Compromisso");
-
-            if (opcao == DialogResult.Yes)
-            {
-                var compromissoForm = new TelaCompromissoForm(ObterContatos())
-                {
-                    Text = "Editar Compromisso",
-
-                    Compromisso = compromissoSelecionado
-                };
-
-                DialogResult opcaoSalvar = compromissoForm.ShowDialog();
-
-                if (opcaoSalvar == DialogResult.OK)
-                {
-                    compromissoSelecionado = compromissoForm.Compromisso;
-
-                    RepositorioBase!.Editar(compromissoSelecionado);
-
-                    AtualizarCompromissos();
-                }
             }
+
+            repositorioCompromisso!.Cadastrar(compromisso);
+
+            AtualizarCompromissos();
         }
+    }
 
-        public override void Excluir()
+    public override void Editar()
+    {
+        int id = listaCompromissosControl!.ObterIdCompromissoSelecionado();
+
+        Compromisso compromissoSelecionado = repositorioCompromisso.BuscarPorId(id);
+
+        if (compromissoSelecionado == null)
+            return;
+
+        DialogResult opcao = ConfirmarAcao($"Confirma editar o contato {compromissoSelecionado.Id} - {compromissoSelecionado.Assunto} ?", "Editar Compromisso");
+
+        if (opcao == DialogResult.Yes)
         {
-            int id = listaCompromissosControl!.ObterIdCompromissoSelecionado();
-
-            Compromisso compromissoSelecionado = repositorioCompromisso.BuscarPorId(id);
-
-            if (compromissoSelecionado == null)
-                return;
-
-            DialogResult opcao = ConfirmarAcao($"Confirma excluir o contato {compromissoSelecionado.Id} - {compromissoSelecionado.Assunto} ?", "Editar Compromisso");
-
-            if (opcao == DialogResult.Yes)
+            var compromissoForm = new TelaCompromissoForm(ObterContatos())
             {
-                RepositorioBase!.Excluir(compromissoSelecionado);
+                Text = "Editar Compromisso",
 
-                AtualizarCompromissos();
-            }
-        }
+                Compromisso = compromissoSelecionado
+            };
 
-        public override void Inserir()
-        {
-            var telaCompromissoForm = new TelaCompromissoForm(ObterContatos());
+            DialogResult opcaoSalvar = compromissoForm.ShowDialog();
 
-            DialogResult opcao = telaCompromissoForm.ShowDialog();
-
-            if (opcao == DialogResult.OK)
+            if (opcaoSalvar == DialogResult.OK)
             {
-                Compromisso compromisso = telaCompromissoForm.Compromisso;
+                compromissoSelecionado = compromissoForm.Compromisso;
 
-                bool horarioDisponivel = repositorioCompromisso.VerificarHorario(compromisso);
+                bool horarioDisponivel = repositorioCompromisso.VerificarHorarioDisponivel(compromissoSelecionado);
 
                 if (horarioDisponivel == false)
                 {
@@ -93,113 +77,114 @@ namespace e_Agenda.WinApp.ModuloCompromisso
                     return;
                 }
 
-                RepositorioBase!.Cadastrar(compromisso);
+                repositorioCompromisso!.Editar(compromissoSelecionado);
 
                 AtualizarCompromissos();
             }
         }
+    }
 
-        public override UserControl ObterListagem()
+    public override void Excluir()
+    {
+        int id = listaCompromissosControl!.ObterIdCompromissoSelecionado();
+
+        Compromisso compromissoSelecionado = repositorioCompromisso.BuscarPorId(id);
+
+        if (compromissoSelecionado == null)
+            return;
+
+        DialogResult opcao = ConfirmarAcao($"Confirma excluir o contato {compromissoSelecionado.Id} - {compromissoSelecionado.Assunto} ?", "Editar Compromisso");
+
+        if (opcao == DialogResult.Yes)
         {
-            listaCompromissosControl ??= new ListaCompromissosControl();
+            repositorioCompromisso!.Excluir(compromissoSelecionado);
 
             AtualizarCompromissos();
-
-            return listaCompromissosControl;
         }
+    }
 
-        public void AbrirFormFiltro()
+   
+
+    public override UserControl ObterListagem()
+    {
+        listaCompromissosControl ??= new ListaCompromissosControl();
+
+        AtualizarCompromissos();
+
+        return listaCompromissosControl;
+    }
+
+    public override void Filtrar()
+    {
+        var telaFiltro = new TelaFiltroCompromisso();
+
+        DialogResult result = telaFiltro.ShowDialog();
+
+        if (result == DialogResult.OK)
         {
-            var telaFiltro = new TelaFiltroCompromisso();
+            FiltroCompromisso status = telaFiltro.FiltroCompromisso;
 
-            DialogResult result = telaFiltro.ShowDialog();
+            List<Compromisso> listaFiltrada;
 
-            if (result == DialogResult.OK)
+            if (status == FiltroCompromisso.Data)
             {
-                FiltroCompromisso status = telaFiltro.Getstatus();
+                DateTime dataInicial = telaFiltro.DataInicial.Date;
+                DateTime dataFinal = telaFiltro.DataFinal.Date;
 
-                List<Compromisso> listaFiltrada;
-
-                if (status == FiltroCompromisso.Data)
-                {
-                    DateTime dataInicial = telaFiltro.DataInicial.Date;
-                    DateTime dataFinal = telaFiltro.DataFinal.Date;
-
-                    listaFiltrada = repositorioCompromisso.BuscarPorDatas(dataInicial, dataFinal);
-                }
-                else
-                {
-                    listaFiltrada = FiltrarLista(status);
-                }
-
-                listaCompromissosControl!.AtualizarListagem(listaFiltrada);
-
-                AlterarTextTipoCadastro(status);
+                listaFiltrada = repositorioCompromisso.BuscarPorDatas(dataInicial, dataFinal);
             }
-        }
-
-        private void AlterarTextTipoCadastro(FiltroCompromisso status)
-        {
-            string opcao = "";
-
-            switch (status)
+            else
             {
-                case FiltroCompromisso.Passado:
-                    opcao = "Compromissos Passados";
-                    break;
-                case FiltroCompromisso.Futuro:
-                    opcao = "Compromissos Futuros";
-                    break;
-                case FiltroCompromisso.Hoje:
-                    opcao = "Compromissos de Hoje";
-                    break;
-                case FiltroCompromisso.Todos:
-                    opcao = "Compromissos";
-                    break;
+                listaFiltrada = FiltrarLista(status);
             }
-            TelaPrincipal.Instancia.AlterarTextCadastro(opcao);
-        }
 
-        public List<Compromisso> FiltrarLista(FiltroCompromisso status)
+            listaCompromissosControl!.AtualizarListagem(listaFiltrada);
+
+            TelaPrincipal.Instancia.AlterarTextCadastro($"Compromissos {status}");
+        }
+    }
+
+    public List<Compromisso> FiltrarLista(FiltroCompromisso status)
+    {
+        switch (status)
         {
-            switch (status)
-            {
-                case FiltroCompromisso.Passado: return repositorioCompromisso.BuscarPassados();
+            case FiltroCompromisso.Passados: return repositorioCompromisso.BuscarPassados();
 
-                case FiltroCompromisso.Futuro: return repositorioCompromisso.BuscarProximos();
+            case FiltroCompromisso.Futuros: return repositorioCompromisso.BuscarProximos();
 
-                case FiltroCompromisso.Hoje: return repositorioCompromisso.BuscarDeHoje();
+            case FiltroCompromisso.Hoje: return repositorioCompromisso.BuscarDeHoje();
 
-                default: return repositorioCompromisso.Listar();
+            default: return repositorioCompromisso.Listar();
 
-            }
         }
+    }
 
-        private void AtualizarCompromissos()
+    private void AtualizarCompromissos()
+    {
+        List<Compromisso> compromissos = repositorioCompromisso!.Listar();
+
+        listaCompromissosControl!.AtualizarListagem(compromissos);
+
+        TelaPrincipal.Instancia.AlterarTextRodape($"Exibindo {compromissos.Count} compromissos.");
+    }
+
+    public List<Contato> ObterContatos()
+    {
+        return repositorioContato!.Listar();
+    }
+
+    public override void ConfigurarTela()
+    {
+        Configuracao = new Configuracao(
+       
+        "Inserir Compromisso",
+        "Editar Compromisso",
+        "Excluir Compromisso")
         {
-            List<Compromisso> compromissos = RepositorioBase!.Listar();
-
-            listaCompromissosControl!.AtualizarListagem(compromissos);
-        }
-
-        public List<Contato> ObterContatos()
-        {
-            return RepositorioContato!.Listar();
-        }
-
-        public override void ConfigurarTela()
-        {
-            Configuracao = new Configuracao(
-            "Compromissos",
-            "Inserir Compromisso",
-            "Editar Compromisso",
-            "Excluir Compromisso")
-            {
-                ToolTipoFiltrar = "Filtrar Compromissos",
-                BtnFiltrarEnabled = true
-            };
-
-        }
+            ToolTipoFiltrar = "Filtrar Compromissos",
+            BtnFiltrarEnabled = true
+        };
 
     }
+
 }

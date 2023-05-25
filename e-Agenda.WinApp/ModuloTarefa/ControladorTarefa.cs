@@ -1,252 +1,237 @@
-﻿using e_Agenda.WinApp.ModuloCompartilhado;
-using static e_Agenda.WinApp.ModuloTarefa.TelaFiltrarTarefasForm;
-
-namespace e_Agenda.WinApp.ModuloTarefa
+﻿namespace e_Agenda.WinApp.ModuloTarefa;
+public class ControladorTarefa:ControladorBase
 {
-    public class ControladorTarefa : ControladorBase<RepositorioTarefa, Tarefa>
+    private ListagemTarefasControl? listagemTarefasControl;
+
+    private RepositorioTarefa repositorioTarefa;
+
+    public ControladorTarefa(RepositorioTarefa repositorioTarefa)
     {
+        this.repositorioTarefa = repositorioTarefa;
 
-        private ListagemTarefasControl? listagemTarefasControl;
+        ConfigurarTela();
+    }
 
-        private readonly RepositorioTarefa RepositorioTarefa;
+    public override void Editar()
+    {
+        Tarefa tarefa = ObterTarefa();
 
-        private bool tarefaConcluida = false;
+        if (tarefa == null)
+            return;
 
-        public ControladorTarefa(RepositorioTarefa repositorioTarefa)
+        DialogResult confimacao = ConfirmarAcao($"Confirma editar a tarefa Id: {tarefa.Id} - Titulo: {tarefa.Titulo} ?", "Editar Tarefa");
+
+        if (confimacao == DialogResult.No)
+            return;
+
+        TelaTarefaForm formTarefa = new TelaTarefaForm();
+
+        formTarefa.Text = "Editar Tarefa";
+
+        formTarefa.Tarefa = tarefa;
+
+        DialogResult opcao = formTarefa.ShowDialog();
+
+       
+
+        if (opcao == DialogResult.OK)
         {
-            RepositorioBase = repositorioTarefa;
-            RepositorioTarefa = repositorioTarefa;
-            ConfigurarTela();
+            Tarefa tarefaEditada = formTarefa.Tarefa;
+
+            tarefa.Editar(tarefaEditada);
+
+            repositorioTarefa!.Editar(tarefa);
+
+            AtualizarTarefa();
+        }
+    }
+
+    public override void Excluir()
+    {
+        Tarefa tarefa = ObterTarefa();
+
+        if (tarefa == null)
+            return;
+
+        DialogResult confimacao = ConfirmarAcao($"Confirma excluir a tarefa Id: {tarefa.Id} - Titulo: {tarefa.Titulo} ?", "Excluir Tarefa");
+
+        if (confimacao == DialogResult.Yes)
+        {
+            repositorioTarefa!.Excluir(tarefa);
+
+            AtualizarTarefa();
         }
 
-        public override void Editar()
+    }
+
+    public override void Inserir()
+    {
+        var telaForm = new TelaTarefaForm();
+
+        DialogResult opcao = telaForm.ShowDialog();
+
+        if (opcao == DialogResult.OK)
         {
-            Tarefa tarefa = ObterTarefa();
+            Tarefa tarefa = telaForm.Tarefa;
 
-            if (tarefa == null)
-                return;
+            repositorioTarefa!.Cadastrar(tarefa);
 
-            DialogResult confimacao = ConfirmarAcao($"Confirma editar a tarefa Id: {tarefa.Id} - Titulo: {tarefa.Titulo} ?", "Editar Tarefa");
+            AtualizarTarefa();
+        }
+    }
 
-            if (confimacao == DialogResult.No)
-                return;
+    public override UserControl ObterListagem()
+    {
+        listagemTarefasControl ??= new ListagemTarefasControl();
 
-            TelaTarefaForm formTarefa = new TelaTarefaForm();
+        AtualizarTarefa();
 
-            formTarefa.Text = "Editar Tarefa";
+        return listagemTarefasControl;
+    }
 
-            DialogResult opcao = formTarefa.ShowDialog();
+    private void AtualizarTarefa()
+    {
+        List<Tarefa> tarefas = this.repositorioTarefa.ObterTarefasPendentes();
 
-            if (opcao == DialogResult.OK)
-            {
-                Tarefa tarefaEditada = formTarefa.Tarefa;
+        listagemTarefasControl!.AtualizarLista(tarefas);
 
-                tarefa.Editar(tarefaEditada);
+        TelaPrincipal.Instancia.AlterarTextRodape($"Exibindo {tarefas.Count} tarefas.");
+    }
 
-                RepositorioBase!.Editar(tarefa);
+    public void CadastrarItem()
+    {
+        Tarefa tarefa = ObterTarefa();
 
-                AtualizarTarefa();
-            }
-
-
+        if (tarefa.EstaConcluida)
+        {
+            MessageBox.Show("A tarefa selecionada já está concluída!", "Tarefa Concluída", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
+            return;
         }
 
-        public override void Excluir()
+        if (tarefa == null)
+            return;
+
+        var telaItens = new TelaItemTarefaForm(tarefa!);
+
+        DialogResult opcao = telaItens.ShowDialog();
+
+        if (opcao == DialogResult.OK)
         {
-            Tarefa tarefa = ObterTarefa();
+            List<ItemTarefa> itens = telaItens.ObterItens();
 
-            if (tarefa == null)
-                return;
+            itens.ForEach(i=>tarefa.AdicionarItem(i));
 
-            DialogResult confimacao = ConfirmarAcao($"Confirma excluir a tarefa Id: {tarefa.Id} - Titulo: {tarefa.Titulo} ?", "Excluir Tarefa");
+            repositorioTarefa!.Editar(tarefa);
 
-            if (confimacao == DialogResult.Yes)
-            {
-                RepositorioBase!.Excluir(tarefa);
+            AtualizarTarefa();
+        }
+    }
+    private Tarefa ObterTarefa()
+    {
+        int idtTarefa = listagemTarefasControl!.ObterIdTarefaSelecionada();
 
-                AtualizarTarefa();
-            }
+        Tarefa tarefa = repositorioTarefa!.BuscarPorId(idtTarefa);
 
+        if (tarefa == null)
+            MessageBox.Show("É necessário selecionar uma tarefa!", "Tarefa Não Selecionada", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
+
+        return tarefa!;
+    }
+
+    public void AtualizarItensTarefa()
+    {
+        Tarefa tarefa = ObterTarefa();
+
+        if (tarefa == null)
+            return;
+
+        if (tarefa.EstaConcluida)
+        {
+            MessageBox.Show("A tarefa selecionada já está concluída!", "Tarefa Concluída", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
+            return;
         }
 
-        public override void Inserir()
+        if (tarefa.Itens.Count == 0)
         {
-            var telaForm = new TelaTarefaForm();
-
-            DialogResult opcao = telaForm.ShowDialog();
-
-            if (opcao == DialogResult.OK)
-            {
-                Tarefa tarefa = telaForm.Tarefa;
-
-                RepositorioBase!.Cadastrar(tarefa);
-
-                AtualizarTarefa();
-            }
+            MessageBox.Show("A tarefa selecionada não possui itens cadastrados!", "Atualizar Tarefas", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
+            return;
         }
 
-        public override UserControl ObterListagem()
+        var telaAtualizar = new TelaAtualizarTarefaForm(tarefa);
+
+        DialogResult opcao = telaAtualizar.ShowDialog();
+
+        if (opcao == DialogResult.OK)
         {
-            listagemTarefasControl ??= new ListagemTarefasControl();
+            tarefa.TarefaConcluidaEventHandler += Tarefa_TarefaConcluidaEventHandler;
+
+            telaAtualizar.BuscarItensSelecionados().ForEach(i => tarefa.TornarItemConcluido(i));
+
+            telaAtualizar.BuscarItensNaoSelecionados().ForEach(i => tarefa.TornarItemPendente(i));
+
+            tarefa.TarefaConcluidaEventHandler -= Tarefa_TarefaConcluidaEventHandler;
+
+            repositorioTarefa!.Editar(tarefa);
 
             AtualizarTarefa();
 
-            return listagemTarefasControl;
         }
+    }
 
-        private void AtualizarTarefa()
+    private void Tarefa_TarefaConcluidaEventHandler()
+    {
+        MessageBox.Show("A tarefa foi concluída e movida para a lista de tarefas concluídas!", "Tarefa Concluída", MessageBoxButtons.OK, MessageBoxIcon.Asterisk);
+    }
+
+    public void Filtrar()
+    {
+        var telaFiltro = new TelaFiltrarTarefasForm();
+
+        DialogResult opcao = telaFiltro.ShowDialog();
+
+        List<Tarefa> tarefas = null!;
+
+        string opcaoString = "";
+
+        if (opcao == DialogResult.OK)
         {
-            List<Tarefa> tarefas = RepositorioTarefa.ObterTarefasPendentes();
+            TipoDeBusca tipoDeBusca = telaFiltro.ObterOpcao();
+
+            switch (tipoDeBusca)
+            {
+                case TipoDeBusca.todas:
+                    tarefas = this.repositorioTarefa.ObterTodasTarefas();
+                    opcaoString = "Tarefas";
+                    break;
+                case TipoDeBusca.concluidas:
+                    tarefas = this.repositorioTarefa.ObterTarefasConcluidas();
+                    opcaoString = "Tarefas Concluídas";
+                    break;
+                case TipoDeBusca.pendentes:
+                    opcaoString = "Tarefas Pendentes";
+                    tarefas = this.repositorioTarefa.ObterTarefasPendentes();
+                    break;
+            }
+
+            TelaPrincipal.Instancia.AlterarTextCadastro(opcaoString);
 
             listagemTarefasControl!.AtualizarLista(tarefas);
         }
 
-        public void CadastrarItem()
-        {
-            Tarefa tarefa = ObterTarefa();
+    }
 
-            if (tarefa.EstaConcluida)
-            {
-                MessageBox.Show("A tarefa selecionada já está concluída!", "Tarefa Concluída", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
-                return;
-            }
+    public override void ConfigurarTela()
+    {
+        Configuracao = new Configuracao(
 
-            if (tarefa == null)
-                return;
+        "Inserir Tarefa",
+        "Editar Tarefa",
+        "Excluir Tarefa");
 
-            var telaItens = new TelaItemTarefaForm(tarefa!);
+        Configuracao.ToolTipoFiltrar = "Filtrar Tarefas";
+        Configuracao.BtnAddItemTarefaEnabled = true;
+        Configuracao.BtnAtualizarTarefaEnabled = true;
+        Configuracao.BtnFiltrarEnabled = true;
 
-            DialogResult opcao = telaItens.ShowDialog();
-
-            if (opcao == DialogResult.OK)
-            {
-                List<Item> itens = telaItens.ObterItens();
-
-                tarefa.AdicionarItem(itens);
-
-                tarefa.CalcularPorcentagemConcluida();
-
-                AtualizarTarefa();
-            }
-        }
-        private Tarefa ObterTarefa()
-        {
-            int idtTarefa = listagemTarefasControl!.ObterIdTarefaSelecionada();
-
-            Tarefa tarefa = RepositorioBase!.BuscarPorId(idtTarefa);
-
-            if (tarefa == null)
-                MessageBox.Show("É necessário selecionar uma tarefa!", "Tarefa Não Selecionada", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
-
-            return tarefa!;
-        }
-
-        public void AtualizarItensTarefa()
-        {
-            Tarefa tarefa = ObterTarefa();
-
-            if (tarefa == null)
-                return;
-
-            if (tarefa.EstaConcluida)
-            {
-                MessageBox.Show("A tarefa selecionada já está concluída!", "Tarefa Concluída", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
-                return;
-            }
-
-            if (tarefa.Itens.Count == 0)
-            {
-                MessageBox.Show("A tarefa selecionada não possui itens cadastrados!", "Atualizar Tarefas", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
-                return;
-            }
-
-            var telaAtualizar = new TelaAtualizarTarefaForm(tarefa);
-
-            DialogResult opcao = telaAtualizar.ShowDialog();
-
-            if (opcao == DialogResult.OK)
-            {
-                List<Item> itensParaFinalizar = telaAtualizar.BuscarItensSelecionados();
-
-                foreach (Item item in tarefa.Itens)
-                {
-                    if (itensParaFinalizar.Contains(item))
-                    {
-                        item.ConcluirItem();
-                    }
-                }
-
-                tarefa.TarefaConcluidaEventHandler += Tarefa_TarefaConcluidaEventHandler;
-
-                tarefa.CalcularPorcentagemConcluida();
-               
-                AtualizarTarefa();
-                
-            }
-
-        }
-
-        private void Tarefa_TarefaConcluidaEventHandler()
-        {
-            if(tarefaConcluida == false)
-            {
-                MessageBox.Show("A tarefa foi concluída e movida para a lista de tarefas concluídas!", "Tarefa Concluída", MessageBoxButtons.OK, MessageBoxIcon.Asterisk);
-                tarefaConcluida = true;
-            }
-        }
-
-     
-
-        public void AbrirFormFiltro()
-        {
-            var telaFiltro = new TelaFiltrarTarefasForm();
-
-            DialogResult opcao = telaFiltro.ShowDialog();
-
-            List<Tarefa> tarefas = null!;
-
-            string opcaoString = "";
-
-            if (opcao == DialogResult.OK)
-            {
-                TipoDeBusca tipoDeBusca = telaFiltro.ObterOpcao();
-
-                switch (tipoDeBusca)
-                {
-                    case TipoDeBusca.todas:
-                        tarefas = RepositorioTarefa.ObterTodasTarefas();
-                        opcaoString = "Tarefas";
-                        break;
-                    case TipoDeBusca.concluidas:
-                        tarefas = RepositorioTarefa.ObterTarefasConcluidas();
-                        opcaoString = "Tarefas Concluídas";
-                        break;
-                    case TipoDeBusca.pendentes:
-                        opcaoString = "Tarefas Pendentes";
-                        tarefas = this.RepositorioTarefa.ObterTarefasPendentes();
-                        break;
-                }
-
-                TelaPrincipal.Instancia.AlterarTextCadastro(opcaoString);
-                listagemTarefasControl!.AtualizarLista(tarefas);
-            }
-
-        }
-
-        public override void ConfigurarTela()
-        {
-            Configuracao = new Configuracao(
-
-            "Tarefas",
-            "Inserir Tarefa",
-            "Editar Tarefa",
-            "Excluir Tarefa");
-
-            Configuracao.ToolTipoFiltrar = "Filtrar Tarefas";
-            Configuracao.BtnAddItemTarefaEnabled = true;
-            Configuracao.BtnAtualizarTarefaEnabled = true;
-            Configuracao.BtnFiltrarEnabled = true;
-
-        }
     }
 }

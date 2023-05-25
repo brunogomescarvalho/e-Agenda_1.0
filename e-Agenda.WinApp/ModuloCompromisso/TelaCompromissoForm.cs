@@ -61,7 +61,6 @@ namespace e_Agenda.WinApp.ModuloCompromisso
         {
             comboBoxContatos.Items.Clear();
             contatos.ForEach(contato => { comboBoxContatos.Items.Add(contato); });
-            comboBoxContatos.DisplayMember = "nome";
         }
 
         private void bntSalvar_Click(object sender, EventArgs e)

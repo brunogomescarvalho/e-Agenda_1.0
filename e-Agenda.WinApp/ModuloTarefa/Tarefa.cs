@@ -1,98 +1,110 @@
-﻿using e_Agenda.WinApp.ModuloCompartilhado;
-using static System.Windows.Forms.VisualStyles.VisualStyleElement.ListView;
+﻿
+namespace e_Agenda.WinApp.ModuloTarefa;
 
-namespace e_Agenda.WinApp.ModuloTarefa
+public delegate void onTarefaConcluidaEventHandler();
+public class Tarefa : EntidadeBase<Tarefa>
 {
+    public Prioridade Prioridade { get; private set; }
 
-    public delegate void onTarefaConcluidaEventHandler();
+    public List<ItemTarefa> Itens { get; private set; }
 
-    public class Tarefa : EntidadeBase<Tarefa>
+    public string Titulo { get; private set; }
+
+    public DateTime DataCriacao { get; private set; }
+
+    public DateTime? DataConclusao { get; private set; }
+
+    public decimal PorcentagemConcluida { get; private set; }
+
+    public bool EstaConcluida { get => PorcentagemConcluida == 100; }
+
+
+    public event onTarefaConcluidaEventHandler TarefaConcluidaEventHandler = null!;
+
+    public Tarefa(Prioridade prioridade, string titulo)
     {
-        public Prioridade Prioridade { get; private set; }
+        Prioridade = prioridade;
 
-        public List<Item> Itens { get; private set; }
+        Itens = new List<ItemTarefa>();
 
-        public string Titulo { get; private set; }
+        Titulo = titulo;
 
-        public DateTime DataCriacao { get; private set; }
+        DataCriacao = DateTime.Now;
+        
+    }
 
-        public DateTime? DataConclusao { get; private set; }
+    public void AdicionarItem(ItemTarefa item)
+    {
+        this.Itens.Add(item);
+    }
 
-        public decimal PorcentagemConcluida { get; private set; }
+    private void CalcularPorcentagemConcluida()
+    {
 
-        public bool EstaConcluida { get => PorcentagemConcluida == 100; }
+        decimal finalizados = Itens.Count(i => i.Concluido == true);
 
-        public event onTarefaConcluidaEventHandler TarefaConcluidaEventHandler = null!;
-        public Tarefa(Prioridade prioridade, string titulo)
+        decimal qtdDeItens = Itens.Count;
+
+        PorcentagemConcluida = Math.Round(finalizados/qtdDeItens * 100, 2);
+
+        if (EstaConcluida)
         {
-            Prioridade = prioridade;
-
-            Itens = new List<Item>();
-
-            Titulo = titulo;
-
-            DataCriacao = DateTime.Now;
-            
-        }
-
-        public void AdicionarItem(List<Item> itens)
-        {
-            this.Itens.AddRange(itens);
-        }
-
-        public void CalcularPorcentagemConcluida()
-        {
-
-            decimal porcentagemPorItem = Math.Round(100M / Itens.Count, 2);
-
-            PorcentagemConcluida = 0;
-
-            PorcentagemConcluida = Itens.Sum(item => item.Concluido ? porcentagemPorItem : 0);
-
-            bool finalizou = Itens.Exists(i => i.Concluido==false).Equals(false);
-
-            if (finalizou == true)
-            {
-                PorcentagemConcluida = 100;
-                DataConclusao = DateTime.Now;
-                TarefaConcluidaEventHandler();
-            }
-            
-        }
-
-
-        public List<Item>BuscarItensNaoConcluidos()
-        {
-            return Itens.FindAll(i => i.Concluido == false);
-        }
-
-        public List<Item> BuscarItensConcluidos()
-        {
-            return Itens.FindAll(i => i.Concluido == true);
-        }
-
-        public override void Editar(Tarefa tarefa)
-        {
-            this.Prioridade = tarefa.Prioridade;
-            this.Titulo = tarefa.Titulo;
-        }
-
-        public override string ToString()
-        {
-            return $"{Id,-5} {Prioridade,-10} {DataCriacao,-15:d} {(EstaConcluida ? $"{DataConclusao,-15:d}" : $"{"Não Concluída",-15}")} {PorcentagemConcluida}%";
-        }
-
-        public override string[] Validar()
-        {
-            List<string> erros = new List<string>();
-
-            if (string.IsNullOrEmpty(Titulo))
-                erros.Add("Preencha o campo título");
-
-            else if (string.IsNullOrEmpty(Prioridade.ToString()))
-                erros.Add("Selecione a prioridade da tarefa");
-
-            return erros.ToArray();
+            DataConclusao = DateTime.Now;
+            TarefaConcluidaEventHandler();
         }
     }
+
+    public List<ItemTarefa> BuscarItens()
+    {
+        return Itens;
+    }
+
+    public override void Editar(Tarefa tarefa)
+    {
+        this.Prioridade = tarefa.Prioridade;
+        this.Titulo = tarefa.Titulo;
+        this.Itens = tarefa.Itens;
+    }
+
+
+    public override string ToString()
+    {
+        return $"{$"Tarefa: {Titulo}",-10} {$"Prioridade: {Prioridade}",-8} Progresso: {PorcentagemConcluida}%";
+    }
+
+    public void TornarItemConcluido(ItemTarefa item)
+    {
+        ItemTarefa itemParaFinalizar = Itens.FirstOrDefault(i => i.Equals(item))!;
+
+        itemParaFinalizar.TornarConcluida();
+
+        CalcularPorcentagemConcluida();
+
+    }
+    public void TornarItemPendente(ItemTarefa item)
+    {
+        ItemTarefa itemParaFinalizar = Itens.FirstOrDefault(i => i.Equals(item))!;
+
+        itemParaFinalizar.TornarPendente();
+
+        CalcularPorcentagemConcluida();
+    }
+
+    public override string[] Validar()
+    {
+        List<string> erros = new List<string>();
+
+        if (string.IsNullOrEmpty(Titulo))
+            erros.Add("Preencha o campo título");
+
+        else if (string.IsNullOrEmpty(Prioridade.ToString()))
+            erros.Add("Selecione a prioridade da tarefa");
+
+        else if (DataCriacao.Date < DateTime.Now)
+            erros.Add("Não é possível cadastrar tarefa data datas passadas");
+
+        return erros.ToArray();
+    }
+
+    
 }

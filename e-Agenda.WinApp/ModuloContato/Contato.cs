@@ -1,95 +1,87 @@
-﻿using e_Agenda.WinApp.ModuloCompartilhado;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Text.RegularExpressions;
-using System.Threading.Tasks;
+﻿using System.Text.RegularExpressions;
 
-namespace e_Agenda.WinApp.ModuloContato
+namespace e_Agenda.WinApp.ModuloContato;
+public class Contato : EntidadeBase<Contato>
 {
-    public class Contato : EntidadeBase<Contato>
+    public string Nome { get; set; }
+
+    public string Email { get; set; }
+
+    public string Telefone { get; set; }
+
+    public string Empresa { get; set; }
+
+    public string Cargo { get; set; }
+
+
+    public Contato(string nome, string email, string telefone, string empresa, string cargo)
     {
-        public string Nome { get; set; }
+        Nome = nome;
+        Email = email;
+        Telefone = telefone;
+        Empresa = empresa;
+        Cargo = cargo;
+    }
 
-        public string Email { get; set; }
+   
+    public override void Editar(Contato contato)
+    {
+        Nome = contato.Nome;
+        Email = contato.Email;
+        Telefone = contato.Telefone;
+        Empresa = contato.Empresa;
+        Cargo = contato.Cargo;
+    }
 
-        public string Telefone { get; set; }
+    public override string[] Validar()
+    {
+        List<string> erros = new List<string>();
 
-        public string Empresa { get; set; }
+        if (string.IsNullOrEmpty(Nome))
+            erros.Add("Preencha o campo nome");
 
-        public string Cargo { get; set; }
+       else if (string.IsNullOrEmpty(Email))
+            erros.Add("Preencha o campo e-mail");
 
+        else if (!EmailEhValido(Email))
+            erros.Add("E-mail fora do padrão");
 
-        public Contato(string nome, string email, string telefone, string empresa, string cargo)
-        {
-            Nome = nome;
-            Email = email;
-            Telefone = telefone;
-            Empresa = empresa;
-            Cargo = cargo;
-        }
+        else if (string.IsNullOrEmpty(Telefone))
+            erros.Add("Preencha o campo telefone");
 
-       
-        public override void Editar(Contato contato)
-        {
-            Nome = contato.Nome;
-            Email = contato.Email;
-            Telefone = contato.Telefone;
-            Empresa = contato.Empresa;
-            Cargo = contato.Cargo;
-        }
+        else if (!TelefoneEhValido(Telefone))
+            erros.Add("Telefone fora do padrao");
 
-        public override string[] Validar()
-        {
-            List<string> erros = new List<string>();
+        return erros.ToArray();
+    }
 
-            if (string.IsNullOrEmpty(Nome))
-                erros.Add("Preencha o campo nome");
+    public bool TelefoneEhValido(string telefone)
+    {
+        string padrao = @"^(?:\([1-9]{2}\)\s?)?(?:9\d{4}-\d{4}|\d{4}-\d{4})$";
 
-           else if (string.IsNullOrEmpty(Email))
-                erros.Add("Preencha o campo e-mail");
+        return Regex.IsMatch(telefone, padrao);
 
-            else if (!EmailEhValido(Email))
-                erros.Add("E-mail fora do padrão");
+    }
 
-            else if (string.IsNullOrEmpty(Telefone))
-                erros.Add("Preencha o campo telefone");
+    public bool EmailEhValido(string email)
+    {
+        string padrao = @"^[a-zA-Z0-9_.+-]+@[a-zA-Z0-9-]+\.(?:com\.br|com)$";
 
-            else if (!TelefoneEhValido(Telefone))
-                erros.Add("Telefone fora do padrao");
+        return Regex.IsMatch(email, padrao);
+    }
 
-            return erros.ToArray();
-        }
+    public override string ToString()
+    {
+        return $"Id: {Id} - Nome: {Nome} - Telefone: {Telefone} - Empresa: {Empresa}";
+    }
 
-        public bool TelefoneEhValido(string telefone)
-        {
-            string padrao = @"^(?:\([1-9]{2}\)\s?)?(?:9\d{4}-\d{4}|\d{4}-\d{4})$";
-
-            return Regex.IsMatch(telefone, padrao);
-
-        }
-
-        public bool EmailEhValido(string email)
-        {
-            string padrao = @"^[a-zA-Z0-9_.+-]+@[a-zA-Z0-9-]+\.(?:com\.br|com)$";
-
-            return Regex.IsMatch(email, padrao);
-        }
-
-        public override string ToString()
-        {
-            return $"Id: {Id} - Nome: {Nome} - Telefone: {Telefone} - Empresa: {Empresa}";
-        }
-
-        public override bool Equals(object? obj)
-        {
-            return obj is Contato contato &&
-                   Nome == contato.Nome &&
-                   Email == contato.Email &&
-                   Telefone == contato.Telefone &&
-                   Empresa == contato.Empresa &&
-                   Cargo == contato.Cargo;
-        }
+    public override bool Equals(object? obj)
+    {
+        return obj is Contato contato &&
+               Nome == contato.Nome &&
+               Email == contato.Email &&
+               Telefone == contato.Telefone &&
+               Empresa == contato.Empresa &&
+               Cargo == contato.Cargo;
     }
 }

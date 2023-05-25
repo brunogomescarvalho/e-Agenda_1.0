@@ -6,7 +6,7 @@ namespace e_Agenda.WinApp.ModuloTarefa
     public partial class TelaAtualizarTarefaForm : Form
     {
 
-        private List<Item> itensFinalizado = new List<Item>();
+        private List<ItemTarefa> itensFinalizado = new List<ItemTarefa>();
 
         public TelaAtualizarTarefaForm(Tarefa tarefa)
         {
@@ -18,26 +18,33 @@ namespace e_Agenda.WinApp.ModuloTarefa
 
         private void MostrarTabela(Tarefa tarefa)
         {
-            textTarefa.Text = tarefa.ToString();
+            textTarefa.Text = $"{tarefa}";
+
+            progressoTarefa.Value = Convert.ToInt32(tarefa.PorcentagemConcluida);
 
             listItens.Items.Clear();
 
-            tarefa.BuscarItensNaoConcluidos().ForEach(i => listItens.Items.Add(i));
-        }
+            List<ItemTarefa> itensTarefa = tarefa.BuscarItens();
 
-        private void btnSalvar_Click(object sender, EventArgs e)
-        {
-            foreach (var item in listItens.CheckedItems)
+            itensTarefa.ForEach(i => listItens.Items.Add(i));
+
+            for (int i = 0; i < itensTarefa.Count; i++)
             {
-                Item itemConvertido = (Item)item;
-
-                itensFinalizado.Add(itemConvertido);
+                if (itensTarefa[i].Concluido)
+                {
+                    listItens.SetItemChecked(i, true);
+                }
             }
         }
 
-        public List<Item> BuscarItensSelecionados()
+        public List<ItemTarefa> BuscarItensSelecionados()
         {
-            return itensFinalizado;
+            return listItens.CheckedItems.Cast<ItemTarefa>().ToList();
+        }
+
+        public List<ItemTarefa> BuscarItensNaoSelecionados()
+        {
+            return listItens.Items.Cast<ItemTarefa>().ToList().Except(BuscarItensSelecionados()).ToList();
         }
     }
 }

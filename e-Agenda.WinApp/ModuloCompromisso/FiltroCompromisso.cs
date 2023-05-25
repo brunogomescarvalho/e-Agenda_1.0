@@ -1,12 +1,10 @@
-﻿namespace e_Agenda.WinApp.ModuloCompromisso
+﻿namespace e_Agenda.WinApp.ModuloCompromisso;
+public enum FiltroCompromisso
 {
-    public partial class ControladorCompromisso
-    {
-        public enum FiltroCompromisso
-        {
-            Passado,Futuro,Hoje,
-            Todos,Data
-        }
-
-    }
+    Passados, 
+    Futuros, 
+    Hoje,
+    Todos, 
+    Data
 }
+

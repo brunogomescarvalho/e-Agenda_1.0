@@ -46,6 +46,7 @@
             listTarefasControl.Location = new Point(0, 0);
             listTarefasControl.MultiSelect = false;
             listTarefasControl.Name = "listTarefasControl";
+            listTarefasControl.RowHeadersVisible = false;
             listTarefasControl.RowHeadersWidth = 51;
             listTarefasControl.RowTemplate.Height = 29;
             listTarefasControl.SelectionMode = DataGridViewSelectionMode.FullRowSelect;
