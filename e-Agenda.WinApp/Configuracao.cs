@@ -24,8 +24,6 @@ namespace e_Agenda.WinApp
 
         public Configuracao( string toolTipInserir, string toolTipEditar, string toolTipExcluir)
         {
-          
-
             ToolTipInserir = toolTipInserir;
             ToolTipEditar = toolTipEditar;
             ToolTipExcluir = toolTipExcluir;

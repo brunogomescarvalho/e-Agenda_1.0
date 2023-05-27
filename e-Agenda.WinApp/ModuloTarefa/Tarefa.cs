@@ -1,7 +1,6 @@
 ﻿
 namespace e_Agenda.WinApp.ModuloTarefa;
 
-public delegate void onTarefaConcluidaEventHandler();
 public class Tarefa : EntidadeBase<Tarefa>
 {
     public Prioridade Prioridade { get; private set; }
@@ -18,9 +17,6 @@ public class Tarefa : EntidadeBase<Tarefa>
 
     public bool EstaConcluida { get => PorcentagemConcluida == 100; }
 
-
-    public event onTarefaConcluidaEventHandler TarefaConcluidaEventHandler = null!;
-
     public Tarefa(Prioridade prioridade, string titulo)
     {
         Prioridade = prioridade;
@@ -36,6 +32,7 @@ public class Tarefa : EntidadeBase<Tarefa>
     public void AdicionarItem(ItemTarefa item)
     {
         this.Itens.Add(item);
+        CalcularPorcentagemConcluida();
     }
 
     private void CalcularPorcentagemConcluida()
@@ -50,7 +47,6 @@ public class Tarefa : EntidadeBase<Tarefa>
         if (EstaConcluida)
         {
             DataConclusao = DateTime.Now;
-            TarefaConcluidaEventHandler();
         }
     }
 
@@ -99,9 +95,6 @@ public class Tarefa : EntidadeBase<Tarefa>
 
         else if (string.IsNullOrEmpty(Prioridade.ToString()))
             erros.Add("Selecione a prioridade da tarefa");
-
-        else if (DataCriacao.Date < DateTime.Now)
-            erros.Add("Não é possível cadastrar tarefa data datas passadas");
 
         return erros.ToArray();
     }

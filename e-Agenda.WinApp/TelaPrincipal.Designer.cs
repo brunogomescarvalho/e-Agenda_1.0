@@ -61,7 +61,7 @@
             menuStrip.Items.AddRange(new ToolStripItem[] { cadastroItem });
             menuStrip.Location = new Point(0, 0);
             menuStrip.Name = "menuStrip";
-            menuStrip.Size = new Size(1090, 48);
+            menuStrip.Size = new Size(982, 48);
             menuStrip.TabIndex = 0;
             menuStrip.Text = "menuStrip";
             // 
@@ -108,9 +108,9 @@
             // 
             statusStrip.ImageScalingSize = new Size(20, 20);
             statusStrip.Items.AddRange(new ToolStripItem[] { statusLabel });
-            statusStrip.Location = new Point(0, 647);
+            statusStrip.Location = new Point(0, 545);
             statusStrip.Name = "statusStrip";
-            statusStrip.Size = new Size(1090, 26);
+            statusStrip.Size = new Size(982, 26);
             statusStrip.TabIndex = 1;
             statusStrip.Text = "Bem Vindo!";
             // 
@@ -131,7 +131,7 @@
             toolStrip1.Location = new Point(0, 48);
             toolStrip1.Name = "toolStrip1";
             toolStrip1.Padding = new Padding(0, 5, 1, 0);
-            toolStrip1.Size = new Size(1090, 54);
+            toolStrip1.Size = new Size(982, 54);
             toolStrip1.Stretch = true;
             toolStrip1.TabIndex = 2;
             toolStrip1.Text = "toolStrip1";
@@ -231,14 +231,14 @@
             painelRegistros.Location = new Point(0, 100);
             painelRegistros.Margin = new Padding(3, 10, 3, 3);
             painelRegistros.Name = "painelRegistros";
-            painelRegistros.Size = new Size(1090, 573);
+            painelRegistros.Size = new Size(982, 471);
             painelRegistros.TabIndex = 3;
             // 
             // TelaPrincipal
             // 
             AutoScaleDimensions = new SizeF(8F, 20F);
             AutoScaleMode = AutoScaleMode.Font;
-            ClientSize = new Size(1090, 673);
+            ClientSize = new Size(982, 571);
             Controls.Add(toolStrip1);
             Controls.Add(statusStrip);
             Controls.Add(menuStrip);

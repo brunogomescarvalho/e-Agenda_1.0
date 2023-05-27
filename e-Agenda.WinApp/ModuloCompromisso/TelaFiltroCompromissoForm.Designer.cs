@@ -28,7 +28,7 @@
         /// </summary>
         private void InitializeComponent()
         {
-            tableLayoutPanel1 = new TableLayoutPanel();
+            panelChecks = new TableLayoutPanel();
             radioButtonTodos = new RadioButton();
             radioButtonHoje = new RadioButton();
             radioButtonProximos = new RadioButton();
@@ -41,29 +41,29 @@
             labelDataInicial = new Label();
             dateTimeFinal = new DateTimePicker();
             dateTimeInicial = new DateTimePicker();
-            tableLayoutPanel1.SuspendLayout();
+            panelChecks.SuspendLayout();
             panelDatas.SuspendLayout();
             SuspendLayout();
             // 
-            // tableLayoutPanel1
+            // panelChecks
             // 
-            tableLayoutPanel1.ColumnCount = 1;
-            tableLayoutPanel1.ColumnStyles.Add(new ColumnStyle(SizeType.Percent, 100F));
-            tableLayoutPanel1.Controls.Add(radioButtonTodos, 0, 0);
-            tableLayoutPanel1.Controls.Add(radioButtonHoje, 0, 1);
-            tableLayoutPanel1.Controls.Add(radioButtonProximos, 0, 2);
-            tableLayoutPanel1.Controls.Add(radioButtonPassados, 0, 3);
-            tableLayoutPanel1.Controls.Add(radioButtonDatas, 0, 4);
-            tableLayoutPanel1.Location = new Point(12, 12);
-            tableLayoutPanel1.Name = "tableLayoutPanel1";
-            tableLayoutPanel1.RowCount = 5;
-            tableLayoutPanel1.RowStyles.Add(new RowStyle(SizeType.Percent, 20F));
-            tableLayoutPanel1.RowStyles.Add(new RowStyle(SizeType.Percent, 20F));
-            tableLayoutPanel1.RowStyles.Add(new RowStyle(SizeType.Percent, 20F));
-            tableLayoutPanel1.RowStyles.Add(new RowStyle(SizeType.Percent, 20F));
-            tableLayoutPanel1.RowStyles.Add(new RowStyle(SizeType.Percent, 20F));
-            tableLayoutPanel1.Size = new Size(500, 184);
-            tableLayoutPanel1.TabIndex = 0;
+            panelChecks.ColumnCount = 1;
+            panelChecks.ColumnStyles.Add(new ColumnStyle(SizeType.Percent, 100F));
+            panelChecks.Controls.Add(radioButtonTodos, 0, 0);
+            panelChecks.Controls.Add(radioButtonHoje, 0, 1);
+            panelChecks.Controls.Add(radioButtonProximos, 0, 2);
+            panelChecks.Controls.Add(radioButtonPassados, 0, 3);
+            panelChecks.Controls.Add(radioButtonDatas, 0, 4);
+            panelChecks.Location = new Point(28, 12);
+            panelChecks.Name = "panelChecks";
+            panelChecks.RowCount = 5;
+            panelChecks.RowStyles.Add(new RowStyle(SizeType.Percent, 20F));
+            panelChecks.RowStyles.Add(new RowStyle(SizeType.Percent, 20F));
+            panelChecks.RowStyles.Add(new RowStyle(SizeType.Percent, 20F));
+            panelChecks.RowStyles.Add(new RowStyle(SizeType.Percent, 20F));
+            panelChecks.RowStyles.Add(new RowStyle(SizeType.Percent, 20F));
+            panelChecks.Size = new Size(496, 184);
+            panelChecks.TabIndex = 0;
             // 
             // radioButtonTodos
             // 
@@ -72,7 +72,7 @@
             radioButtonTodos.Dock = DockStyle.Fill;
             radioButtonTodos.Location = new Point(3, 3);
             radioButtonTodos.Name = "radioButtonTodos";
-            radioButtonTodos.Size = new Size(494, 30);
+            radioButtonTodos.Size = new Size(490, 30);
             radioButtonTodos.TabIndex = 0;
             radioButtonTodos.TabStop = true;
             radioButtonTodos.Tag = "Todos";
@@ -85,7 +85,7 @@
             radioButtonHoje.Dock = DockStyle.Fill;
             radioButtonHoje.Location = new Point(3, 39);
             radioButtonHoje.Name = "radioButtonHoje";
-            radioButtonHoje.Size = new Size(494, 30);
+            radioButtonHoje.Size = new Size(490, 30);
             radioButtonHoje.TabIndex = 1;
             radioButtonHoje.Tag = "Hoje";
             radioButtonHoje.Text = "Visualizar compromissos para hoje";
@@ -97,7 +97,7 @@
             radioButtonProximos.Dock = DockStyle.Fill;
             radioButtonProximos.Location = new Point(3, 75);
             radioButtonProximos.Name = "radioButtonProximos";
-            radioButtonProximos.Size = new Size(494, 30);
+            radioButtonProximos.Size = new Size(490, 30);
             radioButtonProximos.TabIndex = 2;
             radioButtonProximos.Tag = "Próximos";
             radioButtonProximos.Text = "Visualizar próximos compromissos";
@@ -109,7 +109,7 @@
             radioButtonPassados.Dock = DockStyle.Fill;
             radioButtonPassados.Location = new Point(3, 111);
             radioButtonPassados.Name = "radioButtonPassados";
-            radioButtonPassados.Size = new Size(494, 30);
+            radioButtonPassados.Size = new Size(490, 30);
             radioButtonPassados.TabIndex = 3;
             radioButtonPassados.TabStop = true;
             radioButtonPassados.Tag = "Passados";
@@ -122,7 +122,7 @@
             radioButtonDatas.Dock = DockStyle.Fill;
             radioButtonDatas.Location = new Point(3, 147);
             radioButtonDatas.Name = "radioButtonDatas";
-            radioButtonDatas.Size = new Size(494, 34);
+            radioButtonDatas.Size = new Size(490, 34);
             radioButtonDatas.TabIndex = 4;
             radioButtonDatas.TabStop = true;
             radioButtonDatas.Tag = "Datas";
@@ -132,7 +132,7 @@
             // buttonFiltrar
             // 
             buttonFiltrar.DialogResult = DialogResult.OK;
-            buttonFiltrar.Location = new Point(361, 345);
+            buttonFiltrar.Location = new Point(344, 318);
             buttonFiltrar.Name = "buttonFiltrar";
             buttonFiltrar.Size = new Size(88, 44);
             buttonFiltrar.TabIndex = 1;
@@ -143,7 +143,7 @@
             // buttonCancelar
             // 
             buttonCancelar.DialogResult = DialogResult.Cancel;
-            buttonCancelar.Location = new Point(455, 345);
+            buttonCancelar.Location = new Point(438, 318);
             buttonCancelar.Name = "buttonCancelar";
             buttonCancelar.Size = new Size(87, 44);
             buttonCancelar.TabIndex = 2;
@@ -152,19 +152,20 @@
             // 
             // panelDatas
             // 
+            panelDatas.BorderStyle = BorderStyle.FixedSingle;
             panelDatas.Controls.Add(labelDataFinal);
             panelDatas.Controls.Add(labelDataInicial);
             panelDatas.Controls.Add(dateTimeFinal);
             panelDatas.Controls.Add(dateTimeInicial);
-            panelDatas.Location = new Point(11, 213);
+            panelDatas.Location = new Point(31, 205);
             panelDatas.Name = "panelDatas";
-            panelDatas.Size = new Size(498, 113);
+            panelDatas.Size = new Size(493, 93);
             panelDatas.TabIndex = 3;
             // 
             // labelDataFinal
             // 
             labelDataFinal.AutoSize = true;
-            labelDataFinal.Location = new Point(241, 25);
+            labelDataFinal.Location = new Point(239, 13);
             labelDataFinal.Name = "labelDataFinal";
             labelDataFinal.Size = new Size(76, 20);
             labelDataFinal.TabIndex = 3;
@@ -173,7 +174,7 @@
             // labelDataInicial
             // 
             labelDataInicial.AutoSize = true;
-            labelDataInicial.Location = new Point(24, 25);
+            labelDataInicial.Location = new Point(16, 13);
             labelDataInicial.Name = "labelDataInicial";
             labelDataInicial.Size = new Size(84, 20);
             labelDataInicial.TabIndex = 2;
@@ -182,7 +183,7 @@
             // dateTimeFinal
             // 
             dateTimeFinal.Format = DateTimePickerFormat.Custom;
-            dateTimeFinal.Location = new Point(241, 67);
+            dateTimeFinal.Location = new Point(239, 36);
             dateTimeFinal.Name = "dateTimeFinal";
             dateTimeFinal.Size = new Size(197, 27);
             dateTimeFinal.TabIndex = 1;
@@ -191,7 +192,7 @@
             // 
             dateTimeInicial.CalendarMonthBackground = SystemColors.HighlightText;
             dateTimeInicial.Format = DateTimePickerFormat.Short;
-            dateTimeInicial.Location = new Point(15, 67);
+            dateTimeInicial.Location = new Point(16, 36);
             dateTimeInicial.Name = "dateTimeInicial";
             dateTimeInicial.Size = new Size(189, 27);
             dateTimeInicial.TabIndex = 0;
@@ -200,20 +201,20 @@
             // 
             AutoScaleDimensions = new SizeF(8F, 20F);
             AutoScaleMode = AutoScaleMode.Font;
-            ClientSize = new Size(569, 417);
+            ClientSize = new Size(551, 384);
             Controls.Add(panelDatas);
             Controls.Add(buttonCancelar);
             Controls.Add(buttonFiltrar);
-            Controls.Add(tableLayoutPanel1);
+            Controls.Add(panelChecks);
             MaximizeBox = false;
             MinimizeBox = false;
             Name = "TelaFiltroCompromisso";
             ShowIcon = false;
-            StartPosition = FormStartPosition.CenterScreen;
+            StartPosition = FormStartPosition.CenterParent;
             Text = "Filtrar Compromissos";
             TransparencyKey = Color.Gray;
-            tableLayoutPanel1.ResumeLayout(false);
-            tableLayoutPanel1.PerformLayout();
+            panelChecks.ResumeLayout(false);
+            panelChecks.PerformLayout();
             panelDatas.ResumeLayout(false);
             panelDatas.PerformLayout();
             ResumeLayout(false);
@@ -221,7 +222,7 @@
 
         #endregion
 
-        private TableLayoutPanel tableLayoutPanel1;
+        private TableLayoutPanel panelChecks;
         private RadioButton radioButtonTodos;
         private RadioButton radioButtonHoje;
         private RadioButton radioButtonProximos;

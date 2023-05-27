@@ -126,10 +126,9 @@
             MaximizeBox = false;
             MaximumSize = new Size(429, 326);
             MinimizeBox = false;
-            MinimumSize = new Size(429, 326);
             Name = "TelaFiltrarTarefasForm";
             ShowIcon = false;
-            StartPosition = FormStartPosition.CenterScreen;
+            StartPosition = FormStartPosition.CenterParent;
             Text = "Filtrar Tarefas";
             panelOpcoes.ResumeLayout(false);
             panelOpcoes.PerformLayout();

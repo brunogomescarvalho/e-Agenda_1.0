@@ -23,6 +23,8 @@ namespace e_Agenda.WinApp.ModuloContato
         public TelaContatoForm()
         {
             InitializeComponent();
+
+
         }
 
         private void btnSalvar_Click(object sender, EventArgs e)

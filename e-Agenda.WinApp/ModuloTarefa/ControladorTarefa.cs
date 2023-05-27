@@ -1,7 +1,7 @@
 ﻿namespace e_Agenda.WinApp.ModuloTarefa;
 public class ControladorTarefa:ControladorBase
 {
-    private ListagemTarefasControl? listagemTarefasControl;
+    private TabelaTarefasControl? listagemTarefasControl;
 
     private RepositorioTarefa repositorioTarefa;
 
@@ -82,7 +82,7 @@ public class ControladorTarefa:ControladorBase
 
     public override UserControl ObterListagem()
     {
-        listagemTarefasControl ??= new ListagemTarefasControl();
+        listagemTarefasControl ??= new TabelaTarefasControl();
 
         AtualizarTarefa();
 
@@ -95,7 +95,7 @@ public class ControladorTarefa:ControladorBase
 
         listagemTarefasControl!.AtualizarLista(tarefas);
 
-        TelaPrincipal.Instancia.AlterarTextRodape($"Exibindo {tarefas.Count} tarefas.");
+        TelaPrincipal.Instancia.AlterarTextRodape(tarefas.Any()? $"Exibindo {tarefas.Count} tarefa(s).":"Nenhuma tarefa cadastrada!");
     }
 
     public void CadastrarItem()
@@ -163,27 +163,26 @@ public class ControladorTarefa:ControladorBase
 
         if (opcao == DialogResult.OK)
         {
-            tarefa.TarefaConcluidaEventHandler += Tarefa_TarefaConcluidaEventHandler;
-
             telaAtualizar.BuscarItensSelecionados().ForEach(i => tarefa.TornarItemConcluido(i));
 
             telaAtualizar.BuscarItensNaoSelecionados().ForEach(i => tarefa.TornarItemPendente(i));
 
-            tarefa.TarefaConcluidaEventHandler -= Tarefa_TarefaConcluidaEventHandler;
-
             repositorioTarefa!.Editar(tarefa);
+
+            if (tarefa.EstaConcluida)
+                TarefaConcluida();
 
             AtualizarTarefa();
 
         }
     }
 
-    private void Tarefa_TarefaConcluidaEventHandler()
+    private static void TarefaConcluida()
     {
         MessageBox.Show("A tarefa foi concluída e movida para a lista de tarefas concluídas!", "Tarefa Concluída", MessageBoxButtons.OK, MessageBoxIcon.Asterisk);
     }
 
-    public void Filtrar()
+    public override void Filtrar()
     {
         var telaFiltro = new TelaFiltrarTarefasForm();
 
@@ -215,13 +214,33 @@ public class ControladorTarefa:ControladorBase
 
             TelaPrincipal.Instancia.AlterarTextCadastro(opcaoString);
 
+            TelaPrincipal.Instancia.AlterarTextRodape(AlterarTextoConformeFiltro(tarefas,opcaoString));
+
             listagemTarefasControl!.AtualizarLista(tarefas);
         }
 
     }
 
+    private string AlterarTextoConformeFiltro(List<Tarefa> tarefas, string opcaoString)
+    {
+        string singular = opcaoString.Replace("s", "");
+
+        if(tarefas.Count == 0 )
+        {
+            return $"Nenhuma {singular} registrada até o momento"; 
+        }
+        else if (tarefas.Count == 1)
+        {
+            return $"Exibindo 1 {singular}";
+        }
+
+        return $"Exibindo {tarefas.Count} {opcaoString}";
+    }
+
     public override void ConfigurarTela()
     {
+        TelaPrincipal.Instancia.AlterarTextCadastro("Cadastro Tarefas");
+
         Configuracao = new Configuracao(
 
         "Inserir Tarefa",

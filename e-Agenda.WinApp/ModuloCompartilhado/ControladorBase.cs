@@ -17,6 +17,8 @@ public abstract class ControladorBase
 
     public DialogResult ConfirmarAcao(string question, string titulo)
     {
-       return MessageBox.Show(question, titulo, MessageBoxButtons.YesNo, MessageBoxIcon.Question);
+        return MessageBox.Show(question, titulo, MessageBoxButtons.YesNo, MessageBoxIcon.Question);
     }
+
+   
 }

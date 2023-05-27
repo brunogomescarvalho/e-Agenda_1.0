@@ -1,6 +1,6 @@
 ﻿namespace e_Agenda.WinApp.ModuloContato
 {
-    partial class ListagemContatosControl
+    partial class TabelaContatoControl
     {
         /// <summary> 
         /// Variável de designer necessária.
@@ -34,17 +34,11 @@
             dataGridViewTextBoxColumn1 = new DataGridViewTextBoxColumn();
             dataGridViewTextBoxColumn2 = new DataGridViewTextBoxColumn();
             dataGridViewTextBoxColumn3 = new DataGridViewTextBoxColumn();
-            listContatos = new DataGridView();
             dataGridViewTextBoxColumn4 = new DataGridViewTextBoxColumn();
             dataGridViewTextBoxColumn5 = new DataGridViewTextBoxColumn();
             dataGridViewTextBoxColumn6 = new DataGridViewTextBoxColumn();
-            IdContato = new DataGridViewTextBoxColumn();
-            NomeContato = new DataGridViewTextBoxColumn();
-            TeleContato = new DataGridViewTextBoxColumn();
-            EmailContato = new DataGridViewTextBoxColumn();
-            EmpresaContato = new DataGridViewTextBoxColumn();
-            CargoContato = new DataGridViewTextBoxColumn();
-            ((System.ComponentModel.ISupportInitialize)listContatos).BeginInit();
+            gridContatos = new DataGridView();
+            ((System.ComponentModel.ISupportInitialize)gridContatos).BeginInit();
             SuspendLayout();
             // 
             // Id
@@ -89,21 +83,6 @@
             dataGridViewTextBoxColumn3.Name = "dataGridViewTextBoxColumn3";
             dataGridViewTextBoxColumn3.Width = 125;
             // 
-            // listContatos
-            // 
-            listContatos.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            listContatos.Columns.AddRange(new DataGridViewColumn[] { IdContato, NomeContato, TeleContato, EmailContato, EmpresaContato, CargoContato });
-            listContatos.Dock = DockStyle.Fill;
-            listContatos.Location = new Point(0, 0);
-            listContatos.MultiSelect = false;
-            listContatos.Name = "listContatos";
-            listContatos.RowHeadersVisible = false;
-            listContatos.RowHeadersWidth = 51;
-            listContatos.RowTemplate.Height = 29;
-            listContatos.SelectionMode = DataGridViewSelectionMode.FullRowSelect;
-            listContatos.Size = new Size(505, 428);
-            listContatos.TabIndex = 0;
-            // 
             // dataGridViewTextBoxColumn4
             // 
             dataGridViewTextBoxColumn4.HeaderText = "ID";
@@ -125,62 +104,25 @@
             dataGridViewTextBoxColumn6.Name = "dataGridViewTextBoxColumn6";
             dataGridViewTextBoxColumn6.Width = 125;
             // 
-            // IdContato
+            // gridContatos
             // 
-            IdContato.HeaderText = "Id";
-            IdContato.MinimumWidth = 6;
-            IdContato.Name = "IdContato";
-            IdContato.ReadOnly = true;
-            IdContato.Width = 125;
+            gridContatos.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            gridContatos.Dock = DockStyle.Fill;
+            gridContatos.Location = new Point(0, 0);
+            gridContatos.Name = "gridContatos";
+            gridContatos.RowHeadersWidth = 51;
+            gridContatos.RowTemplate.Height = 29;
+            gridContatos.Size = new Size(505, 428);
+            gridContatos.TabIndex = 0;
             // 
-            // NomeContato
-            // 
-            NomeContato.HeaderText = "Nome";
-            NomeContato.MinimumWidth = 6;
-            NomeContato.Name = "NomeContato";
-            NomeContato.ReadOnly = true;
-            NomeContato.Width = 125;
-            // 
-            // TeleContato
-            // 
-            TeleContato.HeaderText = "Telefone";
-            TeleContato.MinimumWidth = 6;
-            TeleContato.Name = "TeleContato";
-            TeleContato.ReadOnly = true;
-            TeleContato.Width = 125;
-            // 
-            // EmailContato
-            // 
-            EmailContato.HeaderText = "Email";
-            EmailContato.MinimumWidth = 6;
-            EmailContato.Name = "EmailContato";
-            EmailContato.ReadOnly = true;
-            EmailContato.Width = 125;
-            // 
-            // EmpresaContato
-            // 
-            EmpresaContato.HeaderText = "Empresa";
-            EmpresaContato.MinimumWidth = 6;
-            EmpresaContato.Name = "EmpresaContato";
-            EmpresaContato.ReadOnly = true;
-            EmpresaContato.Width = 125;
-            // 
-            // CargoContato
-            // 
-            CargoContato.HeaderText = "Cargo";
-            CargoContato.MinimumWidth = 6;
-            CargoContato.Name = "CargoContato";
-            CargoContato.ReadOnly = true;
-            CargoContato.Width = 125;
-            // 
-            // ListagemContatosControl
+            // TabelaContatoControl
             // 
             AutoScaleDimensions = new SizeF(8F, 20F);
             AutoScaleMode = AutoScaleMode.Font;
-            Controls.Add(listContatos);
-            Name = "ListagemContatosControl";
+            Controls.Add(gridContatos);
+            Name = "TabelaContatoControl";
             Size = new Size(505, 428);
-            ((System.ComponentModel.ISupportInitialize)listContatos).EndInit();
+            ((System.ComponentModel.ISupportInitialize)gridContatos).EndInit();
             ResumeLayout(false);
         }
 
@@ -191,15 +133,9 @@
         private DataGridViewTextBoxColumn dataGridViewTextBoxColumn1;
         private DataGridViewTextBoxColumn dataGridViewTextBoxColumn2;
         private DataGridViewTextBoxColumn dataGridViewTextBoxColumn3;
-        private DataGridView listContatos;
         private DataGridViewTextBoxColumn dataGridViewTextBoxColumn4;
         private DataGridViewTextBoxColumn dataGridViewTextBoxColumn5;
         private DataGridViewTextBoxColumn dataGridViewTextBoxColumn6;
-        private DataGridViewTextBoxColumn IdContato;
-        private DataGridViewTextBoxColumn NomeContato;
-        private DataGridViewTextBoxColumn TeleContato;
-        private DataGridViewTextBoxColumn EmailContato;
-        private DataGridViewTextBoxColumn EmpresaContato;
-        private DataGridViewTextBoxColumn CargoContato;
+        private DataGridView gridContatos;
     }
 }

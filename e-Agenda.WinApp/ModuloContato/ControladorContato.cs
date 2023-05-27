@@ -1,9 +1,11 @@
-﻿namespace e_Agenda.WinApp.ModuloContato;
+﻿using e_Agenda.WinApp.ModuloTarefa;
+
+namespace e_Agenda.WinApp.ModuloContato;
 
 public class ControladorContato : ControladorBase
 {
     private RepositorioContato repositorioContato;
-    private ListagemContatosControl? listagemContatosControl;
+    private TabelaContatoControl? gridContato;
 
     public ControladorContato(RepositorioContato repositorioContato)
     {
@@ -29,7 +31,7 @@ public class ControladorContato : ControladorBase
     }
     public override void Editar()
     {
-        int id = listagemContatosControl!.ObterIdContatoSelecionado();
+        int id = gridContato!.ObterIdContatoSelecionado();
 
         Contato contatoSelecionado = repositorioContato.BuscarPorId(id);
 
@@ -62,7 +64,7 @@ public class ControladorContato : ControladorBase
 
     public override void Excluir()
     {
-        int id = listagemContatosControl!.ObterIdContatoSelecionado();
+        int id = gridContato!.ObterIdContatoSelecionado();
 
         Contato contatoSelecionado = repositorioContato!.BuscarPorId(id);
 
@@ -81,24 +83,24 @@ public class ControladorContato : ControladorBase
 
     public override UserControl ObterListagem()
     {
-        listagemContatosControl ??= new ListagemContatosControl();
+        gridContato ??= new TabelaContatoControl();
 
         AtualizarContatos();
 
-        return listagemContatosControl;
+        return gridContato;
     }
 
     private void AtualizarContatos()
     {
         List<Contato> contatos = repositorioContato!.Listar();
 
-        listagemContatosControl!.AtualizarLista(contatos);
-
-        TelaPrincipal.Instancia.AlterarTextRodape($"Exibindo {contatos.Count} contatos.");
+        gridContato!.AtualizarLista(contatos);
+        TelaPrincipal.Instancia.AlterarTextRodape(contatos.Any()? $"Exibindo {contatos.Count} contatos(s)." : "Nenhum contato cadastrado!");
     }
-
     public override void ConfigurarTela()
     {
+        TelaPrincipal.Instancia.AlterarTextCadastro("Cadastro Contatos");
+
         Configuracao = new Configuracao(
 
         "Inserir Contato",

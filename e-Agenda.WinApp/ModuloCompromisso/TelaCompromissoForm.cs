@@ -14,7 +14,7 @@ namespace e_Agenda.WinApp.ModuloCompromisso
 
             set
             {
-                if(value.Contato != null)
+                if (value.Contato != null)
                     InserirContatoComboBox(value);
 
                 textId.Text = value.Id.ToString();
@@ -37,7 +37,7 @@ namespace e_Agenda.WinApp.ModuloCompromisso
 
             foreach (Contato contato in comboBoxContatos.Items)
             {
-                if(contato.Equals(contatoSelecionado))
+                if (contato.Equals(contatoSelecionado))
                 {
                     comboBoxContatos.SelectedItem = contato;
                 }
@@ -121,7 +121,7 @@ namespace e_Agenda.WinApp.ModuloCompromisso
                 comboBoxContatos.SelectedItem = null;
 
             }
-               
+
         }
     }
 }

@@ -5,9 +5,6 @@ namespace e_Agenda.WinApp.ModuloTarefa
 {
     public partial class TelaAtualizarTarefaForm : Form
     {
-
-        private List<ItemTarefa> itensFinalizado = new List<ItemTarefa>();
-
         public TelaAtualizarTarefaForm(Tarefa tarefa)
         {
             InitializeComponent();
@@ -18,9 +15,13 @@ namespace e_Agenda.WinApp.ModuloTarefa
 
         private void MostrarTabela(Tarefa tarefa)
         {
-            textTarefa.Text = $"{tarefa}";
+            textNumero.Text = tarefa.Id.ToString();
 
-            progressoTarefa.Value = Convert.ToInt32(tarefa.PorcentagemConcluida);
+            textTitulo.Text = tarefa.Titulo.ToString();
+
+            textPrioridade.Text = tarefa.Prioridade.ToString();
+
+            textProgresso.Text = tarefa.PorcentagemConcluida.ToString() + " %";
 
             listItens.Items.Clear();
 

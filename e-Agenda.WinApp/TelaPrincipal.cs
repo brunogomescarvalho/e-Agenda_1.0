@@ -2,7 +2,7 @@
 using e_Agenda.WinApp.ModuloCompromisso;
 using e_Agenda.WinApp.ModuloContato;
 using e_Agenda.WinApp.ModuloTarefa;
-using Microsoft.Win32;
+
 
 namespace e_Agenda.WinApp;
 
@@ -26,7 +26,7 @@ public partial class TelaPrincipal : Form
 
         telaPrincipal ??= this;
 
-        PopularRepositorios();
+        PopularRepositorios(); 
     }
 
     private void contatosMenuItem_Click(object sender, EventArgs e)
@@ -58,7 +58,7 @@ public partial class TelaPrincipal : Form
     }
 
     private void btnEditar_Click(object sender, EventArgs e)
-    { 
+    {
         controlador.Editar();
     }
 
@@ -82,7 +82,7 @@ public partial class TelaPrincipal : Form
     private void btnFiltrar_Click(object sender, EventArgs e)
     {
         controlador.Filtrar();
-          
+
     }
 
 
@@ -200,8 +200,8 @@ public partial class TelaPrincipal : Form
             new Compromisso(null, "Apresentação de produtos", "Showroom", DateTime.Now.AddDays(3), new DateTime(1,1,1, 15, 30, 00), new DateTime(1,1,1, 16, 30, 00)),
             new Compromisso(null, "Reunião com fornecedor", "Escritório 5A", DateTime.Now.AddDays(4), new DateTime(1,1,1, 10, 00, 00), new DateTime(1,1,1, 11, 30, 00)),
             new Compromisso(null, "Lançamento do novo projeto", "Sala de conferências 2", DateTime.Now.AddDays(5), new DateTime(1,1,1, 13, 30, 00), new DateTime(1,1,1, 15, 30, 00))};
-     
-            listCompromissos.ForEach(i=> repositorioCompromisso.Cadastrar(i));
-        
+
+        listCompromissos.ForEach(i => repositorioCompromisso.Cadastrar(i));
+
     }
 }

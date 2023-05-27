@@ -11,6 +11,12 @@ namespace e_Agenda.WinApp.ModuloTarefa
 
             itens = new List<ItemTarefa>();
 
+            CriarColunas();
+
+            tabelaItens.ConfigurarGridSomenteLeitura();
+            tabelaItens.ConfigurarGridZebrado();
+            ConfigurarPanelTarefa();
+
             CarregarListaItens(tarefa);
         }
 
@@ -22,16 +28,11 @@ namespace e_Agenda.WinApp.ModuloTarefa
             textPrioridade.Text = tarefa.Prioridade.ToString();
             textProgresso.Text = $"{tarefa.PorcentagemConcluida}%";
 
-            listItens.Rows.Clear();
+            tabelaItens.Rows.Clear();
 
-            if (tarefa.Itens.Count > 1)
-                listItens.Rows.Add(tarefa.Itens.Count - 1);
+            List<ItemTarefa> itens = tarefa.Itens;
 
-            for (int i = 0; i < tarefa.Itens.Count; i++)
-            {
-                listItens.Rows[i].Cells[0].Value = tarefa.Itens[i].Descricao;
-                listItens.Rows[i].Cells[1].Value = tarefa.Itens[i].Concluido ? "Concluído" : "Pendente";
-            }
+            itens.ForEach(i => tabelaItens.Rows.Add(i.Descricao, i.Concluido ? "Concluído" : "Pendente"));
         }
 
         private void btnIncluir_Click(object sender, EventArgs e)
@@ -50,18 +51,39 @@ namespace e_Agenda.WinApp.ModuloTarefa
             IncluirNovaLinha(novoItem);
 
             itens.Add(novoItem);
+
+            textDescricao.Text = "";
+        }
+
+        private void CriarColunas()
+        {
+            var columns = new DataGridViewColumn[]
+                {
+                    new DataGridViewTextBoxColumn()
+                    {Name = "descricao",HeaderText="Descrição" },
+
+                    new DataGridViewTextBoxColumn()
+                    {Name = "status", HeaderText="Status" }
+                };
+
+            tabelaItens.Columns.AddRange(columns);
+
+        }
+
+        private void ConfigurarPanelTarefa()
+        {
+            foreach (var item in panelTarefa.Controls)
+            {
+                if (item is TextBox text)
+                {
+                    text.ReadOnly = true;
+                }
+            }
         }
 
         private void IncluirNovaLinha(ItemTarefa novoItem)
         {
-            var novaLinha = new DataGridViewRow();
-
-            novaLinha.CreateCells(listItens);
-
-            novaLinha.Cells[0].Value = novoItem.Descricao;
-            novaLinha.Cells[1].Value = novoItem.Concluido ? "Concluído" : "Pendente";
-
-            listItens.Rows.Add(novaLinha);
+            tabelaItens.Rows.Add(novoItem.Descricao, novoItem.Concluido ? "Concluído" : "Pendente");
         }
 
         public List<ItemTarefa> ObterItens()

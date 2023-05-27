@@ -15,15 +15,15 @@ public partial class TelaFiltrarTarefasForm : Form
 
     private void btnFiltrar_Click(object sender, EventArgs e)
     {
-        if(btnConcluidas.Checked)           
+        if (btnConcluidas.Checked)
             tipoDeBusca = TipoDeBusca.concluidas;
-        
-        else if(btnPendentes.Checked)           
+
+        else if (btnPendentes.Checked)
             tipoDeBusca = TipoDeBusca.pendentes;
-        
-        else          
+
+        else
             tipoDeBusca = TipoDeBusca.todas;
-        
+
     }
 
 }

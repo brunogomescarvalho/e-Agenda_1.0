@@ -5,6 +5,6 @@ public enum FiltroCompromisso
     Futuros, 
     Hoje,
     Todos, 
-    Data
+    Datas
 }
 

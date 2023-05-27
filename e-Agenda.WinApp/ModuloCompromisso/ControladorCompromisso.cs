@@ -103,7 +103,7 @@ public partial class ControladorCompromisso : ControladorBase
         }
     }
 
-   
+
 
     public override UserControl ObterListagem()
     {
@@ -126,7 +126,7 @@ public partial class ControladorCompromisso : ControladorBase
 
             List<Compromisso> listaFiltrada;
 
-            if (status == FiltroCompromisso.Data)
+            if (status == FiltroCompromisso.Datas)
             {
                 DateTime dataInicial = telaFiltro.DataInicial.Date;
                 DateTime dataFinal = telaFiltro.DataFinal.Date;
@@ -141,6 +141,8 @@ public partial class ControladorCompromisso : ControladorBase
             listaCompromissosControl!.AtualizarListagem(listaFiltrada);
 
             TelaPrincipal.Instancia.AlterarTextCadastro($"Compromissos {status}");
+
+            TelaPrincipal.Instancia.AlterarTextRodape(listaFiltrada.Any() ? $"Exibindo {listaFiltrada.Count} compromissos." : "Nenhum compromisso cadastrado até o momento!");
         }
     }
 
@@ -157,6 +159,7 @@ public partial class ControladorCompromisso : ControladorBase
             default: return repositorioCompromisso.Listar();
 
         }
+
     }
 
     private void AtualizarCompromissos()
@@ -165,7 +168,7 @@ public partial class ControladorCompromisso : ControladorBase
 
         listaCompromissosControl!.AtualizarListagem(compromissos);
 
-        TelaPrincipal.Instancia.AlterarTextRodape($"Exibindo {compromissos.Count} compromissos.");
+        TelaPrincipal.Instancia.AlterarTextRodape(compromissos.Any() ? $"Exibindo {compromissos.Count} compromissos(s)" : "Nenhum compromisso até o momento");
     }
 
     public List<Contato> ObterContatos()
@@ -175,14 +178,17 @@ public partial class ControladorCompromisso : ControladorBase
 
     public override void ConfigurarTela()
     {
+        TelaPrincipal.Instancia.AlterarTextCadastro("Cadastro Compromissos");
+
         Configuracao = new Configuracao(
-       
+
         "Inserir Compromisso",
         "Editar Compromisso",
         "Excluir Compromisso")
         {
             ToolTipoFiltrar = "Filtrar Compromissos",
-            BtnFiltrarEnabled = true
+            BtnFiltrarEnabled = true,
+
         };
 
     }

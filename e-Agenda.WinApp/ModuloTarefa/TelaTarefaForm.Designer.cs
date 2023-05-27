@@ -28,95 +28,95 @@
         /// </summary>
         private void InitializeComponent()
         {
-            btnSalvar = new Button();
-            btnCancelar = new Button();
-            comboBoxPrioridade = new ComboBox();
-            labelPrioridade = new Label();
-            labelTitulo = new Label();
-            textDescricao = new TextBox();
-            labelId = new Label();
             textId = new TextBox();
+            labelId = new Label();
+            textDescricao = new TextBox();
+            labelTitulo = new Label();
+            labelPrioridade = new Label();
+            comboBoxPrioridade = new ComboBox();
+            btnCancelar = new Button();
+            btnSalvar = new Button();
             SuspendLayout();
             // 
-            // btnSalvar
+            // textId
             // 
-            btnSalvar.DialogResult = DialogResult.OK;
-            btnSalvar.Location = new Point(272, 191);
-            btnSalvar.Name = "btnSalvar";
-            btnSalvar.Size = new Size(94, 43);
-            btnSalvar.TabIndex = 0;
-            btnSalvar.Text = "Salvar";
-            btnSalvar.UseVisualStyleBackColor = true;
-            btnSalvar.Click += btnSalvar_Click;
-            // 
-            // btnCancelar
-            // 
-            btnCancelar.DialogResult = DialogResult.Cancel;
-            btnCancelar.Location = new Point(402, 191);
-            btnCancelar.Name = "btnCancelar";
-            btnCancelar.Size = new Size(94, 43);
-            btnCancelar.TabIndex = 1;
-            btnCancelar.Text = "Cancelar";
-            btnCancelar.UseVisualStyleBackColor = true;
-            // 
-            // comboBoxPrioridade
-            // 
-            comboBoxPrioridade.FormattingEnabled = true;
-            comboBoxPrioridade.Location = new Point(125, 137);
-            comboBoxPrioridade.Name = "comboBoxPrioridade";
-            comboBoxPrioridade.Size = new Size(371, 28);
-            comboBoxPrioridade.TabIndex = 2;
-            // 
-            // labelPrioridade
-            // 
-            labelPrioridade.AutoSize = true;
-            labelPrioridade.Font = new Font("Segoe UI", 12F, FontStyle.Regular, GraphicsUnit.Point);
-            labelPrioridade.Location = new Point(12, 137);
-            labelPrioridade.Name = "labelPrioridade";
-            labelPrioridade.Size = new Size(107, 28);
-            labelPrioridade.TabIndex = 3;
-            labelPrioridade.Text = "Prioridade:";
-            // 
-            // labelTitulo
-            // 
-            labelTitulo.AutoSize = true;
-            labelTitulo.Font = new Font("Segoe UI", 12F, FontStyle.Regular, GraphicsUnit.Point);
-            labelTitulo.Location = new Point(12, 84);
-            labelTitulo.Name = "labelTitulo";
-            labelTitulo.Size = new Size(66, 28);
-            labelTitulo.TabIndex = 4;
-            labelTitulo.Text = "Título:";
-            // 
-            // textDescricao
-            // 
-            textDescricao.Location = new Point(125, 84);
-            textDescricao.Name = "textDescricao";
-            textDescricao.Size = new Size(372, 27);
-            textDescricao.TabIndex = 5;
+            textId.Location = new Point(134, 37);
+            textId.Name = "textId";
+            textId.ReadOnly = true;
+            textId.Size = new Size(125, 27);
+            textId.TabIndex = 23;
             // 
             // labelId
             // 
             labelId.AutoSize = true;
             labelId.Font = new Font("Segoe UI", 12F, FontStyle.Regular, GraphicsUnit.Point);
-            labelId.Location = new Point(12, 32);
+            labelId.Location = new Point(18, 37);
             labelId.Name = "labelId";
             labelId.Size = new Size(88, 28);
-            labelId.TabIndex = 6;
+            labelId.TabIndex = 22;
             labelId.Text = "Número:";
             // 
-            // textId
+            // textDescricao
             // 
-            textId.Location = new Point(128, 32);
-            textId.Name = "textId";
-            textId.ReadOnly = true;
-            textId.Size = new Size(125, 27);
-            textId.TabIndex = 7;
+            textDescricao.Location = new Point(131, 89);
+            textDescricao.Name = "textDescricao";
+            textDescricao.Size = new Size(372, 27);
+            textDescricao.TabIndex = 21;
+            // 
+            // labelTitulo
+            // 
+            labelTitulo.AutoSize = true;
+            labelTitulo.Font = new Font("Segoe UI", 12F, FontStyle.Regular, GraphicsUnit.Point);
+            labelTitulo.Location = new Point(18, 89);
+            labelTitulo.Name = "labelTitulo";
+            labelTitulo.Size = new Size(66, 28);
+            labelTitulo.TabIndex = 20;
+            labelTitulo.Text = "Título:";
+            // 
+            // labelPrioridade
+            // 
+            labelPrioridade.AutoSize = true;
+            labelPrioridade.Font = new Font("Segoe UI", 12F, FontStyle.Regular, GraphicsUnit.Point);
+            labelPrioridade.Location = new Point(18, 142);
+            labelPrioridade.Name = "labelPrioridade";
+            labelPrioridade.Size = new Size(107, 28);
+            labelPrioridade.TabIndex = 19;
+            labelPrioridade.Text = "Prioridade:";
+            // 
+            // comboBoxPrioridade
+            // 
+            comboBoxPrioridade.FormattingEnabled = true;
+            comboBoxPrioridade.Location = new Point(131, 142);
+            comboBoxPrioridade.Name = "comboBoxPrioridade";
+            comboBoxPrioridade.Size = new Size(371, 28);
+            comboBoxPrioridade.TabIndex = 18;
+            // 
+            // btnCancelar
+            // 
+            btnCancelar.DialogResult = DialogResult.Cancel;
+            btnCancelar.Location = new Point(408, 202);
+            btnCancelar.Name = "btnCancelar";
+            btnCancelar.Size = new Size(94, 43);
+            btnCancelar.TabIndex = 17;
+            btnCancelar.Text = "Cancelar";
+            btnCancelar.UseVisualStyleBackColor = true;
+            // 
+            // btnSalvar
+            // 
+            btnSalvar.DialogResult = DialogResult.OK;
+            btnSalvar.Location = new Point(278, 202);
+            btnSalvar.Name = "btnSalvar";
+            btnSalvar.Size = new Size(94, 43);
+            btnSalvar.TabIndex = 16;
+            btnSalvar.Text = "Salvar";
+            btnSalvar.UseVisualStyleBackColor = true;
+            btnSalvar.Click += btnSalvar_Click;
             // 
             // TelaTarefaForm
             // 
             AutoScaleDimensions = new SizeF(8F, 20F);
             AutoScaleMode = AutoScaleMode.Font;
-            ClientSize = new Size(531, 269);
+            ClientSize = new Size(542, 299);
             Controls.Add(textId);
             Controls.Add(labelId);
             Controls.Add(textDescricao);
@@ -137,13 +137,13 @@
 
         #endregion
 
-        private Button btnSalvar;
-        private Button btnCancelar;
-        private ComboBox comboBoxPrioridade;
-        private Label labelPrioridade;
-        private Label labelTitulo;
-        private TextBox textDescricao;
-        private Label labelId;
         private TextBox textId;
+        private Label labelId;
+        private TextBox textDescricao;
+        private Label labelTitulo;
+        private Label labelPrioridade;
+        private ComboBox comboBoxPrioridade;
+        private Button btnCancelar;
+        private Button btnSalvar;
     }
 }

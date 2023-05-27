@@ -33,10 +33,8 @@
             btnIncluir = new Button();
             labelDescricao = new Label();
             textDescricao = new TextBox();
-            listItens = new DataGridView();
-            descricao = new DataGridViewTextBoxColumn();
-            status = new DataGridViewTextBoxColumn();
-            panel1 = new Panel();
+            tabelaItens = new DataGridView();
+            panelTarefa = new Panel();
             labelPrioridade = new Label();
             labelProgresso = new Label();
             labelTitulo = new Label();
@@ -45,14 +43,14 @@
             textProgresso = new TextBox();
             textTitulo = new TextBox();
             textNumero = new TextBox();
-            ((System.ComponentModel.ISupportInitialize)listItens).BeginInit();
-            panel1.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)tabelaItens).BeginInit();
+            panelTarefa.SuspendLayout();
             SuspendLayout();
             // 
             // btnSalvar
             // 
             btnSalvar.DialogResult = DialogResult.OK;
-            btnSalvar.Location = new Point(305, 531);
+            btnSalvar.Location = new Point(391, 463);
             btnSalvar.Name = "btnSalvar";
             btnSalvar.Size = new Size(75, 45);
             btnSalvar.TabIndex = 2;
@@ -62,7 +60,7 @@
             // btnCancelar
             // 
             btnCancelar.DialogResult = DialogResult.Cancel;
-            btnCancelar.Location = new Point(421, 531);
+            btnCancelar.Location = new Point(507, 463);
             btnCancelar.Name = "btnCancelar";
             btnCancelar.Size = new Size(75, 45);
             btnCancelar.TabIndex = 3;
@@ -71,7 +69,7 @@
             // 
             // btnIncluir
             // 
-            btnIncluir.Location = new Point(420, 173);
+            btnIncluir.Location = new Point(462, 162);
             btnIncluir.Name = "btnIncluir";
             btnIncluir.Size = new Size(76, 36);
             btnIncluir.TabIndex = 12;
@@ -83,7 +81,7 @@
             // 
             labelDescricao.AutoSize = true;
             labelDescricao.Font = new Font("Segoe UI", 10F, FontStyle.Regular, GraphicsUnit.Point);
-            labelDescricao.Location = new Point(18, 183);
+            labelDescricao.Location = new Point(60, 172);
             labelDescricao.Name = "labelDescricao";
             labelDescricao.Size = new Size(87, 23);
             labelDescricao.TabIndex = 10;
@@ -91,129 +89,114 @@
             // 
             // textDescricao
             // 
-            textDescricao.Location = new Point(113, 179);
+            textDescricao.Location = new Point(155, 168);
             textDescricao.Name = "textDescricao";
             textDescricao.Size = new Size(301, 27);
             textDescricao.TabIndex = 11;
             // 
-            // listItens
+            // tabelaItens
             // 
-            listItens.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            listItens.Columns.AddRange(new DataGridViewColumn[] { descricao, status });
-            listItens.Location = new Point(29, 240);
-            listItens.MultiSelect = false;
-            listItens.Name = "listItens";
-            listItens.ReadOnly = true;
-            listItens.RowHeadersVisible = false;
-            listItens.RowHeadersWidth = 51;
-            listItens.RowTemplate.Height = 29;
-            listItens.SelectionMode = DataGridViewSelectionMode.FullRowSelect;
-            listItens.Size = new Size(467, 276);
-            listItens.TabIndex = 16;
+            tabelaItens.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.Fill;
+            tabelaItens.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            tabelaItens.Location = new Point(33, 223);
+            tabelaItens.MultiSelect = false;
+            tabelaItens.Name = "tabelaItens";
+            tabelaItens.ReadOnly = true;
+            tabelaItens.RowHeadersVisible = false;
+            tabelaItens.RowHeadersWidth = 51;
+            tabelaItens.RowTemplate.Height = 29;
+            tabelaItens.SelectionMode = DataGridViewSelectionMode.FullRowSelect;
+            tabelaItens.Size = new Size(537, 218);
+            tabelaItens.TabIndex = 16;
             // 
-            // descricao
+            // panelTarefa
             // 
-            descricao.HeaderText = "Descrição";
-            descricao.MinimumWidth = 6;
-            descricao.Name = "descricao";
-            descricao.ReadOnly = true;
-            descricao.Width = 125;
-            // 
-            // status
-            // 
-            status.HeaderText = "Status";
-            status.MinimumWidth = 6;
-            status.Name = "status";
-            status.ReadOnly = true;
-            status.Width = 125;
-            // 
-            // panel1
-            // 
-            panel1.BorderStyle = BorderStyle.FixedSingle;
-            panel1.Controls.Add(labelPrioridade);
-            panel1.Controls.Add(labelProgresso);
-            panel1.Controls.Add(labelTitulo);
-            panel1.Controls.Add(labelId);
-            panel1.Controls.Add(textPrioridade);
-            panel1.Controls.Add(textProgresso);
-            panel1.Controls.Add(textTitulo);
-            panel1.Controls.Add(textNumero);
-            panel1.Location = new Point(29, 20);
-            panel1.Name = "panel1";
-            panel1.Size = new Size(467, 130);
-            panel1.TabIndex = 17;
+            panelTarefa.BackColor = Color.LightGray;
+            panelTarefa.BorderStyle = BorderStyle.FixedSingle;
+            panelTarefa.Controls.Add(labelPrioridade);
+            panelTarefa.Controls.Add(labelProgresso);
+            panelTarefa.Controls.Add(labelTitulo);
+            panelTarefa.Controls.Add(labelId);
+            panelTarefa.Controls.Add(textPrioridade);
+            panelTarefa.Controls.Add(textProgresso);
+            panelTarefa.Controls.Add(textTitulo);
+            panelTarefa.Controls.Add(textNumero);
+            panelTarefa.Location = new Point(22, 27);
+            panelTarefa.Name = "panelTarefa";
+            panelTarefa.Size = new Size(560, 110);
+            panelTarefa.TabIndex = 17;
             // 
             // labelPrioridade
             // 
             labelPrioridade.AutoSize = true;
-            labelPrioridade.Font = new Font("Segoe UI", 10F, FontStyle.Regular, GraphicsUnit.Point);
-            labelPrioridade.Location = new Point(8, 89);
+            labelPrioridade.Font = new Font("Segoe UI", 9F, FontStyle.Regular, GraphicsUnit.Point);
+            labelPrioridade.Location = new Point(352, 25);
             labelPrioridade.Name = "labelPrioridade";
-            labelPrioridade.Size = new Size(92, 23);
+            labelPrioridade.Size = new Size(81, 20);
             labelPrioridade.TabIndex = 14;
             labelPrioridade.Text = "Prioridade:";
             // 
             // labelProgresso
             // 
             labelProgresso.AutoSize = true;
-            labelProgresso.Font = new Font("Segoe UI", 10F, FontStyle.Regular, GraphicsUnit.Point);
-            labelProgresso.Location = new Point(234, 13);
+            labelProgresso.Font = new Font("Segoe UI", 9F, FontStyle.Regular, GraphicsUnit.Point);
+            labelProgresso.Location = new Point(176, 25);
             labelProgresso.Name = "labelProgresso";
-            labelProgresso.Size = new Size(89, 23);
+            labelProgresso.Size = new Size(77, 20);
             labelProgresso.TabIndex = 13;
             labelProgresso.Text = "Progresso:";
             // 
             // labelTitulo
             // 
             labelTitulo.AutoSize = true;
-            labelTitulo.Font = new Font("Segoe UI", 10F, FontStyle.Regular, GraphicsUnit.Point);
-            labelTitulo.Location = new Point(18, 55);
+            labelTitulo.Font = new Font("Segoe UI", 9F, FontStyle.Regular, GraphicsUnit.Point);
+            labelTitulo.Location = new Point(26, 63);
             labelTitulo.Name = "labelTitulo";
-            labelTitulo.Size = new Size(57, 23);
+            labelTitulo.Size = new Size(50, 20);
             labelTitulo.TabIndex = 12;
             labelTitulo.Text = "Título:";
             // 
             // labelId
             // 
             labelId.AutoSize = true;
-            labelId.Font = new Font("Segoe UI", 10F, FontStyle.Regular, GraphicsUnit.Point);
-            labelId.Location = new Point(12, 17);
+            labelId.Font = new Font("Segoe UI", 9F, FontStyle.Regular, GraphicsUnit.Point);
+            labelId.Location = new Point(10, 20);
             labelId.Name = "labelId";
-            labelId.Size = new Size(77, 23);
+            labelId.Size = new Size(66, 20);
             labelId.TabIndex = 11;
             labelId.Text = "Número:";
             // 
             // textPrioridade
             // 
             textPrioridade.Font = new Font("Segoe UI", 10F, FontStyle.Regular, GraphicsUnit.Point);
-            textPrioridade.Location = new Point(111, 88);
+            textPrioridade.Location = new Point(439, 20);
             textPrioridade.Name = "textPrioridade";
             textPrioridade.ReadOnly = true;
-            textPrioridade.Size = new Size(148, 30);
+            textPrioridade.Size = new Size(97, 30);
             textPrioridade.TabIndex = 3;
             // 
             // textProgresso
             // 
             textProgresso.Font = new Font("Segoe UI", 10F, FontStyle.Regular, GraphicsUnit.Point);
-            textProgresso.Location = new Point(329, 13);
+            textProgresso.Location = new Point(259, 17);
             textProgresso.Name = "textProgresso";
             textProgresso.ReadOnly = true;
-            textProgresso.Size = new Size(125, 30);
+            textProgresso.Size = new Size(87, 30);
             textProgresso.TabIndex = 2;
             // 
             // textTitulo
             // 
             textTitulo.Font = new Font("Segoe UI", 10F, FontStyle.Regular, GraphicsUnit.Point);
-            textTitulo.Location = new Point(111, 51);
+            textTitulo.Location = new Point(84, 58);
             textTitulo.Name = "textTitulo";
             textTitulo.ReadOnly = true;
-            textTitulo.Size = new Size(343, 30);
+            textTitulo.Size = new Size(452, 30);
             textTitulo.TabIndex = 1;
             // 
             // textNumero
             // 
             textNumero.Font = new Font("Segoe UI", 10F, FontStyle.Regular, GraphicsUnit.Point);
-            textNumero.Location = new Point(111, 9);
+            textNumero.Location = new Point(84, 17);
             textNumero.Name = "textNumero";
             textNumero.ReadOnly = true;
             textNumero.Size = new Size(86, 30);
@@ -223,23 +206,24 @@
             // 
             AutoScaleDimensions = new SizeF(8F, 20F);
             AutoScaleMode = AutoScaleMode.Font;
-            ClientSize = new Size(526, 598);
-            Controls.Add(panel1);
-            Controls.Add(listItens);
+            ClientSize = new Size(609, 533);
+            Controls.Add(panelTarefa);
+            Controls.Add(tabelaItens);
             Controls.Add(labelDescricao);
             Controls.Add(btnIncluir);
             Controls.Add(textDescricao);
             Controls.Add(btnCancelar);
             Controls.Add(btnSalvar);
+            Font = new Font("Segoe UI", 9F, FontStyle.Regular, GraphicsUnit.Point);
             MaximizeBox = false;
             MinimizeBox = false;
             Name = "TelaItemTarefaForm";
             ShowIcon = false;
-            StartPosition = FormStartPosition.CenterScreen;
+            StartPosition = FormStartPosition.CenterParent;
             Text = "Cadastrar Item Tarefa";
-            ((System.ComponentModel.ISupportInitialize)listItens).EndInit();
-            panel1.ResumeLayout(false);
-            panel1.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)tabelaItens).EndInit();
+            panelTarefa.ResumeLayout(false);
+            panelTarefa.PerformLayout();
             ResumeLayout(false);
             PerformLayout();
         }
@@ -250,10 +234,8 @@
         private Button btnIncluir;
         private Label labelDescricao;
         private TextBox textDescricao;
-        private DataGridView listItens;
-        private DataGridViewTextBoxColumn descricao;
-        private DataGridViewTextBoxColumn status;
-        private Panel panel1;
+        private DataGridView tabelaItens;
+        private Panel panelTarefa;
         private TextBox textPrioridade;
         private TextBox textProgresso;
         private TextBox textTitulo;
