@@ -17,7 +17,7 @@ namespace e_Agenda.WinApp.ModuloContato
                 textCargo.Text = value!.Cargo;
             }
 
-            get => contato!;
+            get => contato!;  
         }
 
         public TelaContatoForm()

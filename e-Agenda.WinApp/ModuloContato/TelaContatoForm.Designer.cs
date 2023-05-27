@@ -241,10 +241,8 @@
             Controls.Add(labelNome);
             FormBorderStyle = FormBorderStyle.FixedSingle;
             MaximizeBox = false;
-            MinimizeBox = false;
             Name = "TelaContatoForm";
-            ShowIcon = false;
-            StartPosition = FormStartPosition.CenterScreen;
+            StartPosition = FormStartPosition.CenterParent;
             Text = "Cadastrar Contato";
             statusStrip1.ResumeLayout(false);
             statusStrip1.PerformLayout();
