@@ -75,7 +75,7 @@
             // bntSalvar
             // 
             bntSalvar.DialogResult = DialogResult.OK;
-            bntSalvar.Location = new Point(445, 291);
+            bntSalvar.Location = new Point(446, 349);
             bntSalvar.Name = "bntSalvar";
             bntSalvar.Size = new Size(78, 43);
             bntSalvar.TabIndex = 8;
@@ -86,7 +86,7 @@
             // btnCancelar
             // 
             btnCancelar.DialogResult = DialogResult.Cancel;
-            btnCancelar.Location = new Point(544, 291);
+            btnCancelar.Location = new Point(545, 349);
             btnCancelar.Name = "btnCancelar";
             btnCancelar.Size = new Size(77, 43);
             btnCancelar.TabIndex = 9;
@@ -250,7 +250,7 @@
             // 
             AutoScaleDimensions = new SizeF(8F, 20F);
             AutoScaleMode = AutoScaleMode.Font;
-            ClientSize = new Size(643, 360);
+            ClientSize = new Size(643, 415);
             Controls.Add(groupBoxFormCompromisso);
             Controls.Add(bntSalvar);
             Controls.Add(btnCancelar);

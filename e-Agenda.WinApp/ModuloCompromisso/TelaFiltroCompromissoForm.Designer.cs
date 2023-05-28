@@ -132,7 +132,7 @@
             // buttonFiltrar
             // 
             buttonFiltrar.DialogResult = DialogResult.OK;
-            buttonFiltrar.Location = new Point(344, 318);
+            buttonFiltrar.Location = new Point(338, 388);
             buttonFiltrar.Name = "buttonFiltrar";
             buttonFiltrar.Size = new Size(88, 44);
             buttonFiltrar.TabIndex = 1;
@@ -143,7 +143,7 @@
             // buttonCancelar
             // 
             buttonCancelar.DialogResult = DialogResult.Cancel;
-            buttonCancelar.Location = new Point(438, 318);
+            buttonCancelar.Location = new Point(432, 388);
             buttonCancelar.Name = "buttonCancelar";
             buttonCancelar.Size = new Size(87, 44);
             buttonCancelar.TabIndex = 2;
@@ -157,7 +157,7 @@
             panelDatas.Controls.Add(labelDataInicial);
             panelDatas.Controls.Add(dateTimeFinal);
             panelDatas.Controls.Add(dateTimeInicial);
-            panelDatas.Location = new Point(31, 205);
+            panelDatas.Location = new Point(31, 235);
             panelDatas.Name = "panelDatas";
             panelDatas.Size = new Size(493, 93);
             panelDatas.TabIndex = 3;
@@ -201,7 +201,7 @@
             // 
             AutoScaleDimensions = new SizeF(8F, 20F);
             AutoScaleMode = AutoScaleMode.Font;
-            ClientSize = new Size(551, 384);
+            ClientSize = new Size(551, 465);
             Controls.Add(panelDatas);
             Controls.Add(buttonCancelar);
             Controls.Add(buttonFiltrar);

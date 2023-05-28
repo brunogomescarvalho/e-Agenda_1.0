@@ -35,18 +35,6 @@ public partial class TelaPrincipal : Form
         PopularRepositorios();
     }
 
-    private void contatosMenuItem_Click(object sender, EventArgs e)
-    {
-        controlador = new ControladorContato(repositorioContato);
-
-        ConfigurarToolTips(controlador);
-
-        ConfigurarListagem(controlador);
-
-        ConfigurarBotoes(controlador);
-    }
-
-
     private void ConfigurarListagem(ControladorBase controladorBase)
     {
         UserControl listagem = controladorBase.ObterListagem();
@@ -73,6 +61,41 @@ public partial class TelaPrincipal : Form
         controlador.Excluir();
     }
 
+    private void btnFiltrar_Click(object sender, EventArgs e)
+    {
+        controlador.Filtrar();
+    }
+
+    private void btnVisualizar_Click(object sender, EventArgs e)
+    {
+        if (controlador is ControladorCategoria ctrl)
+            ctrl.VisualizarDespesasPorCategoria();
+    }
+
+    private void btnAddItemTarefa_Click(object sender, EventArgs e)
+    {
+        if (controlador is ControladorTarefa ctrl)
+            ctrl.CadastrarItem();
+    }
+
+    private void btnAtualizarTarefa_Click(object sender, EventArgs e)
+    {
+        if (controlador is ControladorTarefa ctrl)
+            ctrl.AtualizarItensTarefa();
+    }
+
+    private void contatosMenuItem_Click(object sender, EventArgs e)
+    {
+        controlador = new ControladorContato(repositorioContato);
+
+        ConfigurarToolTips(controlador);
+
+        ConfigurarListagem(controlador);
+
+        ConfigurarBotoes(controlador);
+    }
+
+
     private void compromissosMenuItem_Click(object sender, EventArgs e)
     {
         controlador = new ControladorCompromisso(repositorioCompromisso, repositorioContato);
@@ -82,15 +105,7 @@ public partial class TelaPrincipal : Form
         ConfigurarListagem(controlador);
 
         ConfigurarBotoes(controlador);
-
     }
-
-    private void btnFiltrar_Click(object sender, EventArgs e)
-    {
-        controlador.Filtrar();
-
-    }
-
 
     private void tarefasMenuItem_Click(object sender, EventArgs e)
     {
@@ -102,20 +117,6 @@ public partial class TelaPrincipal : Form
 
         ConfigurarBotoes(controlador);
 
-    }
-
-    private void btnAddItemTarefa_Click(object sender, EventArgs e)
-    {
-        if (controlador is ControladorTarefa ctrl)
-
-            ctrl.CadastrarItem();
-    }
-
-    private void btnAtualizarTarefa_Click(object sender, EventArgs e)
-    {
-        if (controlador is ControladorTarefa ctrl)
-
-            ctrl.AtualizarItensTarefa();
     }
 
     private void categoriasMenu_Click(object sender, EventArgs e)
@@ -130,11 +131,18 @@ public partial class TelaPrincipal : Form
 
     }
 
-    private void btnVisualizar_Click(object sender, EventArgs e)
+    private void controleDespesaMenu_Click(object sender, EventArgs e)
     {
-        if (controlador is ControladorCategoria ctrl)
-            ctrl.VisualizarDespesasPorCategoria();
+        controlador = new ControladorDespesa(repositorioDespesa,repositorioCategoria);
+
+        ConfigurarListagem(controlador);
+
+        ConfigurarToolTips(controlador);
+
+        ConfigurarBotoes(controlador);
     }
+
+
 
     private void ConfigurarBotoes(ControladorBase controlador)
     {
@@ -178,10 +186,6 @@ public partial class TelaPrincipal : Form
     {
         textTipoCadastro.Text = menssagem;
     }
-
-
-
-
 
 
     private void PopularRepositorios()
@@ -236,5 +240,5 @@ public partial class TelaPrincipal : Form
 
     }
 
-
+   
 }

@@ -67,7 +67,7 @@ public partial class ControladorCompromisso : ControladorBase
 
             if (opcaoSalvar == DialogResult.OK)
             {
-                compromissoSelecionado = compromissoForm.Compromisso;
+                compromissoSelecionado.Editar(compromissoForm.Compromisso);
 
                 bool horarioDisponivel = repositorioCompromisso.VerificarHorarioDisponivel(compromissoSelecionado);
 
@@ -180,7 +180,7 @@ public partial class ControladorCompromisso : ControladorBase
     {
         TelaPrincipal.Instancia.AlterarTextCadastro("Cadastro Compromissos");
 
-        Configuracao = new Configuracao(
+        Configuracao ??= new Configuracao(
 
         "Inserir Compromisso",
         "Editar Compromisso",

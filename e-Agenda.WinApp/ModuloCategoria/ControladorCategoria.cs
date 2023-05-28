@@ -25,8 +25,10 @@ namespace e_Agenda.WinApp.ModuloCategoria
         {
             TelaPrincipal.Instancia.AlterarTextCadastro("Categorias de Despesas");
 
-            Configuracao = new Configuracao("Inserir Categoria", "Editar Categoria", "Excluir Categoria")
-            { BtnVisualizarEnabled = true };
+            Configuracao ??= new Configuracao("Inserir Categoria", "Editar Categoria", "Excluir Categoria")
+            { 
+                BtnVisualizarEnabled = true 
+            };
         }
 
         public override void Editar()
@@ -41,26 +43,25 @@ namespace e_Agenda.WinApp.ModuloCategoria
                 return;
             }
 
-            TelaCategoriaForm telaForm = new TelaCategoriaForm();
-
-            telaForm.Categoria = categoriaSelecionada;
+            var telaForm = new TelaCategoriaForm()
+            {
+                Categoria = categoriaSelecionada,
+                Text = "Editar Categoria"
+            };
 
             DialogResult opcao = telaForm.ShowDialog();
 
             if (opcao == DialogResult.OK)
             {
-                Categoria categoria = telaForm.Categoria;
+                categoriaSelecionada.Editar(telaForm.Categoria);
 
-                bool editou = repositorioCategoria.Editar(categoria);
+                bool editou = repositorioCategoria.Editar(categoriaSelecionada);
 
                 if (!editou)
-                    MessageBox.Show($"Categoria {categoria.Nome} Já cadastrada", "Categoria já cadastrada", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                    MessageBox.Show($"Categoria {categoriaSelecionada.Nome} Já cadastrada", "Categoria já cadastrada", MessageBoxButtons.OK, MessageBoxIcon.Error);
 
                 AtualizarCategorias();
             }
-
-
-
         }
 
         public override void Excluir()
@@ -75,7 +76,7 @@ namespace e_Agenda.WinApp.ModuloCategoria
                 return;
             }
 
-            bool vinculado = repositorioDespesa.ListarDespesasPorCategorias(id).Any();
+            bool vinculado = repositorioDespesa.ListarDespesasPorCategorias(categoriaSelecionada).Any();
 
             if(vinculado)
             {
@@ -92,13 +93,11 @@ namespace e_Agenda.WinApp.ModuloCategoria
                     AtualizarCategorias();
                 }
             }
-
-          
         }
 
         public override void Inserir()
         {
-            TelaCategoriaForm telaForm = new TelaCategoriaForm();
+            var telaForm = new TelaCategoriaForm();
 
             DialogResult opcao = telaForm.ShowDialog();
 
@@ -126,7 +125,9 @@ namespace e_Agenda.WinApp.ModuloCategoria
                 return;
             }
 
-            List<Despesa> despesasPorCategoria = repositorioDespesa.ListarDespesasPorCategorias(id);
+            Categoria categoria = repositorioCategoria.BuscarPorId(id);
+
+            List<Despesa> despesasPorCategoria = repositorioDespesa.ListarDespesasPorCategorias(categoria); 
 
             if (despesasPorCategoria.Count == 0)
             {
@@ -134,7 +135,7 @@ namespace e_Agenda.WinApp.ModuloCategoria
                 return;
             }
 
-            TelaVisualizarPorCategoria tela = new TelaVisualizarPorCategoria(despesasPorCategoria);
+            var tela = new TelaVisualizarPorCategoria(despesasPorCategoria);
 
             tela.ShowDialog();
 

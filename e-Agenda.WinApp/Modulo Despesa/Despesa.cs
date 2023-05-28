@@ -1,9 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using e_Agenda.WinApp.ModuloCategoria;
+﻿using e_Agenda.WinApp.ModuloCategoria;
 
 namespace e_Agenda.WinApp.Modulo_Despesa
 {
@@ -19,9 +14,9 @@ namespace e_Agenda.WinApp.Modulo_Despesa
 
         public List<Categoria> Categorias { get; set; }
 
-        public Despesa(string descricao, decimal valor, DateTime data, FormaDePagamento formaDePagamento)
+        public Despesa(string descricao, decimal valor, DateTime data, FormaDePagamento formaDePagamento,List<Categoria> categorias)
         {
-            Categorias = new List<Categoria>();
+            Categorias = categorias;
             Descricao = descricao;
             Valor = valor;
             Data = data;
@@ -30,7 +25,11 @@ namespace e_Agenda.WinApp.Modulo_Despesa
 
         public override void Editar(Despesa entidade)
         {
-            throw new NotImplementedException();
+            Categorias = entidade.Categorias;
+            Descricao = entidade.Descricao;
+            Valor = entidade.Valor;
+            Data = entidade.Data;
+            FormaDePagamento = entidade.FormaDePagamento;
         }
 
         public override string[] Validar()
@@ -38,26 +37,32 @@ namespace e_Agenda.WinApp.Modulo_Despesa
             List<string> erros = new();
 
             if (Categorias.Count == 0)
-                erros.Add("É necessário incluir uma categoria");
+                erros.Add("É necessário incluir uma categoria.");
 
             else if (Descricao.Trim() == string.Empty)
-                erros.Add("É necessário incluir a descrição");
+                erros.Add("É necessário incluir a descrição.");
 
             else if (Valor <= 0)
-                erros.Add("O valor precisa ser número positivo");
+                erros.Add("O valor precisa ser número positivo.");
 
             else if (Data == default || Data.ToString() == string.Empty)
-                erros.Add("è necessário incluir a data da despesa");
+                erros.Add("è necessário incluir a data da despesa.");
 
-            else if ((int)FormaDePagamento == -1)
-                erros.Add("è necessário incluir a forma de pagamento");
+            else if (FormaDePagamento == FormaDePagamento.Nenhum)
+                erros.Add("É necessário incluir a forma de pagamento.");
 
             return erros.ToArray();
+        }
+
+        public override string ToString()
+        {
+            return String.Format($"Id: {Id}, {Descricao}, R${Valor}, {Data:d}, {string.Join(" - ",Categorias)}");
         }
     }
 
     public enum FormaDePagamento
     {
+        Nenhum,
         Cartao_Credito,
         Cartao_Debito,
         Dinheiro

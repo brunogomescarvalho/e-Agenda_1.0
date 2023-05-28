@@ -41,11 +41,11 @@ namespace e_Agenda.WinApp.ModuloCategoria
             {
                 return Convert.ToInt32(gridCategorias.SelectedRows[0].Cells[0].Value);
             }
-            catch(ArgumentOutOfRangeException)
+            catch (ArgumentOutOfRangeException)
             {
                 return -1;
             }
-        
+
         }
     }
 }

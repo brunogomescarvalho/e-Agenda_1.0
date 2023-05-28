@@ -29,41 +29,34 @@
         private void InitializeComponent()
         {
             labelCategoria = new Label();
-            textBox1 = new TextBox();
-            listDespesas = new ListBox();
+            textCategoria = new TextBox();
             btnFechar = new Button();
+            groupDespesas = new GroupBox();
+            listDespesas = new ListBox();
+            groupDespesas.SuspendLayout();
             SuspendLayout();
             // 
             // labelCategoria
             // 
             labelCategoria.AutoSize = true;
-            labelCategoria.Location = new Point(47, 39);
+            labelCategoria.Location = new Point(22, 39);
             labelCategoria.Name = "labelCategoria";
             labelCategoria.Size = new Size(77, 20);
             labelCategoria.TabIndex = 0;
             labelCategoria.Text = "Categoria:";
             // 
-            // textBox1
+            // textCategoria
             // 
-            textBox1.Location = new Point(137, 42);
-            textBox1.Name = "textBox1";
-            textBox1.ReadOnly = true;
-            textBox1.Size = new Size(354, 27);
-            textBox1.TabIndex = 1;
-            textBox1.TabStop = false;
-            // 
-            // listDespesas
-            // 
-            listDespesas.FormattingEnabled = true;
-            listDespesas.ItemHeight = 20;
-            listDespesas.Location = new Point(47, 111);
-            listDespesas.Name = "listDespesas";
-            listDespesas.Size = new Size(444, 304);
-            listDespesas.TabIndex = 2;
+            textCategoria.Location = new Point(112, 42);
+            textCategoria.Name = "textCategoria";
+            textCategoria.ReadOnly = true;
+            textCategoria.Size = new Size(577, 27);
+            textCategoria.TabIndex = 1;
+            textCategoria.TabStop = false;
             // 
             // btnFechar
             // 
-            btnFechar.Location = new Point(397, 442);
+            btnFechar.Location = new Point(595, 501);
             btnFechar.Name = "btnFechar";
             btnFechar.Size = new Size(94, 46);
             btnFechar.TabIndex = 3;
@@ -71,17 +64,39 @@
             btnFechar.UseVisualStyleBackColor = true;
             btnFechar.Click += btnFechar_Click;
             // 
+            // groupDespesas
+            // 
+            groupDespesas.Controls.Add(listDespesas);
+            groupDespesas.Location = new Point(25, 102);
+            groupDespesas.Name = "groupDespesas";
+            groupDespesas.Size = new Size(667, 363);
+            groupDespesas.TabIndex = 4;
+            groupDespesas.TabStop = false;
+            groupDespesas.Text = "Despesas";
+            // 
+            // listDespesas
+            // 
+            listDespesas.Dock = DockStyle.Fill;
+            listDespesas.Font = new Font("Microsoft Sans Serif", 10.2F, FontStyle.Regular, GraphicsUnit.Point);
+            listDespesas.FormattingEnabled = true;
+            listDespesas.ItemHeight = 20;
+            listDespesas.Location = new Point(3, 23);
+            listDespesas.Name = "listDespesas";
+            listDespesas.Size = new Size(661, 337);
+            listDespesas.TabIndex = 3;
+            // 
             // TelaVisualizarPorCategoria
             // 
             AutoScaleDimensions = new SizeF(8F, 20F);
             AutoScaleMode = AutoScaleMode.Font;
-            ClientSize = new Size(533, 515);
+            ClientSize = new Size(723, 580);
+            Controls.Add(groupDespesas);
             Controls.Add(btnFechar);
-            Controls.Add(listDespesas);
-            Controls.Add(textBox1);
+            Controls.Add(textCategoria);
             Controls.Add(labelCategoria);
             Name = "TelaVisualizarPorCategoria";
-            Text = "Visualizar Despesas Por Categoria";
+            Text = "Visualização de Despesas da Categoria";
+            groupDespesas.ResumeLayout(false);
             ResumeLayout(false);
             PerformLayout();
         }
@@ -89,8 +104,9 @@
         #endregion
 
         private Label labelCategoria;
-        private TextBox textBox1;
-        private ListBox listDespesas;
+        private TextBox textCategoria;
         private Button btnFechar;
+        private GroupBox groupDespesas;
+        private ListBox listDespesas;
     }
 }

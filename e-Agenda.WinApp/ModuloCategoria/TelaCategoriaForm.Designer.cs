@@ -67,13 +67,13 @@
             // 
             textCategoria.Location = new Point(106, 85);
             textCategoria.Name = "textCategoria";
-            textCategoria.Size = new Size(243, 27);
+            textCategoria.Size = new Size(292, 27);
             textCategoria.TabIndex = 2;
             // 
             // btnSalvar
             // 
             btnSalvar.DialogResult = DialogResult.OK;
-            btnSalvar.Location = new Point(178, 156);
+            btnSalvar.Location = new Point(211, 222);
             btnSalvar.Name = "btnSalvar";
             btnSalvar.Size = new Size(74, 44);
             btnSalvar.TabIndex = 3;
@@ -84,7 +84,7 @@
             // btnCancelar
             // 
             btnCancelar.DialogResult = DialogResult.Cancel;
-            btnCancelar.Location = new Point(275, 156);
+            btnCancelar.Location = new Point(308, 222);
             btnCancelar.Name = "btnCancelar";
             btnCancelar.Size = new Size(74, 44);
             btnCancelar.TabIndex = 4;
@@ -95,7 +95,7 @@
             // 
             AutoScaleDimensions = new SizeF(8F, 20F);
             AutoScaleMode = AutoScaleMode.Font;
-            ClientSize = new Size(410, 243);
+            ClientSize = new Size(410, 312);
             Controls.Add(btnCancelar);
             Controls.Add(btnSalvar);
             Controls.Add(textCategoria);

@@ -9,9 +9,11 @@ namespace e_Agenda.WinApp.Modulo_Despesa
         {
         }
 
-        public List<Despesa> ListarDespesasPorCategorias(int idCategoria)
+        public List<Despesa> ListarDespesasPorCategorias(Categoria Categoria)
         {
-            return registros.Where(c=>c.Id == idCategoria).ToList();
+          return (from n in registros
+                 where n.Categorias.Contains(Categoria) select n).ToList();
+           
         }
     }
 }

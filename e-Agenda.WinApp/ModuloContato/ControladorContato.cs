@@ -53,7 +53,7 @@ public class ControladorContato : ControladorBase
 
             if (opcaoSalvar == DialogResult.OK)
             {
-                contatoSelecionado = contatoForm.Contato;
+                contatoSelecionado.Editar(contatoForm.Contato);
 
                 repositorioContato.Editar(contatoSelecionado);
 
@@ -101,7 +101,7 @@ public class ControladorContato : ControladorBase
     {
         TelaPrincipal.Instancia.AlterarTextCadastro("Cadastro Contatos");
 
-        Configuracao = new Configuracao(
+        Configuracao ??= new Configuracao(
 
         "Inserir Contato",
         "Editar Contato",

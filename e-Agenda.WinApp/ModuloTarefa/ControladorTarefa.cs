@@ -241,11 +241,7 @@ public class ControladorTarefa:ControladorBase
     {
         TelaPrincipal.Instancia.AlterarTextCadastro("Cadastro Tarefas");
 
-        Configuracao = new Configuracao(
-
-        "Inserir Tarefa",
-        "Editar Tarefa",
-        "Excluir Tarefa");
+        Configuracao ??= new Configuracao("Inserir Tarefa", "Editar Tarefa", "Excluir Tarefa");
 
         Configuracao.ToolTipoFiltrar = "Filtrar Tarefas";
         Configuracao.BtnAddItemTarefaEnabled = true;

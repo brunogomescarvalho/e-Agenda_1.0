@@ -123,15 +123,16 @@
             controleMenu.Image = Properties.Resources.price_check_FILL0_wght200_GRAD0_opsz40;
             controleMenu.ImageScaling = ToolStripItemImageScaling.None;
             controleMenu.Name = "controleMenu";
-            controleMenu.Size = new Size(211, 46);
+            controleMenu.Size = new Size(244, 46);
             controleMenu.Text = "Controle";
+            controleMenu.Click += controleDespesaMenu_Click;
             // 
             // categoriasMenu
             // 
             categoriasMenu.Image = Properties.Resources.category_FILL0_wght200_GRAD0_opsz40;
             categoriasMenu.ImageScaling = ToolStripItemImageScaling.None;
             categoriasMenu.Name = "categoriasMenu";
-            categoriasMenu.Size = new Size(211, 46);
+            categoriasMenu.Size = new Size(244, 46);
             categoriasMenu.Text = "Categorias";
             categoriasMenu.Click += categoriasMenu_Click;
             // 

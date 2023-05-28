@@ -17,7 +17,9 @@ namespace e_Agenda.WinApp.ModuloCategoria
         {
             listDespesas.Items.Clear();
 
-            lista.ForEach(item => { listDespesas.Items.Add(item);});
+            lista.ForEach(item => { listDespesas.Items.Add(item); });
+
+            textCategoria.Text = lista[0].Categorias[0].ToString();
         }
 
         private void btnFechar_Click(object sender, EventArgs e)

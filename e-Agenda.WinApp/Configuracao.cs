@@ -7,7 +7,7 @@ namespace e_Agenda.WinApp
         public string ToolTipInserir { get; private set; }
         public string ToolTipEditar { get; private set; }
         public string ToolTipExcluir { get; private set; }
-        public string StatusLabel { get; private set; }
+        public string StatusLabel { get; private set; } = string.Empty;
 
         public string ToolTipAdicionarItemTarefa { get; set; } = string.Empty;
         public string ToolTipAtualizarTarefa { get; set; } = string.Empty;
@@ -19,7 +19,6 @@ namespace e_Agenda.WinApp
         public bool BtnExcluirEnabled { get; set; }
         public bool BtnAddItemTarefaEnabled { get; set; }
         public bool BtnAtualizarTarefaEnabled { get; set; }
-
         public bool BtnVisualizarEnabled { get; set; }
 
 
@@ -33,7 +32,6 @@ namespace e_Agenda.WinApp
             BtnAdicionarEnabled = true;
             BtnEditarEnabled = true;
             BtnExcluirEnabled = true;
-
 
         }
     }

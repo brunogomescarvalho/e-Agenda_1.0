@@ -1,9 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-
+﻿
 namespace e_Agenda.WinApp.ModuloCategoria
 {
     public class RepositorioCategoria : RepositorioBase<Categoria>
@@ -22,18 +17,19 @@ namespace e_Agenda.WinApp.ModuloCategoria
             return base.Cadastrar(entidade);
         }
 
-        public override bool Editar(Categoria categoria)
+        public override bool Editar(Categoria entidade)
         {
-            if (VerificarItemJaCadastrado(categoria) == false)
+            if (VerificarItemJaCadastrado(entidade) == false)
             {
                 return false;
             }
 
-            return base.Editar(categoria);
+            return base.Editar(entidade);
+
         }
         public bool VerificarItemJaCadastrado(Categoria entidade)
         {
-            if (registros.Any(i => i.Nome.TirarAcentosPalavra().ToLower() == entidade.Nome.TirarAcentosPalavra().ToLower()))
+            if (registros.Any(i => i.Nome.TirarAcentosPalavra().ToLower() == entidade.Nome.TirarAcentosPalavra().ToLower() && i.Id != entidade.Id))
             {
                 return false;
             }
