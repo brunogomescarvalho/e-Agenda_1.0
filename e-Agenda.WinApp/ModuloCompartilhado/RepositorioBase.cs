@@ -10,11 +10,13 @@ public abstract class RepositorioBase<TEntidade> where TEntidade : EntidadeBase<
         this.registros = registros;
     }
 
-    public void Cadastrar(TEntidade entidade)
+    public virtual bool Cadastrar(TEntidade entidade)
     {
         entidade.AtribuirId(++contador);
 
         registros.Add(entidade);
+
+        return true;
     }
 
     public List<TEntidade>Listar()
@@ -27,17 +29,24 @@ public abstract class RepositorioBase<TEntidade> where TEntidade : EntidadeBase<
         return registros.FirstOrDefault(x => x.Id == id)!;
     }
 
-    public void Editar(TEntidade entidade)
+    public virtual bool Editar(TEntidade entidade)
     {
         TEntidade buscada = BuscarPorId(entidade.Id);
 
         buscada.Editar(entidade);
+
+        return true;
     }
 
     public void Excluir(TEntidade entidade)
     {
-        TEntidade buscada = BuscarPorId(entidade.Id);
+        registros.Remove(entidade);
+    }
 
-        registros.Remove(buscada);
+    public void Excluir(int id)
+    {
+        TEntidade entidade = BuscarPorId(id);
+
+        registros.Remove(entidade);
     }
 }

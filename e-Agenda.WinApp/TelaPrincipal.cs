@@ -1,4 +1,6 @@
 
+using e_Agenda.WinApp.Modulo_Despesa;
+using e_Agenda.WinApp.ModuloCategoria;
 using e_Agenda.WinApp.ModuloCompromisso;
 using e_Agenda.WinApp.ModuloContato;
 using e_Agenda.WinApp.ModuloTarefa;
@@ -16,6 +18,10 @@ public partial class TelaPrincipal : Form
 
     private readonly RepositorioTarefa repositorioTarefa = new RepositorioTarefa(new List<Tarefa>());
 
+    private readonly RepositorioDespesa repositorioDespesa = new RepositorioDespesa(new List<Despesa>());
+
+    private readonly RepositorioCategoria repositorioCategoria = new RepositorioCategoria(new List<Categoria>());
+
     private static TelaPrincipal telaPrincipal = null!;
 
     public static TelaPrincipal Instancia { get => telaPrincipal; }
@@ -26,7 +32,7 @@ public partial class TelaPrincipal : Form
 
         telaPrincipal ??= this;
 
-        PopularRepositorios(); 
+        PopularRepositorios();
     }
 
     private void contatosMenuItem_Click(object sender, EventArgs e)
@@ -112,6 +118,24 @@ public partial class TelaPrincipal : Form
             ctrl.AtualizarItensTarefa();
     }
 
+    private void categoriasMenu_Click(object sender, EventArgs e)
+    {
+        controlador = new ControladorCategoria(repositorioCategoria, repositorioDespesa);
+
+        ConfigurarListagem(controlador);
+
+        ConfigurarToolTips(controlador);
+
+        ConfigurarBotoes(controlador);
+
+    }
+
+    private void btnVisualizar_Click(object sender, EventArgs e)
+    {
+        if (controlador is ControladorCategoria ctrl)
+            ctrl.VisualizarDespesasPorCategoria();
+    }
+
     private void ConfigurarBotoes(ControladorBase controlador)
     {
         btnFiltrar.Enabled = controlador.Configuracao.BtnFiltrarEnabled;
@@ -125,6 +149,8 @@ public partial class TelaPrincipal : Form
         btnAddItemTarefa.Enabled = controlador.Configuracao.BtnAddItemTarefaEnabled;
 
         btnAtualizarTarefa.Enabled = controlador.Configuracao.BtnAtualizarTarefaEnabled;
+
+        btnVisualizar.Enabled = controlador.Configuracao.BtnVisualizarEnabled;
 
     }
 
@@ -152,6 +178,8 @@ public partial class TelaPrincipal : Form
     {
         textTipoCadastro.Text = menssagem;
     }
+
+
 
 
 
@@ -203,5 +231,10 @@ public partial class TelaPrincipal : Form
 
         listCompromissos.ForEach(i => repositorioCompromisso.Cadastrar(i));
 
+        repositorioCategoria.Cadastrar(new Categoria("Alimentação"));
+        repositorioCategoria.Cadastrar(new Categoria("Combustível"));
+
     }
+
+
 }

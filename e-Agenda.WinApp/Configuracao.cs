@@ -20,6 +20,8 @@ namespace e_Agenda.WinApp
         public bool BtnAddItemTarefaEnabled { get; set; }
         public bool BtnAtualizarTarefaEnabled { get; set; }
 
+        public bool BtnVisualizarEnabled { get; set; }
+
 
 
         public Configuracao( string toolTipInserir, string toolTipEditar, string toolTipExcluir)
@@ -31,6 +33,7 @@ namespace e_Agenda.WinApp
             BtnAdicionarEnabled = true;
             BtnEditarEnabled = true;
             BtnExcluirEnabled = true;
+
 
         }
     }

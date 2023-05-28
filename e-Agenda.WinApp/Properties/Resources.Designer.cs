@@ -73,6 +73,16 @@ namespace e_Agenda.WinApp.Properties {
         /// <summary>
         ///   Consulta um recurso localizado do tipo System.Drawing.Bitmap.
         /// </summary>
+        internal static System.Drawing.Bitmap category_FILL0_wght200_GRAD0_opsz40 {
+            get {
+                object obj = ResourceManager.GetObject("category_FILL0_wght200_GRAD0_opsz40", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Consulta um recurso localizado do tipo System.Drawing.Bitmap.
+        /// </summary>
         internal static System.Drawing.Bitmap delete_FILL0_wght200_GRAD0_opsz40 {
             get {
                 object obj = ResourceManager.GetObject("delete_FILL0_wght200_GRAD0_opsz40", resourceCulture);
@@ -153,9 +163,39 @@ namespace e_Agenda.WinApp.Properties {
         /// <summary>
         ///   Consulta um recurso localizado do tipo System.Drawing.Bitmap.
         /// </summary>
+        internal static System.Drawing.Bitmap pageview_FILL0_wght200_GRAD0_opsz40 {
+            get {
+                object obj = ResourceManager.GetObject("pageview_FILL0_wght200_GRAD0_opsz40", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Consulta um recurso localizado do tipo System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap payments_FILL0_wght200_GRAD0_opsz40 {
+            get {
+                object obj = ResourceManager.GetObject("payments_FILL0_wght200_GRAD0_opsz40", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Consulta um recurso localizado do tipo System.Drawing.Bitmap.
+        /// </summary>
         internal static System.Drawing.Bitmap person_add_FILL0_wght200_GRAD0_opsz40 {
             get {
                 object obj = ResourceManager.GetObject("person_add_FILL0_wght200_GRAD0_opsz40", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Consulta um recurso localizado do tipo System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap price_check_FILL0_wght200_GRAD0_opsz40 {
+            get {
+                object obj = ResourceManager.GetObject("price_check_FILL0_wght200_GRAD0_opsz40", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
             }
         }

@@ -34,9 +34,12 @@
             contatosMenuItem = new ToolStripMenuItem();
             compromissosMenuItem = new ToolStripMenuItem();
             tarefasMenuItem = new ToolStripMenuItem();
+            despesasToolStripMenuItem = new ToolStripMenuItem();
+            controleMenu = new ToolStripMenuItem();
+            categoriasMenu = new ToolStripMenuItem();
             statusStrip = new StatusStrip();
             statusLabel = new ToolStripStatusLabel();
-            toolStrip1 = new ToolStrip();
+            barraFerramentas = new ToolStrip();
             btnAdicionar = new ToolStripMenuItem();
             btnEditar = new ToolStripMenuItem();
             btnExcluir = new ToolStripMenuItem();
@@ -46,11 +49,13 @@
             btnAddItemTarefa = new ToolStripButton();
             btnAtualizarTarefa = new ToolStripButton();
             toolStripSeparator3 = new ToolStripSeparator();
+            btnVisualizar = new ToolStripButton();
+            toolStripSeparator4 = new ToolStripSeparator();
             textTipoCadastro = new ToolStripLabel();
             painelRegistros = new Panel();
             menuStrip.SuspendLayout();
             statusStrip.SuspendLayout();
-            toolStrip1.SuspendLayout();
+            barraFerramentas.SuspendLayout();
             SuspendLayout();
             // 
             // menuStrip
@@ -69,7 +74,7 @@
             // 
             cadastroItem.BackColor = SystemColors.ActiveCaption;
             cadastroItem.BackgroundImageLayout = ImageLayout.None;
-            cadastroItem.DropDownItems.AddRange(new ToolStripItem[] { contatosMenuItem, compromissosMenuItem, tarefasMenuItem });
+            cadastroItem.DropDownItems.AddRange(new ToolStripItem[] { contatosMenuItem, compromissosMenuItem, tarefasMenuItem, despesasToolStripMenuItem });
             cadastroItem.Font = new Font("Segoe UI", 12F, FontStyle.Regular, GraphicsUnit.Point);
             cadastroItem.Image = Properties.Resources.menu_FILL0_wght200_GRAD0_opsz40;
             cadastroItem.ImageScaling = ToolStripItemImageScaling.None;
@@ -104,6 +109,32 @@
             tarefasMenuItem.Text = "Tarefas";
             tarefasMenuItem.Click += tarefasMenuItem_Click;
             // 
+            // despesasToolStripMenuItem
+            // 
+            despesasToolStripMenuItem.DropDownItems.AddRange(new ToolStripItem[] { controleMenu, categoriasMenu });
+            despesasToolStripMenuItem.Image = Properties.Resources.payments_FILL0_wght200_GRAD0_opsz40;
+            despesasToolStripMenuItem.ImageScaling = ToolStripItemImageScaling.None;
+            despesasToolStripMenuItem.Name = "despesasToolStripMenuItem";
+            despesasToolStripMenuItem.Size = new Size(248, 46);
+            despesasToolStripMenuItem.Text = "Despesas";
+            // 
+            // controleMenu
+            // 
+            controleMenu.Image = Properties.Resources.price_check_FILL0_wght200_GRAD0_opsz40;
+            controleMenu.ImageScaling = ToolStripItemImageScaling.None;
+            controleMenu.Name = "controleMenu";
+            controleMenu.Size = new Size(211, 46);
+            controleMenu.Text = "Controle";
+            // 
+            // categoriasMenu
+            // 
+            categoriasMenu.Image = Properties.Resources.category_FILL0_wght200_GRAD0_opsz40;
+            categoriasMenu.ImageScaling = ToolStripItemImageScaling.None;
+            categoriasMenu.Name = "categoriasMenu";
+            categoriasMenu.Size = new Size(211, 46);
+            categoriasMenu.Text = "Categorias";
+            categoriasMenu.Click += categoriasMenu_Click;
+            // 
             // statusStrip
             // 
             statusStrip.ImageScalingSize = new Size(20, 20);
@@ -120,21 +151,21 @@
             statusLabel.Size = new Size(86, 20);
             statusLabel.Text = "Bem Vindo!";
             // 
-            // toolStrip1
+            // barraFerramentas
             // 
-            toolStrip1.AutoSize = false;
-            toolStrip1.BackColor = SystemColors.GradientInactiveCaption;
-            toolStrip1.Font = new Font("Segoe UI", 12F, FontStyle.Regular, GraphicsUnit.Point);
-            toolStrip1.ImageScalingSize = new Size(24, 24);
-            toolStrip1.Items.AddRange(new ToolStripItem[] { btnAdicionar, btnEditar, btnExcluir, toolStripSeparator1, btnFiltrar, toolStripSeparator2, btnAddItemTarefa, btnAtualizarTarefa, toolStripSeparator3, textTipoCadastro });
-            toolStrip1.LayoutStyle = ToolStripLayoutStyle.Flow;
-            toolStrip1.Location = new Point(0, 48);
-            toolStrip1.Name = "toolStrip1";
-            toolStrip1.Padding = new Padding(0, 5, 1, 0);
-            toolStrip1.Size = new Size(982, 54);
-            toolStrip1.Stretch = true;
-            toolStrip1.TabIndex = 2;
-            toolStrip1.Text = "toolStrip1";
+            barraFerramentas.AutoSize = false;
+            barraFerramentas.BackColor = SystemColors.GradientInactiveCaption;
+            barraFerramentas.Font = new Font("Segoe UI", 12F, FontStyle.Regular, GraphicsUnit.Point);
+            barraFerramentas.ImageScalingSize = new Size(24, 24);
+            barraFerramentas.Items.AddRange(new ToolStripItem[] { btnAdicionar, btnEditar, btnExcluir, toolStripSeparator1, btnFiltrar, toolStripSeparator2, btnAddItemTarefa, btnAtualizarTarefa, toolStripSeparator3, btnVisualizar, toolStripSeparator4, textTipoCadastro });
+            barraFerramentas.LayoutStyle = ToolStripLayoutStyle.Flow;
+            barraFerramentas.Location = new Point(0, 48);
+            barraFerramentas.Name = "barraFerramentas";
+            barraFerramentas.Padding = new Padding(0, 5, 1, 0);
+            barraFerramentas.Size = new Size(982, 54);
+            barraFerramentas.Stretch = true;
+            barraFerramentas.TabIndex = 2;
+            barraFerramentas.Text = "toolStrip1";
             // 
             // btnAdicionar
             // 
@@ -219,11 +250,30 @@
             toolStripSeparator3.Name = "toolStripSeparator3";
             toolStripSeparator3.Size = new Size(6, 23);
             // 
+            // btnVisualizar
+            // 
+            btnVisualizar.DisplayStyle = ToolStripItemDisplayStyle.Image;
+            btnVisualizar.Enabled = false;
+            btnVisualizar.Image = Properties.Resources.pageview_FILL0_wght200_GRAD0_opsz40;
+            btnVisualizar.ImageScaling = ToolStripItemImageScaling.None;
+            btnVisualizar.ImageTransparentColor = Color.Magenta;
+            btnVisualizar.Name = "btnVisualizar";
+            btnVisualizar.Size = new Size(44, 44);
+            btnVisualizar.Click += btnVisualizar_Click;
+            // 
+            // toolStripSeparator4
+            // 
+            toolStripSeparator4.Name = "toolStripSeparator4";
+            toolStripSeparator4.Size = new Size(6, 23);
+            // 
             // textTipoCadastro
             // 
+            textTipoCadastro.Font = new Font("Microsoft Sans Serif", 11F, FontStyle.Regular, GraphicsUnit.Point);
             textTipoCadastro.Margin = new Padding(10, 5, 0, 1);
             textTipoCadastro.Name = "textTipoCadastro";
-            textTipoCadastro.Size = new Size(0, 0);
+            textTipoCadastro.Padding = new Padding(0, 6, 0, 0);
+            textTipoCadastro.Size = new Size(94, 30);
+            textTipoCadastro.Text = "e-Agenda";
             // 
             // painelRegistros
             // 
@@ -239,7 +289,7 @@
             AutoScaleDimensions = new SizeF(8F, 20F);
             AutoScaleMode = AutoScaleMode.Font;
             ClientSize = new Size(982, 571);
-            Controls.Add(toolStrip1);
+            Controls.Add(barraFerramentas);
             Controls.Add(statusStrip);
             Controls.Add(menuStrip);
             Controls.Add(painelRegistros);
@@ -253,8 +303,8 @@
             menuStrip.PerformLayout();
             statusStrip.ResumeLayout(false);
             statusStrip.PerformLayout();
-            toolStrip1.ResumeLayout(false);
-            toolStrip1.PerformLayout();
+            barraFerramentas.ResumeLayout(false);
+            barraFerramentas.PerformLayout();
             ResumeLayout(false);
             PerformLayout();
         }
@@ -267,7 +317,7 @@
         private ToolStripMenuItem compromissosMenuItem;
         private StatusStrip statusStrip;
         private ToolStripStatusLabel statusLabel;
-        private ToolStrip toolStrip1;
+        private ToolStrip barraFerramentas;
         private ToolStripMenuItem btnAdicionar;
         private ToolStripMenuItem btnEditar;
         private ToolStripMenuItem btnExcluir;
@@ -280,5 +330,10 @@
         private ToolStripSeparator toolStripSeparator2;
         private ToolStripSeparator toolStripSeparator3;
         private ToolStripLabel textTipoCadastro;
+        private ToolStripMenuItem despesasToolStripMenuItem;
+        private ToolStripMenuItem controleMenu;
+        private ToolStripMenuItem categoriasMenu;
+        private ToolStripButton btnVisualizar;
+        private ToolStripSeparator toolStripSeparator4;
     }
 }

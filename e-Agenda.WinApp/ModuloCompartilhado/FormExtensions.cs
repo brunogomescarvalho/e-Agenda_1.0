@@ -9,7 +9,7 @@ namespace e_Agenda.WinApp.ModuloCompartilhado
                 form.ShowIcon = false;
                 form.ShowInTaskbar = false;
                 form.FormBorderStyle = FormBorderStyle.FixedDialog;
-                form.StartPosition = FormStartPosition.CenterScreen;
+                form.StartPosition = FormStartPosition.CenterParent;
                 form.MaximizeBox = false;
                 form.MinimizeBox = false;
             }
