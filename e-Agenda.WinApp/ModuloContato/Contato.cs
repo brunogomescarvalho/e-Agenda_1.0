@@ -1,6 +1,8 @@
 ﻿using System.Text.RegularExpressions;
 
 namespace e_Agenda.WinApp.ModuloContato;
+
+[Serializable]
 public class Contato : EntidadeBase<Contato>
 {
     public string Nome { get; set; }

@@ -2,6 +2,7 @@
 
 namespace e_Agenda.WinApp.Modulo_Despesa
 {
+    [Serializable]
     public class Despesa : EntidadeBase<Despesa>
     {
         public string Descricao { get; set; }

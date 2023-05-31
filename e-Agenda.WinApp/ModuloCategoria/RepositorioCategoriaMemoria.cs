@@ -1,9 +1,9 @@
 ﻿
 namespace e_Agenda.WinApp.ModuloCategoria
 {
-    public class RepositorioCategoria : RepositorioBase<Categoria>
+    public class RepositorioCategoriaMemoria : RepositorioBaseMemoria<Categoria>,IRepositorioCategoria
     {
-        public RepositorioCategoria(List<Categoria> registros) : base(registros)
+        public RepositorioCategoriaMemoria(List<Categoria> registros) : base(registros)
         {
         }
 

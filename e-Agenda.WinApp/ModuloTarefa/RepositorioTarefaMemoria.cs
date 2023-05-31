@@ -1,7 +1,7 @@
 ﻿namespace e_Agenda.WinApp.ModuloTarefa;
-public class RepositorioTarefa : RepositorioBase<Tarefa>
+public class RepositorioTarefaMemoria : RepositorioBaseMemoria<Tarefa>, IRepositorioTarefa
 {
-    public RepositorioTarefa(List<Tarefa> registros) : base(registros) 
+    public RepositorioTarefaMemoria(List<Tarefa> registros) : base(registros) 
     {
        
     }
@@ -21,13 +21,12 @@ public class RepositorioTarefa : RepositorioBase<Tarefa>
         return OrdenadarTarefas(registros.FindAll(i => i.EstaConcluida.Equals(true)));
     }
 
-    private static List<Tarefa> OrdenadarTarefas(List<Tarefa> tarefas)
+    public List<Tarefa> OrdenadarTarefas(List<Tarefa> tarefas)
     {
         tarefas.Sort(new OrganizadorDePrioridade());
 
         return tarefas;
     }
 
-
-   
+    
 }

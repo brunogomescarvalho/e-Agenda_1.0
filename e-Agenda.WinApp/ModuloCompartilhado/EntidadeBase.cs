@@ -1,5 +1,6 @@
 ﻿namespace e_Agenda.WinApp.ModuloCompartilhado;
 
+[Serializable]
 public abstract class EntidadeBase<TEntidade>
 {
     public int Id { get; private set; }

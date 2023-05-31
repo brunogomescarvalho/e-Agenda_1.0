@@ -1,11 +1,11 @@
 ﻿namespace e_Agenda.WinApp.ModuloCompartilhado;
-public abstract class RepositorioBase<TEntidade> where TEntidade : EntidadeBase<TEntidade>
+public abstract class RepositorioBaseMemoria<TEntidade> : IRepositorioBase<TEntidade> where TEntidade : EntidadeBase<TEntidade>
 {
     protected List<TEntidade> registros;
 
     private int contador = 0;
 
-    public RepositorioBase(List<TEntidade> registros)
+    public RepositorioBaseMemoria(List<TEntidade> registros)
     {
         this.registros = registros;
     }

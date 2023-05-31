@@ -4,10 +4,11 @@ namespace e_Agenda.WinApp.ModuloContato;
 
 public class ControladorContato : ControladorBase
 {
-    private RepositorioContato repositorioContato;
+    private IRepositorioContato repositorioContato;
+
     private TabelaContatoControl? gridContato;
 
-    public ControladorContato(RepositorioContato repositorioContato)
+    public ControladorContato(IRepositorioContato repositorioContato)
     {
         this.repositorioContato = repositorioContato;
         ConfigurarTela();

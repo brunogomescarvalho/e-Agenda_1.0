@@ -3,9 +3,9 @@ using e_Agenda.WinApp.ModuloCategoria;
 
 namespace e_Agenda.WinApp.Modulo_Despesa
 {
-    public class RepositorioDespesa : RepositorioBase<Despesa>
+    public class RepositorioDespesaMemoria : RepositorioBaseMemoria<Despesa>,IRepositorioDespesa
     {
-        public RepositorioDespesa(List<Despesa> registros) : base(registros)
+        public RepositorioDespesaMemoria(List<Despesa> registros) : base(registros)
         {
         }
 

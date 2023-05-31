@@ -5,13 +5,13 @@ namespace e_Agenda.WinApp.ModuloCategoria
 {
     public class ControladorCategoria : ControladorBase
     {
-        private RepositorioCategoria repositorioCategoria;
+        private IRepositorioCategoria repositorioCategoria;
 
-        private RepositorioDespesa repositorioDespesa;
+        private IRepositorioDespesa repositorioDespesa;
 
         private TabelaCategoriasControl tabelaCategoria = null!;
 
-        public ControladorCategoria(RepositorioCategoria repositorioCategoria, RepositorioDespesa repositorioDespesa)
+        public ControladorCategoria(IRepositorioCategoria repositorioCategoria, IRepositorioDespesa repositorioDespesa)
         {
             this.repositorioCategoria = repositorioCategoria;
 

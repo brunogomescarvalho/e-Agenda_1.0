@@ -1,6 +1,8 @@
 ﻿using e_Agenda.WinApp.ModuloContato;
 
 namespace e_Agenda.WinApp.ModuloCompromisso;
+
+[Serializable]
 public partial class Compromisso : EntidadeBase<Compromisso>
 {
     public Contato? Contato { get; private set; }

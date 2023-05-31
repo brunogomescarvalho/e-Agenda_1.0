@@ -1,6 +1,7 @@
 ﻿
 namespace e_Agenda.WinApp.ModuloTarefa;
 
+[Serializable]
 public class Tarefa : EntidadeBase<Tarefa>
 {
     public Prioridade Prioridade { get; private set; }

@@ -3,9 +3,9 @@ public class ControladorTarefa:ControladorBase
 {
     private TabelaTarefasControl? listagemTarefasControl;
 
-    private RepositorioTarefa repositorioTarefa;
+    private IRepositorioTarefa repositorioTarefa;
 
-    public ControladorTarefa(RepositorioTarefa repositorioTarefa)
+    public ControladorTarefa(IRepositorioTarefa repositorioTarefa)
     {
         this.repositorioTarefa = repositorioTarefa;
 
@@ -31,8 +31,6 @@ public class ControladorTarefa:ControladorBase
         formTarefa.Tarefa = tarefa;
 
         DialogResult opcao = formTarefa.ShowDialog();
-
-       
 
         if (opcao == DialogResult.OK)
         {
