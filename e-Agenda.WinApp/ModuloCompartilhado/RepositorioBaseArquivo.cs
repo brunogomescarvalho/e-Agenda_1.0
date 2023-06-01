@@ -53,9 +53,7 @@ namespace e_Agenda.WinApp.ModuloCompartilhado
 
         public void Excluir(int id)
         {
-            TEntidade contato = BuscarPorId(id);
-
-            registros.Remove(contato);
+            registros.Remove(BuscarPorId(id));
 
             GravarDadosEmArquivo();
         }
@@ -73,19 +71,12 @@ namespace e_Agenda.WinApp.ModuloCompartilhado
 
         private void CarregarDadosJson()
         {
-            //JsonSerializerOptions options = new JsonSerializerOptions();
-
-            //options.IncludeFields = true;
-
-
             string file = File.ReadAllText(NOME_ARQUIVO);
 
             if(file.Length > 10)
             {
                 registros = JsonSerializer.Deserialize<List<TEntidade>>(file)!;
             }
-
-
         }
 
         private void CarregarDadosXML()

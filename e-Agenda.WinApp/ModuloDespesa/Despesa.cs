@@ -5,19 +5,19 @@ namespace e_Agenda.WinApp.ModuloDespesa
     [Serializable]
     public class Despesa : EntidadeBase<Despesa>
     {
-        public string Descricao { get;  set; }
+        public string Descricao { get; set; }
 
-        public decimal Valor { get;  set; }
+        public decimal Valor { get; set; }
 
-        public DateTime Data { get;  set; }
+        public DateTime Data { get; set; }
 
-        public FormaDePagamento FormaDePagamento { get;  set; }
+        public FormaDePagamento FormaDePagamento { get; set; }
 
-        public List<Categoria> Categorias { get;  set; }
+        public List<Categoria> Categorias { get; set; }
 
         public Despesa() { }
 
-        public Despesa(string descricao, decimal valor, DateTime data, FormaDePagamento formaDePagamento,List<Categoria> categorias)
+        public Despesa(string descricao, decimal valor, DateTime data, FormaDePagamento formaDePagamento, List<Categoria> categorias)
         {
             Categorias = categorias;
             Descricao = descricao;
@@ -59,7 +59,7 @@ namespace e_Agenda.WinApp.ModuloDespesa
 
         public override string ToString()
         {
-            return String.Format($"Id: {Id}, {Descricao}, R${Valor}, {Data:d}, {string.Join(" - ",Categorias)}");
+            return String.Format($"Id: {Id}, {Descricao}, R${Valor}, {Data:d}, {string.Join(" - ", Categorias)}");
         }
     }
 

@@ -33,7 +33,6 @@ public partial class TelaPrincipal : Form
         telaPrincipal ??= this;
     }
 
-  
 
     private void ConfigurarListagem(ControladorBase controladorBase)
     {
