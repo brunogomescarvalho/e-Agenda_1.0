@@ -1,4 +1,4 @@
-﻿namespace e_Agenda.WinApp.Modulo_Despesa
+﻿namespace e_Agenda.WinApp.ModuloDespesa
 {
     partial class TelaDespesaForm
     {
@@ -129,6 +129,7 @@
             // textValor
             // 
             textValor.Location = new Point(142, 128);
+            textValor.Maximum = new decimal(new int[] { 100000, 0, 0, 0 });
             textValor.Name = "textValor";
             textValor.Size = new Size(150, 27);
             textValor.TabIndex = 8;

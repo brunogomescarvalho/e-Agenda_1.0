@@ -1,5 +1,5 @@
 
-using e_Agenda.WinApp.Modulo_Despesa;
+using e_Agenda.WinApp.ModuloDespesa;
 using e_Agenda.WinApp.ModuloCategoria;
 using e_Agenda.WinApp.ModuloCompromisso;
 using e_Agenda.WinApp.ModuloContato;
@@ -32,6 +32,8 @@ public partial class TelaPrincipal : Form
 
         telaPrincipal ??= this;
     }
+
+  
 
     private void ConfigurarListagem(ControladorBase controladorBase)
     {

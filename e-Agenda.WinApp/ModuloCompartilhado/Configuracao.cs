@@ -1,5 +1,4 @@
-﻿
-namespace e_Agenda.WinApp
+﻿namespace e_Agenda.WinApp.ModuloCompartilhado
 {
     public class Configuracao
     {
@@ -23,7 +22,7 @@ namespace e_Agenda.WinApp
 
 
 
-        public Configuracao( string toolTipInserir, string toolTipEditar, string toolTipExcluir)
+        public Configuracao(string toolTipInserir, string toolTipEditar, string toolTipExcluir)
         {
             ToolTipInserir = toolTipInserir;
             ToolTipEditar = toolTipEditar;

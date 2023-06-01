@@ -5,12 +5,14 @@ namespace e_Agenda.WinApp.ModuloCompromisso;
 [Serializable]
 public partial class Compromisso : EntidadeBase<Compromisso>
 {
-    public Contato? Contato { get; private set; }
-    public string Assunto { get; private set; }
-    public string Local { get; private set; }
-    public DateTime Data { get; private set; }
-    public DateTime HoraInicio { get; private set; }
-    public DateTime HoraTermino { get; private set; }
+    public Contato? Contato { get; set; }
+    public string Assunto { get; set; }
+    public string Local { get; set; }
+    public DateTime Data { get; set; }
+    public DateTime HoraInicio { get; set; }
+    public DateTime HoraTermino { get; set; }
+
+    public Compromisso() { }
 
     public Compromisso(Contato? contato, string assunto, string local, DateTime data, DateTime horaInicio, DateTime horaTermino)
     {

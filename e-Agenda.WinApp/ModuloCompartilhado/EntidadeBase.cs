@@ -1,9 +1,12 @@
-﻿namespace e_Agenda.WinApp.ModuloCompartilhado;
+﻿using System.Text.Json.Serialization;
+
+namespace e_Agenda.WinApp.ModuloCompartilhado;
 
 [Serializable]
 public abstract class EntidadeBase<TEntidade>
 {
-    public int Id { get; private set; }
+   
+    public int Id { get; set; }
 
     public void AtribuirId(int id)
     {

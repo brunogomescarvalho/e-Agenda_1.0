@@ -1,4 +1,4 @@
-﻿namespace e_Agenda.WinApp.Modulo_Despesa
+﻿namespace e_Agenda.WinApp.ModuloDespesa
 {
     partial class TabelaDespesasControl
     {

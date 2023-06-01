@@ -7,7 +7,7 @@ namespace e_Agenda.WinApp.ModuloTarefa
         {
         }
 
-        protected override string NOME_ARQUIVO => @"C:\arquivosProjetos\e-Agenda\Tarefas_eAgenda.bin";
+        protected override string NOME_ARQUIVO => "ModuloTarefa\\tarefas.json";
 
         public List<Tarefa> ObterTodasTarefas()
         {

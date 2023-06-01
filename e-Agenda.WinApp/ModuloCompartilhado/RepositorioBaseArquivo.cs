@@ -1,10 +1,12 @@
 ﻿using System.Runtime.Serialization.Formatters.Binary;
+using System.Text.Json;
+
+using System.Xml.Serialization;
 
 namespace e_Agenda.WinApp.ModuloCompartilhado
 {
     public abstract class RepositorioBaseArquivo<TEntidade> : IRepositorioBase<TEntidade> where TEntidade : EntidadeBase<TEntidade>
     {
-
         protected abstract string NOME_ARQUIVO { get; }
 
         protected List<TEntidade> registros;
@@ -45,6 +47,8 @@ namespace e_Agenda.WinApp.ModuloCompartilhado
         public void Excluir(TEntidade entidade)
         {
             registros.Remove(entidade);
+
+            GravarDadosEmArquivo();
         }
 
         public void Excluir(int id)
@@ -52,26 +56,60 @@ namespace e_Agenda.WinApp.ModuloCompartilhado
             TEntidade contato = BuscarPorId(id);
 
             registros.Remove(contato);
+
+            GravarDadosEmArquivo();
         }
 
-        private void CarregarDadosDoArquivo()
+        private void GravarDadosJson()
         {
-            BinaryFormatter serializador = new BinaryFormatter();
+            JsonSerializerOptions options = new JsonSerializerOptions();
+
+            options.WriteIndented = true;
+
+            string json = JsonSerializer.Serialize(registros);
+
+            File.WriteAllText(NOME_ARQUIVO, json);
+        }
+
+        private void CarregarDadosJson()
+        {
+            //JsonSerializerOptions options = new JsonSerializerOptions();
+
+            //options.IncludeFields = true;
+
+
+            string file = File.ReadAllText(NOME_ARQUIVO);
+
+            if(file.Length > 10)
+            {
+                registros = JsonSerializer.Deserialize<List<TEntidade>>(file)!;
+            }
+
+
+        }
+
+        private void CarregarDadosXML()
+        {
+            //  BinaryFormatter serializador = new BinaryFormatter();
+
+            XmlSerializer serializador = new XmlSerializer(typeof(List<TEntidade>));
 
             byte[] tarefaEmBytes = File.ReadAllBytes(NOME_ARQUIVO);
 
             MemoryStream tarefaStream = new MemoryStream(tarefaEmBytes);
 
-            registros = (List<TEntidade>)serializador.Deserialize(tarefaStream);
+            registros = (List<TEntidade>)serializador.Deserialize(tarefaStream)!;
 
             GravarDadosEmArquivo();
 
             AtualizarContador();
         }
 
-        private void GravarDadosEmArquivo()
+        private void GravarDadosXML()
         {
-            BinaryFormatter serializador = new BinaryFormatter();
+            // BinaryFormatter serializador = new BinaryFormatter();
+
+            XmlSerializer serializador = new XmlSerializer(typeof(List<TEntidade>));
 
             MemoryStream contatoStream = new MemoryStream();
 
@@ -82,14 +120,26 @@ namespace e_Agenda.WinApp.ModuloCompartilhado
             File.WriteAllBytes(NOME_ARQUIVO, tarefasEmBytes);
         }
 
+        public List<TEntidade> Listar()
+        {
+            return registros;
+        }
+
         private void AtualizarContador()
         {
             contador = registros.Max(x => x.Id);
         }
 
-        public List<TEntidade> Listar()
+        private void GravarDadosEmArquivo()
         {
-            return registros;
+            GravarDadosJson();
         }
+
+        private void CarregarDadosDoArquivo()
+        {
+            CarregarDadosJson();
+        }
+
+        
     }
 }

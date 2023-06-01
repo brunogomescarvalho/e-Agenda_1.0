@@ -1,6 +1,6 @@
 ﻿using e_Agenda.WinApp.ModuloCategoria;
 
-namespace e_Agenda.WinApp.Modulo_Despesa
+namespace e_Agenda.WinApp.ModuloDespesa
 {
     public class RepositorioDespesaArquivo : RepositorioBaseArquivo<Despesa>,IRepositorioDespesa
     {
@@ -8,7 +8,7 @@ namespace e_Agenda.WinApp.Modulo_Despesa
         {
         }
 
-        protected override string NOME_ARQUIVO => @"C:\arquivosProjetos\e-Agenda\Despesas_eAgenda.bin";
+        protected override string NOME_ARQUIVO => "ModuloDespesa\\despesas.json";
 
         public List<Despesa> ListarDespesasPorCategorias(Categoria Categoria)
         {

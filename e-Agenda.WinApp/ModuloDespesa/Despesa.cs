@@ -1,19 +1,21 @@
 ﻿using e_Agenda.WinApp.ModuloCategoria;
 
-namespace e_Agenda.WinApp.Modulo_Despesa
+namespace e_Agenda.WinApp.ModuloDespesa
 {
     [Serializable]
     public class Despesa : EntidadeBase<Despesa>
     {
-        public string Descricao { get; set; }
+        public string Descricao { get;  set; }
 
-        public decimal Valor { get; set; }
+        public decimal Valor { get;  set; }
 
-        public DateTime Data { get; set; }
+        public DateTime Data { get;  set; }
 
-        public FormaDePagamento FormaDePagamento { get; set; }
+        public FormaDePagamento FormaDePagamento { get;  set; }
 
-        public List<Categoria> Categorias { get; set; }
+        public List<Categoria> Categorias { get;  set; }
+
+        public Despesa() { }
 
         public Despesa(string descricao, decimal valor, DateTime data, FormaDePagamento formaDePagamento,List<Categoria> categorias)
         {

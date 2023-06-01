@@ -7,6 +7,8 @@ public class ItemTarefa
 
     public bool Concluido { get; private set; }
 
+    public ItemTarefa() { }
+
     public ItemTarefa(string descricao)
     {
         Descricao = descricao;

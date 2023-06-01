@@ -7,7 +7,7 @@ namespace e_Agenda.WinApp.ModuloCompromisso
         {
         }
 
-        protected override string NOME_ARQUIVO => @"C:\arquivosProjetos\e-Agenda\Compromissos_eAgenda.bin";
+        protected override string NOME_ARQUIVO => "ModuloCompromisso\\compromissos.json";
 
 
         public bool VerificarHorarioDisponivel(Compromisso c)

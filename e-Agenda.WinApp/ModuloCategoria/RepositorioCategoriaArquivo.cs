@@ -7,7 +7,7 @@ namespace e_Agenda.WinApp.ModuloCategoria
         {
         }
 
-        protected override string NOME_ARQUIVO => @"C:\arquivosProjetos\e-Agenda\Categorias_eAgenda.bin";
+        protected override string NOME_ARQUIVO => "ModuloCategoria\\categorias.json";
 
         public override bool Cadastrar(Categoria entidade)
         {

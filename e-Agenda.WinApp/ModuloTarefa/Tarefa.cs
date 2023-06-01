@@ -4,19 +4,21 @@ namespace e_Agenda.WinApp.ModuloTarefa;
 [Serializable]
 public class Tarefa : EntidadeBase<Tarefa>
 {
-    public Prioridade Prioridade { get; private set; }
+    public Prioridade Prioridade { get; set; }
 
-    public List<ItemTarefa> Itens { get; private set; }
+    public List<ItemTarefa> Itens { get; set; }
 
-    public string Titulo { get; private set; }
+    public string Titulo { get; set; }
 
-    public DateTime DataCriacao { get; private set; }
+    public DateTime DataCriacao { get; set; }
 
-    public DateTime? DataConclusao { get; private set; }
+    public DateTime? DataConclusao { get; set; }
 
-    public decimal PorcentagemConcluida { get; private set; }
+    public decimal PorcentagemConcluida { get; set; }
 
     public bool EstaConcluida { get => PorcentagemConcluida == 100; }
+
+    public Tarefa() { }
 
     public Tarefa(Prioridade prioridade, string titulo)
     {
@@ -27,7 +29,7 @@ public class Tarefa : EntidadeBase<Tarefa>
         Titulo = titulo;
 
         DataCriacao = DateTime.Now;
-        
+
     }
 
     public void AdicionarItem(ItemTarefa item)
@@ -43,7 +45,7 @@ public class Tarefa : EntidadeBase<Tarefa>
 
         decimal qtdDeItens = Itens.Count;
 
-        PorcentagemConcluida = Math.Round(finalizados/qtdDeItens * 100, 2);
+        PorcentagemConcluida = Math.Round(finalizados / qtdDeItens * 100, 2);
 
         if (EstaConcluida)
         {
@@ -100,5 +102,5 @@ public class Tarefa : EntidadeBase<Tarefa>
         return erros.ToArray();
     }
 
-    
+
 }

@@ -3,7 +3,9 @@
     [Serializable]
     public class Categoria : EntidadeBase<Categoria>
     {
-        public string Nome { get; private set; }
+        public string Nome { get; set; }
+
+        public Categoria() { }
 
         public Categoria(string categoria)
         {

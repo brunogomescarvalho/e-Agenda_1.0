@@ -1,5 +1,5 @@
 ﻿
-namespace e_Agenda.WinApp.Modulo_Despesa
+namespace e_Agenda.WinApp.ModuloDespesa
 {
     public partial class TabelaDespesasControl : UserControl
     {

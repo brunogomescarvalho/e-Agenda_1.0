@@ -5,15 +5,17 @@ namespace e_Agenda.WinApp.ModuloContato;
 [Serializable]
 public class Contato : EntidadeBase<Contato>
 {
-    public string Nome { get; set; }
+    public string Nome { get;  set; }
 
-    public string Email { get; set; }
+    public string Email { get;  set; }
 
-    public string Telefone { get; set; }
+    public string Telefone { get;  set; }
 
-    public string Empresa { get; set; }
+    public string Empresa { get;  set; }
 
-    public string Cargo { get; set; }
+    public string Cargo { get;  set; }
+
+    public Contato() { }
 
 
     public Contato(string nome, string email, string telefone, string empresa, string cargo)
@@ -25,7 +27,7 @@ public class Contato : EntidadeBase<Contato>
         Cargo = cargo;
     }
 
-   
+
     public override void Editar(Contato contato)
     {
         Nome = contato.Nome;
@@ -42,7 +44,7 @@ public class Contato : EntidadeBase<Contato>
         if (string.IsNullOrEmpty(Nome))
             erros.Add("Preencha o campo nome");
 
-       else if (string.IsNullOrEmpty(Email))
+        else if (string.IsNullOrEmpty(Email))
             erros.Add("Preencha o campo e-mail");
 
         else if (!EmailEhValido(Email))

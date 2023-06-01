@@ -5,7 +5,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace e_Agenda.WinApp.Modulo_Despesa
+namespace e_Agenda.WinApp.ModuloDespesa
 {
     public interface IRepositorioDespesa : IRepositorioBase<Despesa>
     {
