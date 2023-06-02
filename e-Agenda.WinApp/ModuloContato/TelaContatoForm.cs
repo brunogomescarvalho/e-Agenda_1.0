@@ -1,4 +1,6 @@
 ﻿
+using e_Agenda.Dominio.ModuloContato;
+
 namespace e_Agenda.WinApp.ModuloContato
 {
     public partial class TelaContatoForm : Form

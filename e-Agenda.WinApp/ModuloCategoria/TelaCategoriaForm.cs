@@ -1,4 +1,6 @@
 ﻿
+using e_Agenda.Dominio.ModuloCategoria;
+
 namespace e_Agenda.WinApp.ModuloCategoria
 {
     public partial class TelaCategoriaForm : Form

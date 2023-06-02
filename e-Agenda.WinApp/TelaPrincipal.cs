@@ -1,10 +1,21 @@
 
-using e_Agenda.WinApp.ModuloDespesa;
+
+using e_Agenda.Dominio.ModuloCategoria;
+using e_Agenda.Dominio.ModuloCompromisso;
+using e_Agenda.Dominio.ModuloContato;
+using e_Agenda.Dominio.ModuloDespesa;
+using e_Agenda.Dominio.ModuloTarefa;
+using e_Agenda.InfraDados.ModuloCategoria;
+using e_Agenda.InfraDados.ModuloCompartilhado;
+using e_Agenda.InfraDados.ModuloCompromisso;
+using e_Agenda.InfraDados.ModuloContato;
+using e_Agenda.InfraDados.ModuloDespesa;
+using e_Agenda.InfraDados.ModuloTarefa;
 using e_Agenda.WinApp.ModuloCategoria;
 using e_Agenda.WinApp.ModuloCompromisso;
 using e_Agenda.WinApp.ModuloContato;
+using e_Agenda.WinApp.ModuloDespesa;
 using e_Agenda.WinApp.ModuloTarefa;
-
 
 namespace e_Agenda.WinApp;
 
