@@ -15,7 +15,7 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Apresentacao", "Apresentaca
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "e_agenda.InfraDados.Arquivo", "e_agenda.InfraDados\e_agenda.InfraDados.Arquivo.csproj", "{C5F45115-7F0A-43BE-82A9-4EAAD44DC310}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "e_agenda.InfraData.Memoria", "e_Agenda.InfraData.Memoria\e_agenda.InfraData.Memoria.csproj", "{77B12EE2-969F-477B-97DE-3A0D3CCFE0C7}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "e_agenda.InfraDados.Memoria", "e_Agenda.InfraData.Memoria\e_agenda.InfraDados.Memoria.csproj", "{77B12EE2-969F-477B-97DE-3A0D3CCFE0C7}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
