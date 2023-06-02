@@ -3,12 +3,9 @@ namespace e_Agenda.WinApp.ModuloCompromisso
 {
     public class RepositorioCompromissoArquivo : RepositorioBaseArquivo<Compromisso>,IRepositorioCompromisso
     {
-        public RepositorioCompromissoArquivo(List<Compromisso> registros) : base(registros)
+        public RepositorioCompromissoArquivo(ContextoDados contexto) : base(contexto)
         {
         }
-
-        protected override string NOME_ARQUIVO => "ModuloCompromisso\\compromissos.json";
-
 
         public bool VerificarHorarioDisponivel(Compromisso c)
         {
@@ -33,6 +30,11 @@ namespace e_Agenda.WinApp.ModuloCompromisso
         public List<Compromisso> BuscarPorDatas(DateTime dataInicial, DateTime dataFinal)
         {
             return registros.Where(i => i.Data.Date >= dataInicial && i.Data.Date <= dataFinal).ToList();
+        }
+
+        protected override List<Compromisso> ObterDados()
+        {
+            return Contexto.compromissos;
         }
     }
 }

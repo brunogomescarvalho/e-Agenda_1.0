@@ -1,25 +1,23 @@
-﻿using System.Runtime.Serialization.Formatters.Binary;
-using System.Text.Json;
-
-using System.Xml.Serialization;
-
+﻿
 namespace e_Agenda.WinApp.ModuloCompartilhado
 {
     public abstract class RepositorioBaseArquivo<TEntidade> : IRepositorioBase<TEntidade> where TEntidade : EntidadeBase<TEntidade>
     {
-        protected abstract string NOME_ARQUIVO { get; }
+        private int contador;
+        protected ContextoDados Contexto { get; set; }
 
         protected List<TEntidade> registros;
 
-        private int contador;
-
-        protected RepositorioBaseArquivo(List<TEntidade> registros)
+        protected RepositorioBaseArquivo(ContextoDados contexto)
         {
-            this.registros = registros;
+            this.Contexto = contexto;
 
-            if (File.Exists(NOME_ARQUIVO))
-                CarregarDadosDoArquivo();
+            this.registros = ObterDados();
+
+            AtualizarContador();
         }
+
+        protected abstract List<TEntidade> ObterDados();
 
         public TEntidade BuscarPorId(int id)
         {
@@ -27,19 +25,23 @@ namespace e_Agenda.WinApp.ModuloCompartilhado
         }
 
         public virtual bool Cadastrar(TEntidade entidade)
-        {
-            entidade.AtribuirId(contador++);
+        {       
+            entidade.AtribuirId(++contador);
 
             registros.Add(entidade);
 
-            GravarDadosEmArquivo();
+            Contexto.GravarDadosEmArquivo();
 
             return true;
         }
 
-        public virtual bool Editar(TEntidade entidade)
+        public virtual bool Editar(TEntidade entidadeEditada)
         {
-            GravarDadosEmArquivo();
+            TEntidade entidade = BuscarPorId(entidadeEditada.Id);
+
+            entidade.Editar(entidadeEditada);
+
+            Contexto.GravarDadosEmArquivo();
 
             return true;
         }
@@ -48,69 +50,17 @@ namespace e_Agenda.WinApp.ModuloCompartilhado
         {
             registros.Remove(entidade);
 
-            GravarDadosEmArquivo();
+            Contexto.GravarDadosEmArquivo();
         }
 
         public void Excluir(int id)
         {
             registros.Remove(BuscarPorId(id));
 
-            GravarDadosEmArquivo();
+            Contexto.GravarDadosEmArquivo();
         }
 
-        private void GravarDadosJson()
-        {
-            JsonSerializerOptions options = new JsonSerializerOptions();
-
-            options.WriteIndented = true;
-
-            string json = JsonSerializer.Serialize(registros);
-
-            File.WriteAllText(NOME_ARQUIVO, json);
-        }
-
-        private void CarregarDadosJson()
-        {
-            string file = File.ReadAllText(NOME_ARQUIVO);
-
-            if(file.Length > 10)
-            {
-                registros = JsonSerializer.Deserialize<List<TEntidade>>(file)!;
-            }
-        }
-
-        private void CarregarDadosXML()
-        {
-            //  BinaryFormatter serializador = new BinaryFormatter();
-
-            XmlSerializer serializador = new XmlSerializer(typeof(List<TEntidade>));
-
-            byte[] tarefaEmBytes = File.ReadAllBytes(NOME_ARQUIVO);
-
-            MemoryStream tarefaStream = new MemoryStream(tarefaEmBytes);
-
-            registros = (List<TEntidade>)serializador.Deserialize(tarefaStream)!;
-
-            GravarDadosEmArquivo();
-
-            AtualizarContador();
-        }
-
-        private void GravarDadosXML()
-        {
-            // BinaryFormatter serializador = new BinaryFormatter();
-
-            XmlSerializer serializador = new XmlSerializer(typeof(List<TEntidade>));
-
-            MemoryStream contatoStream = new MemoryStream();
-
-            serializador.Serialize(contatoStream, registros);
-
-            byte[] tarefasEmBytes = contatoStream.ToArray();
-
-            File.WriteAllBytes(NOME_ARQUIVO, tarefasEmBytes);
-        }
-
+      
         public List<TEntidade> Listar()
         {
             return registros;
@@ -118,19 +68,8 @@ namespace e_Agenda.WinApp.ModuloCompartilhado
 
         private void AtualizarContador()
         {
+            if (registros.Count > 0)
             contador = registros.Max(x => x.Id);
-        }
-
-        private void GravarDadosEmArquivo()
-        {
-            GravarDadosJson();
-        }
-
-        private void CarregarDadosDoArquivo()
-        {
-            CarregarDadosJson();
-        }
-
-        
+        }       
     }
 }

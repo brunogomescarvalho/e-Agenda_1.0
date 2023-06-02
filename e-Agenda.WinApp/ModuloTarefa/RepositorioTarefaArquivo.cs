@@ -3,11 +3,9 @@ namespace e_Agenda.WinApp.ModuloTarefa
 {
     public class RepositorioTarefaArquivo : RepositorioBaseArquivo<Tarefa>, IRepositorioTarefa
     {
-        public RepositorioTarefaArquivo(List<Tarefa> registros) : base(registros)
+        public RepositorioTarefaArquivo(ContextoDados contexto) : base(contexto)
         {
         }
-
-        protected override string NOME_ARQUIVO => "ModuloTarefa\\tarefas.json";
 
         public List<Tarefa> ObterTodasTarefas()
         {
@@ -29,6 +27,11 @@ namespace e_Agenda.WinApp.ModuloTarefa
             tarefas.Sort(new OrganizadorDePrioridade());
 
             return tarefas;
+        }
+
+        protected override List<Tarefa>ObterDados()
+        {
+            return Contexto.tarefas;
         }
     }
 }

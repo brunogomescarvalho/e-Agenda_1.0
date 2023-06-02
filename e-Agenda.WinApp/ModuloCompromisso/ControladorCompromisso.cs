@@ -67,9 +67,9 @@ public partial class ControladorCompromisso : ControladorBase
 
             if (opcaoSalvar == DialogResult.OK)
             {
-                compromissoSelecionado.Editar(compromissoForm.Compromisso);
+                Compromisso compromissoEditado = compromissoForm.Compromisso;
 
-                bool horarioDisponivel = repositorioCompromisso.VerificarHorarioDisponivel(compromissoSelecionado);
+                bool horarioDisponivel = repositorioCompromisso.VerificarHorarioDisponivel(compromissoEditado);
 
                 if (horarioDisponivel == false)
                 {
@@ -77,7 +77,7 @@ public partial class ControladorCompromisso : ControladorBase
                     return;
                 }
 
-                repositorioCompromisso!.Editar(compromissoSelecionado);
+                repositorioCompromisso!.Editar(compromissoEditado);
 
                 AtualizarCompromissos();
             }

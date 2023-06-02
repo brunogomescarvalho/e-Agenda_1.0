@@ -12,15 +12,17 @@ public partial class TelaPrincipal : Form
 {
     private ControladorBase controlador = null!;
 
-    private readonly IRepositorioContato repositorioContato = new RepositorioContatoArquivo(new List<Contato>());
+    private static ContextoDados contexto = new ContextoDados(carregarDados:true);
 
-    private readonly IRepositorioCompromisso repositorioCompromisso = new RepositorioCompromissoArquivo(new List<Compromisso>());
+    private readonly IRepositorioContato repositorioContato = new RepositorioContatoArquivo(contexto);
 
-    private readonly IRepositorioTarefa repositorioTarefa = new RepositorioTarefaArquivo(new List<Tarefa>());
+    private readonly IRepositorioCompromisso repositorioCompromisso = new RepositorioCompromissoArquivo(contexto);
 
-    private readonly IRepositorioDespesa repositorioDespesa = new RepositorioDespesaArquivo(new List<Despesa>());
+    private readonly IRepositorioTarefa repositorioTarefa = new RepositorioTarefaArquivo(contexto);
 
-    private readonly IRepositorioCategoria repositorioCategoria = new RepositorioCategoriaArquivo(new List<Categoria>());
+    private readonly IRepositorioDespesa repositorioDespesa = new RepositorioDespesaArquivo(contexto);
+
+    private readonly IRepositorioCategoria repositorioCategoria = new RepositorioCategoriaArquivo(contexto);
 
     private static TelaPrincipal telaPrincipal = null!;
 

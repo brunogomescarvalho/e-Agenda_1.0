@@ -3,11 +3,9 @@ namespace e_Agenda.WinApp.ModuloCategoria
 {
     public class RepositorioCategoriaArquivo : RepositorioBaseArquivo<Categoria>, IRepositorioCategoria
     {
-        public RepositorioCategoriaArquivo(List<Categoria> registros) : base(registros)
+        public RepositorioCategoriaArquivo(ContextoDados contexto) : base(contexto)
         {
         }
-
-        protected override string NOME_ARQUIVO => "ModuloCategoria\\categorias.json";
 
         public override bool Cadastrar(Categoria entidade)
         {
@@ -36,6 +34,11 @@ namespace e_Agenda.WinApp.ModuloCategoria
                 return false;
             }
             return true;
+        }
+
+        protected override List<Categoria> ObterDados()
+        {
+            return Contexto.categorias;
         }
     }
 }
