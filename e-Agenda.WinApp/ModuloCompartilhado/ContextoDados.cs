@@ -22,7 +22,7 @@ namespace e_Agenda.WinApp.ModuloCompartilhado
 
         public List<Tarefa> tarefas { get; set; }
 
-        private string NOME_ARQUIVO { get => @"C:\Users\Bruno\source\repos\e-Agenda\e-Agenda.WinApp\ModuloCompartilhado\dados.json"; }
+        private string NOME_ARQUIVO { get => @"ModuloCompartilhado\dados.json"; }
 
 
         public ContextoDados()
