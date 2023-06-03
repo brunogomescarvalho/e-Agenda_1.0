@@ -102,14 +102,14 @@ public class ControladorTarefa:ControladorBase
     {
         Tarefa tarefa = ObterTarefa();
 
+        if (tarefa == null)
+            return;
+
         if (tarefa.EstaConcluida)
         {
             MessageBox.Show("A tarefa selecionada já está concluída!", "Tarefa Concluída", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
             return;
         }
-
-        if (tarefa == null)
-            return;
 
         var telaItens = new TelaItemTarefaForm(tarefa!);
 
@@ -247,6 +247,7 @@ public class ControladorTarefa:ControladorBase
         Configuracao.BtnAddItemTarefaEnabled = true;
         Configuracao.BtnAtualizarTarefaEnabled = true;
         Configuracao.BtnFiltrarEnabled = true;
-
+        Configuracao.ToolTipAdicionarItemTarefa = "Adicionar itens tarefa";
+        Configuracao.ToolTipAtualizarTarefa = "Atualizar tarefas";
     }
 }

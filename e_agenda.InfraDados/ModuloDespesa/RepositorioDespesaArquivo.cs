@@ -16,6 +16,7 @@ namespace e_Agenda.InfraDados.ModuloDespesa
             return (from n in registros
                     where n.Categorias.Contains(Categoria)
                     select n).ToList();
+
         }
 
         protected override List<Despesa> ObterDados()

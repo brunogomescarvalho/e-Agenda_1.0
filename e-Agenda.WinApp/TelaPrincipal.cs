@@ -16,6 +16,7 @@ using e_Agenda.WinApp.ModuloCompromisso;
 using e_Agenda.WinApp.ModuloContato;
 using e_Agenda.WinApp.ModuloDespesa;
 using e_Agenda.WinApp.ModuloTarefa;
+using System.Media;
 
 namespace e_Agenda.WinApp;
 
