@@ -1,7 +1,4 @@
-﻿
-
-
-using e_Agenda.Dominio.ModuloCategoria;
+﻿using e_Agenda.Dominio.ModuloCategoria;
 using e_Agenda.Dominio.ModuloDespesa;
 
 
@@ -21,8 +18,7 @@ namespace e_Agenda.WinApp.ModuloCategoria
 
             this.repositorioDespesa = repositorioDespesa;
 
-            ConfigurarTela();
-           
+            ConfigurarTela();  
         }
 
         public override void ConfigurarTela()
