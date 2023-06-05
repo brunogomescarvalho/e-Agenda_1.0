@@ -1,5 +1,4 @@
-﻿
-using e_Agenda.Dominio.ModuloCategoria;
+﻿using e_Agenda.Dominio.ModuloCategoria;
 using e_Agenda.Dominio.ModuloCompromisso;
 using e_Agenda.Dominio.ModuloContato;
 using e_Agenda.Dominio.ModuloDespesa;
@@ -7,78 +6,36 @@ using e_Agenda.Dominio.ModuloTarefa;
 using System.Text.Json;
 using System.Text.Json.Serialization;
 
-
 namespace e_Agenda.InfraDados.ModuloCompartilhado
 {
     public class ContextoDados
     {
-        public List<Contato> contatos { get; set; }
+        public List<Contato> Contatos { get; set; }
+        public List<Compromisso> Compromissos { get; set; }
+        public List<Categoria> Categorias { get; set; }
+        public List<Despesa> Despesas { get; set; }
+        public List<Tarefa> Tarefas { get; set; }
 
-        public List<Compromisso> compromissos { get; set; }
-
-        public List<Categoria> categorias { get; set; }
-
-        public List<Despesa> despesas { get; set; }
-
-        public List<Tarefa> tarefas { get; set; }
-
-        private string NOME_ARQUIVO { get => @"ModuloCompartilhado\dados.json"; }
-
+        private const string NOME_ARQUIVO = @"ModuloCompartilhado\dados.json";
 
         public ContextoDados()
         {
-            contatos = new List<Contato>();
+            Contatos = new List<Contato>();
 
-            compromissos = new List<Compromisso>();
+            Compromissos = new List<Compromisso>();
 
-            categorias = new List<Categoria>();
+            Categorias = new List<Categoria>();
 
-            despesas = new List<Despesa>();
+            Despesas = new List<Despesa>();
 
-            tarefas = new List<Tarefa>();          
+            Tarefas = new List<Tarefa>();
         }
 
-        public ContextoDados(bool carregarDados) :this()
+        public ContextoDados(bool carregarDados) : this()
         {
-            CarregarDadosDoArquivo();
-        }
-
-
-        private void GravarDadosJson()
-        {
-            JsonSerializerOptions options = new JsonSerializerOptions();
-
-            options.WriteIndented = true;
-
-            options.IncludeFields = true;
-
-            options.ReferenceHandler = ReferenceHandler.Preserve;
-
-            string json = JsonSerializer.Serialize(this,options);
-
-            File.WriteAllText(NOME_ARQUIVO, json);
-        }
-
-        private void CarregarDadosJson()
-        {
-
-            JsonSerializerOptions options = new JsonSerializerOptions();
-
-            options.ReferenceHandler = ReferenceHandler.Preserve;
-
-            options.WriteIndented = true;
-
-            string file = File.ReadAllText(NOME_ARQUIVO);
-
-            if (file.Length > 100)
+            if (carregarDados)
             {
-                ContextoDados ctx = JsonSerializer.Deserialize<ContextoDados>(file, options)!;
-
-                contatos = ctx.contatos;
-                compromissos = ctx.compromissos;
-                tarefas = ctx.tarefas;
-                despesas = ctx.despesas;
-                categorias = ctx.categorias;
+                CarregarDadosDoArquivo();
             }
         }
 
@@ -92,42 +49,44 @@ namespace e_Agenda.InfraDados.ModuloCompartilhado
             CarregarDadosJson();
         }
 
+        private void GravarDadosJson()
+        {
+            JsonSerializerOptions options = new()
+            {
+                WriteIndented = true,
 
+                IncludeFields = true,
 
+                ReferenceHandler = ReferenceHandler.Preserve
+            };
 
-        //private void CarregarDadosXML()
-        //{
-        //    //  BinaryFormatter serializador = new BinaryFormatter();
+            string json = JsonSerializer.Serialize(this, options);
 
-        //    XmlSerializer serializador = new XmlSerializer(typeof(List<TEntidade>));
+            File.WriteAllText(NOME_ARQUIVO, json);
+        }
 
-        //    byte[] tarefaEmBytes = File.ReadAllBytes(NOME_ARQUIVO);
-        //    MemoryStream tarefaStream = new MemoryStream(tarefaEmBytes);
+        private void CarregarDadosJson()
+        {
 
-        //    registros = (List<TEntidade>)serializador.Deserialize(tarefaStream)!;
+            JsonSerializerOptions options = new()
+            {
+                ReferenceHandler = ReferenceHandler.Preserve,
 
-        //    GravarDadosEmArquivo();
+                WriteIndented = true
+            };
 
-        //    AtualizarContador();
-        //}
+            string file = File.ReadAllText(NOME_ARQUIVO);
 
-        //private void GravarDadosXML()
-        //{
-        //    // BinaryFormatter serializador = new BinaryFormatter();
+            if (file.Length > 100)
+            {
+                ContextoDados ctx = JsonSerializer.Deserialize<ContextoDados>(file, options)!;
 
-        //    XmlSerializer serializador = new XmlSerializer(typeof(List<TEntidade>));
-
-        //    MemoryStream contatoStream = new MemoryStream();
-
-        //    serializador.Serialize(contatoStream, registros);
-
-        //    byte[] tarefasEmBytes = contatoStream.ToArray();
-
-        //    File.WriteAllBytes(NOME_ARQUIVO, tarefasEmBytes);
-        //}
-
-
-
-
+                Contatos = ctx.Contatos;
+                Compromissos = ctx.Compromissos;
+                Tarefas = ctx.Tarefas;
+                Despesas = ctx.Despesas;
+                Categorias = ctx.Categorias;
+            }
+        }
     }
 }

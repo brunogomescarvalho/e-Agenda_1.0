@@ -37,18 +37,20 @@ namespace e_Agenda.WinApp.ModuloTarefa
             itens.ForEach(i => tabelaItens.Rows.Add(i.Descricao, i.Concluido ? "Concluído" : "Pendente"));
         }
 
-        private void btnIncluir_Click(object sender, EventArgs e)
+        private void BtnIncluir_Click(object sender, EventArgs e)
         {
             string descricao = textDescricao.Text;
 
-            if (descricao.Trim().Length == 0)
+            var novoItem = new ItemTarefa(descricao);
+
+           string[] erros = novoItem.Validar();
+
+            if(erros.Length > 0 )
             {
                 TelaPrincipal.Instancia.AlterarTextRodape("Informe a descrição para o item da tarefa!");
                 DialogResult = DialogResult.None;
                 return;
             }
-
-            var novoItem = new ItemTarefa(descricao);
 
             IncluirNovaLinha(novoItem);
 

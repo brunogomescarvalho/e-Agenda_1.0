@@ -34,7 +34,7 @@ namespace e_Agenda.InfraDados.ModuloTarefa
 
         protected override List<Tarefa>ObterDados()
         {
-            return Contexto.tarefas;
+            return Contexto.Tarefas;
         }
     }
 }

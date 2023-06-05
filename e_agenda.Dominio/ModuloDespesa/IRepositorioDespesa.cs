@@ -1,5 +1,4 @@
-﻿
-using e_Agenda.Dominio.ModuloCategoria;
+﻿using e_Agenda.Dominio.ModuloCategoria;
 using e_Agenda.Dominio.ModuloCompartilhado;
 
 namespace e_Agenda.Dominio.ModuloDespesa

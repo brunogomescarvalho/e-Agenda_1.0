@@ -1,5 +1,4 @@
-﻿
-
+﻿using e_agenda.Dominio.ModuloDespesa;
 using e_Agenda.Dominio.ModuloCategoria;
 using e_Agenda.Dominio.ModuloCompartilhado;
 
@@ -8,15 +7,11 @@ namespace e_Agenda.Dominio.ModuloDespesa
     [Serializable]
     public class Despesa : EntidadeBase<Despesa>
     {
-        public string Descricao { get; set; }
-
+        public string Descricao { get; set; } = string.Empty;
         public decimal Valor { get; set; }
-
         public DateTime Data { get; set; }
-
         public FormaDePagamento FormaDePagamento { get; set; }
-
-        public List<Categoria> Categorias { get; set; }
+        public List<Categoria> Categorias { get; set; } = null!;
 
         public Despesa() { }
 
@@ -64,13 +59,5 @@ namespace e_Agenda.Dominio.ModuloDespesa
         {
             return String.Format($"Id: {Id}, {Descricao}, R${Valor}, {Data:d}, {string.Join(" - ", Categorias)}");
         }
-    }
-
-    public enum FormaDePagamento
-    {
-        Nenhum,
-        Cartao_Credito,
-        Cartao_Debito,
-        Dinheiro
-    }
+    } 
 }

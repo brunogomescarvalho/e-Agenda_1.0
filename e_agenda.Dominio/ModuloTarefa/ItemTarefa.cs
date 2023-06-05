@@ -3,8 +3,7 @@
 [Serializable]
 public class ItemTarefa
 {
-    public string Descricao { get;private set; }
-
+    public string Descricao { get;private set; } = string.Empty;
     public bool Concluido { get; private set; }
 
     public ItemTarefa() { }

@@ -7,8 +7,8 @@ namespace e_Agenda.Dominio.ModuloCompromisso;
 public partial class Compromisso : EntidadeBase<Compromisso>
 {
     public Contato? Contato { get; set; }
-    public string Assunto { get; set; }
-    public string Local { get; set; }
+    public string Assunto { get; set; } = string.Empty;
+    public string Local { get; set; } = string.Empty;
     public DateTime Data { get; set; }
     public DateTime HoraInicio { get; set; }
     public DateTime HoraTermino { get; set; }

@@ -1,10 +1,8 @@
-﻿
-namespace e_Agenda.Dominio.ModuloCompartilhado;
+﻿namespace e_Agenda.Dominio.ModuloCompartilhado;
 
 [Serializable]
 public abstract class EntidadeBase<TEntidade>
 {
-   
     public int Id { get; set; }
 
     public void AtribuirId(int id)

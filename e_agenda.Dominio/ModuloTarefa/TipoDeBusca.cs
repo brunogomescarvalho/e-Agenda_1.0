@@ -2,8 +2,8 @@
 {
     public enum TipoDeBusca
     {
-        todas, 
-        concluidas, 
+        todas,
+        concluidas,
         pendentes
     }
 }

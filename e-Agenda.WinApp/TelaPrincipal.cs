@@ -24,7 +24,7 @@ public partial class TelaPrincipal : Form
 {
     private ControladorBase controlador = null!;
 
-    private static ContextoDados contexto = new ContextoDados(carregarDados:true);
+    private static readonly ContextoDados contexto = new (carregarDados:true);
 
     private readonly IRepositorioContato repositorioContato = new RepositorioContatoArquivo(contexto);
 
@@ -47,6 +47,16 @@ public partial class TelaPrincipal : Form
         telaPrincipal ??= this;
     }
 
+    public void AlterarTextRodape(string menssagem)
+    {
+        statusLabel.Text = menssagem;
+    }
+
+    public void AlterarTextCadastro(string menssagem)
+    {
+        textTipoCadastro.Text = menssagem;
+    }
+
 
     private void ConfigurarListagem(ControladorBase controladorBase)
     {
@@ -59,45 +69,45 @@ public partial class TelaPrincipal : Form
         painelRegistros.Controls.Add(listagem);
     }
 
-    private void btnAdicionar_Click(object sender, EventArgs e)
+    private void BtnAdicionar_Click(object sender, EventArgs e)
     {
         controlador.Inserir();
     }
 
-    private void btnEditar_Click(object sender, EventArgs e)
+    private void BtnEditar_Click(object sender, EventArgs e)
     {
         controlador.Editar();
     }
 
-    private void btnExcluir_Click(object sender, EventArgs e)
+    private void BtnExcluir_Click(object sender, EventArgs e)
     {
         controlador.Excluir();
     }
 
-    private void btnFiltrar_Click(object sender, EventArgs e)
+    private void BtnFiltrar_Click(object sender, EventArgs e)
     {
         controlador.Filtrar();
     }
 
-    private void btnVisualizar_Click(object sender, EventArgs e)
+    private void BtnVisualizar_Click(object sender, EventArgs e)
     {
         if (controlador is ControladorCategoria ctrl)
             ctrl.VisualizarDespesasPorCategoria();
     }
 
-    private void btnAddItemTarefa_Click(object sender, EventArgs e)
+    private void BtnAddItemTarefa_Click(object sender, EventArgs e)
     {
         if (controlador is ControladorTarefa ctrl)
             ctrl.CadastrarItem();
     }
 
-    private void btnAtualizarTarefa_Click(object sender, EventArgs e)
+    private void BtnAtualizarTarefa_Click(object sender, EventArgs e)
     {
         if (controlador is ControladorTarefa ctrl)
             ctrl.AtualizarItensTarefa();
     }
 
-    private void contatosMenuItem_Click(object sender, EventArgs e)
+    private void ContatosMenuItem_Click(object sender, EventArgs e)
     {
         controlador = new ControladorContato(repositorioContato);
 
@@ -109,7 +119,7 @@ public partial class TelaPrincipal : Form
     }
 
 
-    private void compromissosMenuItem_Click(object sender, EventArgs e)
+    private void CompromissosMenuItem_Click(object sender, EventArgs e)
     {
         controlador = new ControladorCompromisso(repositorioCompromisso, repositorioContato);
 
@@ -120,7 +130,7 @@ public partial class TelaPrincipal : Form
         ConfigurarBotoes(controlador);
     }
 
-    private void tarefasMenuItem_Click(object sender, EventArgs e)
+    private void TarefasMenuItem_Click(object sender, EventArgs e)
     {
         controlador = new ControladorTarefa(repositorioTarefa);
 
@@ -132,7 +142,7 @@ public partial class TelaPrincipal : Form
 
     }
 
-    private void categoriasMenu_Click(object sender, EventArgs e)
+    private void CategoriasMenu_Click(object sender, EventArgs e)
     {
         controlador = new ControladorCategoria(repositorioCategoria, repositorioDespesa);
 
@@ -144,7 +154,7 @@ public partial class TelaPrincipal : Form
 
     }
 
-    private void controleDespesaMenu_Click(object sender, EventArgs e)
+    private void ControleDespesaMenu_Click(object sender, EventArgs e)
     {
         controlador = new ControladorDespesa(repositorioDespesa,repositorioCategoria);
 
@@ -190,13 +200,5 @@ public partial class TelaPrincipal : Form
         btnFiltrar.ToolTipText = controlador.Configuracao.ToolTipoFiltrar;
     }
 
-    public void AlterarTextRodape(string menssagem)
-    {
-        statusLabel.Text = menssagem;
-    }
-
-    public void AlterarTextCadastro(string menssagem)
-    {
-        textTipoCadastro.Text = menssagem;
-    }
+   
 }

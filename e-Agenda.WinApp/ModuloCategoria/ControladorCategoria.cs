@@ -6,9 +6,9 @@ namespace e_Agenda.WinApp.ModuloCategoria
 {
     public class ControladorCategoria : ControladorBase
     {
-        private IRepositorioCategoria repositorioCategoria;
+        private readonly IRepositorioCategoria repositorioCategoria;
 
-        private IRepositorioDespesa repositorioDespesa;
+        private readonly IRepositorioDespesa repositorioDespesa;
 
         private TabelaCategoriasControl tabelaCategoria = null!;
 

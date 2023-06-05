@@ -1,6 +1,4 @@
-﻿using e_Agenda.Dominio.ModuloTarefa;
-
-namespace e_Agenda.Dominio.ModuloTarefa;
+﻿namespace e_Agenda.Dominio.ModuloTarefa;
 public class OrganizadorDePrioridade : IComparer<Tarefa>
 {
     public int Compare(Tarefa? x, Tarefa? y)

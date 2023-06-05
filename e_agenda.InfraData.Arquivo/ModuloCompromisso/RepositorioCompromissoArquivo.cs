@@ -37,7 +37,7 @@ namespace e_Agenda.InfraDados.ModuloCompromisso
 
         protected override List<Compromisso> ObterDados()
         {
-            return Contexto.compromissos;
+            return Contexto.Compromissos;
         }
     }
 }

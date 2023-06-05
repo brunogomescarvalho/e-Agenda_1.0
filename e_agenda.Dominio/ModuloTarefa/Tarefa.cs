@@ -1,5 +1,4 @@
-﻿
-using e_Agenda.Dominio.ModuloCompartilhado;
+﻿using e_Agenda.Dominio.ModuloCompartilhado;
 
 namespace e_Agenda.Dominio.ModuloTarefa;
 
@@ -7,17 +6,11 @@ namespace e_Agenda.Dominio.ModuloTarefa;
 public class Tarefa : EntidadeBase<Tarefa>
 {
     public Prioridade Prioridade { get; set; }
-
-    public List<ItemTarefa> Itens { get; set; }
-
-    public string Titulo { get; set; }
-
+    public List<ItemTarefa> Itens { get; set; } = null!;
+    public string Titulo { get; set; } = string.Empty;
     public DateTime DataCriacao { get; set; }
-
     public DateTime? DataConclusao { get; set; }
-
     public decimal PorcentagemConcluida { get; set; }
-
     public bool EstaConcluida { get => PorcentagemConcluida == 100; }
 
     public Tarefa() { }
@@ -31,28 +24,12 @@ public class Tarefa : EntidadeBase<Tarefa>
         Titulo = titulo;
 
         DataCriacao = DateTime.Now;
-
     }
 
     public void AdicionarItem(ItemTarefa item)
     {
         this.Itens.Add(item);
         CalcularPorcentagemConcluida();
-    }
-
-    private void CalcularPorcentagemConcluida()
-    {
-
-        decimal finalizados = Itens.Count(i => i.Concluido == true);
-
-        decimal qtdDeItens = Itens.Count;
-
-        PorcentagemConcluida = Math.Round(finalizados / qtdDeItens * 100, 2);
-
-        if (EstaConcluida)
-        {
-            DataConclusao = DateTime.Now;
-        }
     }
 
     public List<ItemTarefa> BuscarItens()
@@ -66,7 +43,6 @@ public class Tarefa : EntidadeBase<Tarefa>
         this.Titulo = tarefa.Titulo;
         this.Itens = tarefa.Itens;
     }
-
 
     public override string ToString()
     {
@@ -104,5 +80,17 @@ public class Tarefa : EntidadeBase<Tarefa>
         return erros.ToArray();
     }
 
+    private void CalcularPorcentagemConcluida()
+    {
+        decimal finalizados = Itens.Count(i => i.Concluido == true);
 
+        decimal qtdDeItens = Itens.Count;
+
+        PorcentagemConcluida = Math.Round(finalizados / qtdDeItens * 100, 2);
+
+        if (EstaConcluida)
+        {
+            DataConclusao = DateTime.Now;
+        }
+    }
 }

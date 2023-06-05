@@ -1,5 +1,4 @@
-﻿
-using e_Agenda.Dominio.ModuloCompartilhado;
+﻿using e_Agenda.Dominio.ModuloCompartilhado;
 
 namespace e_Agenda.InfraDados.ModuloCompartilhado
 {
@@ -27,7 +26,7 @@ namespace e_Agenda.InfraDados.ModuloCompartilhado
         }
 
         public virtual bool Cadastrar(TEntidade entidade)
-        {       
+        {
             entidade.AtribuirId(++contador);
 
             registros.Add(entidade);
@@ -62,7 +61,7 @@ namespace e_Agenda.InfraDados.ModuloCompartilhado
             Contexto.GravarDadosEmArquivo();
         }
 
-      
+
         public List<TEntidade> Listar()
         {
             return registros;
@@ -71,7 +70,7 @@ namespace e_Agenda.InfraDados.ModuloCompartilhado
         private void AtualizarContador()
         {
             if (registros.Count > 0)
-            contador = registros.Max(x => x.Id);
-        }       
+                contador = registros.Max(x => x.Id);
+        }
     }
 }

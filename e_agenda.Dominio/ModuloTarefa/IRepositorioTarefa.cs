@@ -1,5 +1,4 @@
-﻿
-using e_Agenda.Dominio.ModuloCompartilhado;
+﻿using e_Agenda.Dominio.ModuloCompartilhado;
 
 namespace e_Agenda.Dominio.ModuloTarefa
 {
@@ -12,7 +11,5 @@ namespace e_Agenda.Dominio.ModuloTarefa
         List<Tarefa> ObterTarefasConcluidas();
 
         List<Tarefa> OrdenadarTarefas(List<Tarefa> tarefas);
-
-
     }
 }

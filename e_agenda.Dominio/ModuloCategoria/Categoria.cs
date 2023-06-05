@@ -6,7 +6,7 @@ namespace e_Agenda.Dominio.ModuloCategoria
     [Serializable]
     public class Categoria : EntidadeBase<Categoria>
     {
-        public string Nome { get; set; }
+        public string Nome { get; set; } = string.Empty;
 
         public Categoria() { }
 

@@ -41,7 +41,7 @@ namespace e_Agenda.InfraDados.ModuloCategoria
 
         protected override List<Categoria> ObterDados()
         {
-            return Contexto.categorias;
+            return Contexto.Categorias;
         }
     }
 }

@@ -12,7 +12,7 @@ namespace e_Agenda.InfraDados.ModuloContato
 
         protected override List<Contato> ObterDados()
         {
-            return Contexto.contatos;
+            return Contexto.Contatos;
         }
     }
 }

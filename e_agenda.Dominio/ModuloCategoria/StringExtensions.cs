@@ -1,15 +1,10 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Globalization;
-using System.Linq;
+﻿using System.Globalization;
 using System.Text;
-using System.Threading.Tasks;
 
 namespace e_Agenda.InfraDados.ModuloCompartilhado
 {
     public static class StringExtensions
     {
-
         public static string TirarAcentosPalavra(this string text)
         {
             return new string(text

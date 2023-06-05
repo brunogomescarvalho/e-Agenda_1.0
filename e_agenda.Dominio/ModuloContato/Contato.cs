@@ -6,18 +6,13 @@ namespace e_Agenda.Dominio.ModuloContato;
 [Serializable]
 public class Contato : EntidadeBase<Contato>
 {
-    public string Nome { get;  set; }
-
-    public string Email { get;  set; }
-
-    public string Telefone { get;  set; }
-
-    public string Empresa { get;  set; }
-
-    public string Cargo { get;  set; }
+    public string Nome { get;  set; } = string.Empty;
+    public string Email { get;  set; } = string.Empty;
+    public string Telefone { get;  set; } = string.Empty;
+    public string Empresa { get;  set; } = string.Empty;
+    public string Cargo { get;  set; } = string.Empty;
 
     public Contato() { }
-
 
     public Contato(string nome, string email, string telefone, string empresa, string cargo)
     {
@@ -60,7 +55,7 @@ public class Contato : EntidadeBase<Contato>
         return erros.ToArray();
     }
 
-    public bool TelefoneEhValido(string telefone)
+    private static bool TelefoneEhValido(string telefone)
     {
         string padrao = @"^(?:\([1-9]{2}\)\s?)?(?:9\d{4}-\d{4}|\d{4}-\d{4})$";
 
@@ -68,7 +63,7 @@ public class Contato : EntidadeBase<Contato>
 
     }
 
-    public bool EmailEhValido(string email)
+    private static bool EmailEhValido(string email)
     {
         string padrao = @"^[a-zA-Z0-9_.+-]+@[a-zA-Z0-9-]+\.(?:com\.br|com)$";
 

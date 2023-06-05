@@ -1,12 +1,10 @@
-﻿
-
-using e_Agenda.Dominio.ModuloContato;
+﻿using e_Agenda.Dominio.ModuloContato;
 
 namespace e_Agenda.WinApp.ModuloContato;
 
 public class ControladorContato : ControladorBase
 {
-    private IRepositorioContato repositorioContato;
+    private readonly IRepositorioContato repositorioContato;
 
     private TabelaContatoControl? gridContato;
 
@@ -18,7 +16,7 @@ public class ControladorContato : ControladorBase
 
     public override void Inserir()
     {
-        TelaContatoForm contatoForm = new TelaContatoForm();
+        TelaContatoForm contatoForm = new ();
 
         DialogResult opcao = contatoForm.ShowDialog();
 

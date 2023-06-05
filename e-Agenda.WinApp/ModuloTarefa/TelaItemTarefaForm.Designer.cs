@@ -75,7 +75,7 @@
             btnIncluir.TabIndex = 12;
             btnIncluir.Text = "Incluir";
             btnIncluir.UseVisualStyleBackColor = true;
-            btnIncluir.Click += btnIncluir_Click;
+            btnIncluir.Click += BtnIncluir_Click;
             // 
             // labelDescricao
             // 

@@ -14,6 +14,25 @@ namespace e_Agenda.WinApp.ModuloDespesa
             gridDespesas.ConfigurarGridZebrado();
         }
 
+        public void AtualizarColunas(List<Despesa> despesas)
+        {
+            gridDespesas.Rows.Clear();
+
+            despesas.ForEach(d => gridDespesas.Rows.Add(d.Id, d.Descricao, $"R$ {d.Valor}", d.FormaDePagamento, string.Join(", ", d.Categorias)));
+        }
+
+        public int ObterIdSelecionado()
+        {
+            try
+            {
+                return Convert.ToInt32(gridDespesas.SelectedRows[0].Cells[0].Value);
+            }
+            catch (ArgumentOutOfRangeException)
+            {
+                return -1;
+            }
+        }
+
         private void ConstruirColunas()
         {
             var columns = new DataGridViewColumn[]
@@ -37,25 +56,6 @@ namespace e_Agenda.WinApp.ModuloDespesa
 
             gridDespesas.Columns.AddRange(columns);
 
-        }
-
-        public void AtualizarColunas(List<Despesa> despesas)
-        {
-            gridDespesas.Rows.Clear();
-
-            despesas.ForEach(d => gridDespesas.Rows.Add(d.Id,d.Descricao,$"R$ {d.Valor}",d.FormaDePagamento,string.Join(", ", d.Categorias)));
-        }
-
-        public int ObterIdSelecionado()
-        {
-            try
-            {
-                return Convert.ToInt32(gridDespesas.SelectedRows[0].Cells[0].Value);
-            }
-            catch (ArgumentOutOfRangeException)
-            {
-                return -1;
-            }
         }
 
     }

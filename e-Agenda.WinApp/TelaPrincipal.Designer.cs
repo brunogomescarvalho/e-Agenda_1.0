@@ -89,7 +89,7 @@
             contatosMenuItem.Name = "contatosMenuItem";
             contatosMenuItem.Size = new Size(248, 46);
             contatosMenuItem.Text = "Contatos";
-            contatosMenuItem.Click += contatosMenuItem_Click;
+            contatosMenuItem.Click += ContatosMenuItem_Click;
             // 
             // compromissosMenuItem
             // 
@@ -98,7 +98,7 @@
             compromissosMenuItem.Name = "compromissosMenuItem";
             compromissosMenuItem.Size = new Size(248, 46);
             compromissosMenuItem.Text = "Compromissos";
-            compromissosMenuItem.Click += compromissosMenuItem_Click;
+            compromissosMenuItem.Click += CompromissosMenuItem_Click;
             // 
             // tarefasMenuItem
             // 
@@ -107,7 +107,7 @@
             tarefasMenuItem.Name = "tarefasMenuItem";
             tarefasMenuItem.Size = new Size(248, 46);
             tarefasMenuItem.Text = "Tarefas";
-            tarefasMenuItem.Click += tarefasMenuItem_Click;
+            tarefasMenuItem.Click += TarefasMenuItem_Click;
             // 
             // despesasToolStripMenuItem
             // 
@@ -125,7 +125,7 @@
             controleMenu.Name = "controleMenu";
             controleMenu.Size = new Size(244, 46);
             controleMenu.Text = "Controle";
-            controleMenu.Click += controleDespesaMenu_Click;
+            controleMenu.Click += ControleDespesaMenu_Click;
             // 
             // categoriasMenu
             // 
@@ -134,7 +134,7 @@
             categoriasMenu.Name = "categoriasMenu";
             categoriasMenu.Size = new Size(244, 46);
             categoriasMenu.Text = "Categorias";
-            categoriasMenu.Click += categoriasMenu_Click;
+            categoriasMenu.Click += CategoriasMenu_Click;
             // 
             // statusStrip
             // 
@@ -178,7 +178,7 @@
             btnAdicionar.ImageScaling = ToolStripItemImageScaling.None;
             btnAdicionar.Name = "btnAdicionar";
             btnAdicionar.Size = new Size(54, 44);
-            btnAdicionar.Click += btnAdicionar_Click;
+            btnAdicionar.Click += BtnAdicionar_Click;
             // 
             // btnEditar
             // 
@@ -189,7 +189,7 @@
             btnEditar.ImageScaling = ToolStripItemImageScaling.None;
             btnEditar.Name = "btnEditar";
             btnEditar.Size = new Size(54, 44);
-            btnEditar.Click += btnEditar_Click;
+            btnEditar.Click += BtnEditar_Click;
             // 
             // btnExcluir
             // 
@@ -200,7 +200,7 @@
             btnExcluir.ImageScaling = ToolStripItemImageScaling.None;
             btnExcluir.Name = "btnExcluir";
             btnExcluir.Size = new Size(54, 44);
-            btnExcluir.Click += btnExcluir_Click;
+            btnExcluir.Click += BtnExcluir_Click;
             // 
             // toolStripSeparator1
             // 
@@ -216,7 +216,7 @@
             btnFiltrar.ImageTransparentColor = Color.Magenta;
             btnFiltrar.Name = "btnFiltrar";
             btnFiltrar.Size = new Size(44, 44);
-            btnFiltrar.Click += btnFiltrar_Click;
+            btnFiltrar.Click += BtnFiltrar_Click;
             // 
             // toolStripSeparator2
             // 
@@ -233,7 +233,7 @@
             btnAddItemTarefa.Name = "btnAddItemTarefa";
             btnAddItemTarefa.Size = new Size(44, 44);
             btnAddItemTarefa.TextImageRelation = TextImageRelation.TextBeforeImage;
-            btnAddItemTarefa.Click += btnAddItemTarefa_Click;
+            btnAddItemTarefa.Click += BtnAddItemTarefa_Click;
             // 
             // btnAtualizarTarefa
             // 
@@ -244,7 +244,7 @@
             btnAtualizarTarefa.ImageTransparentColor = Color.Magenta;
             btnAtualizarTarefa.Name = "btnAtualizarTarefa";
             btnAtualizarTarefa.Size = new Size(44, 44);
-            btnAtualizarTarefa.Click += btnAtualizarTarefa_Click;
+            btnAtualizarTarefa.Click += BtnAtualizarTarefa_Click;
             // 
             // toolStripSeparator3
             // 
@@ -260,7 +260,7 @@
             btnVisualizar.ImageTransparentColor = Color.Magenta;
             btnVisualizar.Name = "btnVisualizar";
             btnVisualizar.Size = new Size(44, 44);
-            btnVisualizar.Click += btnVisualizar_Click;
+            btnVisualizar.Click += BtnVisualizar_Click;
             // 
             // toolStripSeparator4
             // 

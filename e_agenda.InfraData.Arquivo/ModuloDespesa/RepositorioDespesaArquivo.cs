@@ -21,7 +21,7 @@ namespace e_Agenda.InfraDados.ModuloDespesa
 
         protected override List<Despesa> ObterDados()
         {
-            return Contexto.despesas;
+            return Contexto.Despesas;
         }
     }
 }
