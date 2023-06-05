@@ -16,6 +16,7 @@
   <ItemGroup>
     <ProjectReference Include="..\e_agenda.Dominio\e_agenda.Dominio.csproj" />
     <ProjectReference Include="..\e_agenda.InfraDados\e_agenda.InfraDados.Arquivo.csproj" />
+    <ProjectReference Include="..\e_agenda.InfraData.Arquivo\e_agenda.InfraDados.Arquivo.csproj" />
   </ItemGroup>
 
   <ItemGroup>
