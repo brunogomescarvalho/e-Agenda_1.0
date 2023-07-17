@@ -1,6 +1,7 @@
-﻿using e_Agenda.Dominio.ModuloCategoria;
+﻿using e_agenda.Aplicacao.ModuloCategoria;
+using e_Agenda.Dominio.ModuloCategoria;
 using e_Agenda.Dominio.ModuloDespesa;
-
+using FluentResults;
 
 namespace e_Agenda.WinApp.ModuloCategoria
 {
@@ -12,11 +13,15 @@ namespace e_Agenda.WinApp.ModuloCategoria
 
         private TabelaCategoriasControl tabelaCategoria = null!;
 
-        public ControladorCategoria(IRepositorioCategoria repositorioCategoria, IRepositorioDespesa repositorioDespesa)
+        ServicoCategoria servicoCategoria;
+
+        public ControladorCategoria(IRepositorioCategoria repositorioCategoria, IRepositorioDespesa repositorioDespesa, ServicoCategoria servicoCategoria)
         {
             this.repositorioCategoria = repositorioCategoria;
 
             this.repositorioDespesa = repositorioDespesa;
+
+            this.servicoCategoria = servicoCategoria;
 
             ConfigurarTela();  
         }
@@ -49,20 +54,17 @@ namespace e_Agenda.WinApp.ModuloCategoria
                 Text = "Editar Categoria"
             };
 
+            telaForm.onGravarRegistro += servicoCategoria.Editar;
+
             DialogResult opcao = telaForm.ShowDialog();
 
             if (opcao == DialogResult.OK)
-            {
-                categoriaSelecionada.Editar(telaForm.Categoria);
-
-                bool editou = repositorioCategoria.Editar(categoriaSelecionada);
-
-                if (!editou)
-                    MessageBox.Show($"Categoria {categoriaSelecionada.Nome} Já cadastrada", "Categoria já cadastrada", MessageBoxButtons.OK, MessageBoxIcon.Error);
-
+            {                        
                 AtualizarCategorias();
             }
         }
+
+      
 
         public override void Excluir()
         {
@@ -73,24 +75,23 @@ namespace e_Agenda.WinApp.ModuloCategoria
             if (categoriaSelecionada == null)
             {
                 MessageBox.Show("Selecione uma categoria!");
-                return;
             }
-
-            bool vinculado = repositorioDespesa.ListarDespesasPorCategorias(categoriaSelecionada).Any();
-
-            if(vinculado)
-            {
-                MessageBox.Show("Não é possível excluir a categoria selecionada,\npois ela está vinculada a despesas cadastradas!","Categoria já Vinculada", MessageBoxButtons.OK,MessageBoxIcon.Information);
-                return;
-            }
-
             else
             {
                 var opcao = ConfirmarAcao($"Confirma excluír a categoria {categoriaSelecionada.Nome} ?", "Confirmar Excluisão");
                 if(opcao == DialogResult.Yes)
                 {
-                    repositorioCategoria.Excluir(id);
-                    AtualizarCategorias();
+                   Result result = servicoCategoria.Excluir(categoriaSelecionada);
+
+                    if(result.IsFailed)
+                    {
+                        TelaPrincipal.Instancia.AlterarTextRodape(result.Errors[0].Message);
+                    }
+                    else
+                    {
+                        AtualizarCategorias();
+                    }
+                   
                 }
             }
         }
@@ -99,17 +100,12 @@ namespace e_Agenda.WinApp.ModuloCategoria
         {
             var telaForm = new TelaCategoriaForm();
 
+            telaForm.onGravarRegistro += servicoCategoria.Cadastrar;
+
             DialogResult opcao = telaForm.ShowDialog();
 
             if (opcao == DialogResult.OK)
             {
-                Categoria categoria = telaForm.Categoria;
-
-                bool cadastrou = repositorioCategoria.Cadastrar(categoria);
-
-                if (!cadastrou)
-                    MessageBox.Show($"Categoria {categoria.Nome} Já cadastrada", "Categoria já cadastrada", MessageBoxButtons.OK, MessageBoxIcon.Error);
-
                 AtualizarCategorias();
             }
         }

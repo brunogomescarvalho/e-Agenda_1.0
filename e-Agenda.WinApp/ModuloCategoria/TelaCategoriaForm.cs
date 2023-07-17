@@ -1,10 +1,13 @@
 ﻿
 using e_Agenda.Dominio.ModuloCategoria;
+using FluentResults;
 
 namespace e_Agenda.WinApp.ModuloCategoria
 {
     public partial class TelaCategoriaForm : Form
     {
+
+        public onGravarRegistro<Categoria> onGravarRegistro;
 
         private Categoria categoria = null!;
 
@@ -39,12 +42,12 @@ namespace e_Agenda.WinApp.ModuloCategoria
                 categoria.AtribuirId(id);
             }
 
-            var erros = categoria.Validar();
+            Result result = onGravarRegistro(categoria);
 
-            if (erros.Any())
+            if (result.IsFailed)
             {
-                TelaPrincipal.Instancia.AlterarTextRodape(erros[0]);
-                DialogResult = DialogResult.None; return;
+                TelaPrincipal.Instancia.AlterarTextRodape(result.Errors[0].Message);
+                DialogResult = DialogResult.None;
             }
         }
     }

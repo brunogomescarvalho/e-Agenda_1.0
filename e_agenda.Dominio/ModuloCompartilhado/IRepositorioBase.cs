@@ -3,9 +3,9 @@ namespace e_Agenda.Dominio.ModuloCompartilhado
 {
     public interface IRepositorioBase<TEntidade> where TEntidade : EntidadeBase<TEntidade>
     {
-        bool Cadastrar(TEntidade entidade);
+        void Cadastrar(TEntidade entidade);
 
-        bool Editar(TEntidade entidade);
+        void Editar(TEntidade entidade);
 
         TEntidade BuscarPorId(int id);
 

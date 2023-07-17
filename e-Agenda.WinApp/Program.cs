@@ -1,3 +1,5 @@
+using Serilog;
+
 namespace e_Agenda.WinApp
 {
     internal static class Program
@@ -8,8 +10,11 @@ namespace e_Agenda.WinApp
         [STAThread]
         static void Main()
         {
-            // To customize application configuration such as set high DPI settings or default font,
-            // see https://aka.ms/applicationconfiguration.
+            Log.Logger = new LoggerConfiguration()
+                 .WriteTo.File("log_e_Agenda.txt", rollingInterval: RollingInterval.Day, retainedFileCountLimit:1)
+                 .MinimumLevel.Debug()
+                 .CreateLogger();
+
             ApplicationConfiguration.Initialize();
             Application.Run(new TelaPrincipal());
         }

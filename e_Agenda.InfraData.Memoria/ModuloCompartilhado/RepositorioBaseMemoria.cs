@@ -12,13 +12,13 @@ public abstract class RepositorioBaseMemoria<TEntidade> : IRepositorioBase<TEnti
         this.registros = registros;
     }
 
-    public virtual bool Cadastrar(TEntidade entidade)
+    public virtual void Cadastrar(TEntidade entidade)
     {
         entidade.AtribuirId(++contador);
 
         registros.Add(entidade);
 
-        return true;
+       
     }
 
     public List<TEntidade>Listar()
@@ -31,13 +31,11 @@ public abstract class RepositorioBaseMemoria<TEntidade> : IRepositorioBase<TEnti
         return registros.FirstOrDefault(x => x.Id == id)!;
     }
 
-    public virtual bool Editar(TEntidade entidade)
+    public virtual void Editar(TEntidade entidade)
     {
         TEntidade buscada = BuscarPorId(entidade.Id);
 
         buscada.Editar(entidade);
-
-        return true;
     }
 
     public void Excluir(TEntidade entidade)

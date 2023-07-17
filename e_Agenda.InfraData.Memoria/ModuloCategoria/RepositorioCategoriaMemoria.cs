@@ -10,33 +10,30 @@ namespace e_Agenda.InfraDados.ModuloCategoria
         {
         }
 
-        public override bool Cadastrar(Categoria entidade)
+        public Categoria BuscarPorNome(string nome)
         {
-            if (VerificarItemJaCadastrado(entidade) == false)
-            {
-                return false;
-            }
-
-            return base.Cadastrar(entidade);
+            return registros.FirstOrDefault(i => i.Nome == nome)!;
         }
 
-        public override bool Editar(Categoria entidade)
+        public override void Cadastrar(Categoria entidade)
+        {
+            if (!VerificarItemJaCadastrado(entidade))
+            {
+                base.Cadastrar(entidade);
+            }
+
+        }
+
+        public override void Editar(Categoria entidade)
         {
             if (VerificarItemJaCadastrado(entidade) == false)
             {
-                return false;
-            }
-
-            return base.Editar(entidade);
-
+                base.Editar(entidade);
+            }      
         }
         public bool VerificarItemJaCadastrado(Categoria entidade)
         {
-            if (registros.Any(i => i.Nome.TirarAcentosPalavra().ToLower() == entidade.Nome.TirarAcentosPalavra().ToLower() && i.Id != entidade.Id))
-            {
-                return false;
-            }
-            return true;
+            return registros.Any(i => i.Nome.TirarAcentosPalavra().ToLower() == entidade.Nome.TirarAcentosPalavra().ToLower() && i.Id != entidade.Id);        
         }
     }
 }

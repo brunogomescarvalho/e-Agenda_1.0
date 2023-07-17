@@ -25,7 +25,7 @@ namespace e_Agenda.InfraDados.ModuloCompartilhado
             return registros.FirstOrDefault(i => i.Id.Equals(id))!;
         }
 
-        public virtual bool Cadastrar(TEntidade entidade)
+        public virtual void Cadastrar(TEntidade entidade)
         {
             entidade.AtribuirId(++contador);
 
@@ -33,10 +33,10 @@ namespace e_Agenda.InfraDados.ModuloCompartilhado
 
             Contexto.GravarDadosEmArquivo();
 
-            return true;
+           
         }
 
-        public virtual bool Editar(TEntidade entidadeEditada)
+        public virtual void Editar(TEntidade entidadeEditada)
         {
             TEntidade entidade = BuscarPorId(entidadeEditada.Id);
 
@@ -44,7 +44,7 @@ namespace e_Agenda.InfraDados.ModuloCompartilhado
 
             Contexto.GravarDadosEmArquivo();
 
-            return true;
+           
         }
 
         public void Excluir(TEntidade entidade)

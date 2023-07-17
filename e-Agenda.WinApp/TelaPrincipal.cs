@@ -1,40 +1,12 @@
-
-
-using e_Agenda.Dominio.ModuloCategoria;
-using e_Agenda.Dominio.ModuloCompromisso;
-using e_Agenda.Dominio.ModuloContato;
-using e_Agenda.Dominio.ModuloDespesa;
-using e_Agenda.Dominio.ModuloTarefa;
-using e_Agenda.InfraDados.ModuloCategoria;
-using e_Agenda.InfraDados.ModuloCompartilhado;
-using e_Agenda.InfraDados.ModuloCompromisso;
-using e_Agenda.InfraDados.ModuloContato;
-using e_Agenda.InfraDados.ModuloDespesa;
-using e_Agenda.InfraDados.ModuloTarefa;
 using e_Agenda.WinApp.ModuloCategoria;
 using e_Agenda.WinApp.ModuloCompromisso;
-using e_Agenda.WinApp.ModuloContato;
-using e_Agenda.WinApp.ModuloDespesa;
 using e_Agenda.WinApp.ModuloTarefa;
-using System.Media;
 
 namespace e_Agenda.WinApp;
 
 public partial class TelaPrincipal : Form
 {
     private ControladorBase controlador = null!;
-
-    private static readonly ContextoDados contexto = new (carregarDados:true);
-
-    private readonly IRepositorioContato repositorioContato = new RepositorioContatoArquivo(contexto);
-
-    private readonly IRepositorioCompromisso repositorioCompromisso = new RepositorioCompromissoArquivo(contexto);
-
-    private readonly IRepositorioTarefa repositorioTarefa = new RepositorioTarefaArquivo(contexto);
-
-    private readonly IRepositorioDespesa repositorioDespesa = new RepositorioDespesaArquivo(contexto);
-
-    private readonly IRepositorioCategoria repositorioCategoria = new RepositorioCategoriaArquivo(contexto);
 
     private static TelaPrincipal telaPrincipal = null!;
 
@@ -109,7 +81,7 @@ public partial class TelaPrincipal : Form
 
     private void ContatosMenuItem_Click(object sender, EventArgs e)
     {
-        controlador = new ControladorContato(repositorioContato);
+        controlador = IoC.ObterControlador(sender);
 
         ConfigurarToolTips(controlador);
 
@@ -121,7 +93,7 @@ public partial class TelaPrincipal : Form
 
     private void CompromissosMenuItem_Click(object sender, EventArgs e)
     {
-        controlador = new ControladorCompromisso(repositorioCompromisso, repositorioContato);
+        controlador = IoC.ObterControlador(sender);
 
         ConfigurarToolTips(controlador);
 
@@ -132,7 +104,7 @@ public partial class TelaPrincipal : Form
 
     private void TarefasMenuItem_Click(object sender, EventArgs e)
     {
-        controlador = new ControladorTarefa(repositorioTarefa);
+        controlador = IoC.ObterControlador(sender);
 
         ConfigurarToolTips(controlador);
 
@@ -144,7 +116,7 @@ public partial class TelaPrincipal : Form
 
     private void CategoriasMenu_Click(object sender, EventArgs e)
     {
-        controlador = new ControladorCategoria(repositorioCategoria, repositorioDespesa);
+        controlador = IoC.ObterControlador(sender);
 
         ConfigurarListagem(controlador);
 
@@ -156,7 +128,7 @@ public partial class TelaPrincipal : Form
 
     private void ControleDespesaMenu_Click(object sender, EventArgs e)
     {
-        controlador = new ControladorDespesa(repositorioDespesa,repositorioCategoria);
+        controlador = IoC.ObterControlador(sender);
 
         ConfigurarListagem(controlador);
 

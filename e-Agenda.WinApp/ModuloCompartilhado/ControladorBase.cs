@@ -1,4 +1,10 @@
-﻿namespace e_Agenda.WinApp.ModuloCompartilhado;
+﻿using e_Agenda.Dominio.ModuloCompartilhado;
+using FluentResults;
+
+namespace e_Agenda.WinApp.ModuloCompartilhado;
+
+public delegate Result onGravarRegistro<TEntidade>(TEntidade entidade) where TEntidade : EntidadeBase<TEntidade>;
+
 public abstract class ControladorBase
 {
     public Configuracao Configuracao { get; set; } = null!;
